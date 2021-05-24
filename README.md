@@ -3,5 +3,6 @@ Projeto Integrador referente ao bootcamp da Generation da Turma 22. Tema: Rede s
 
 * [Nathalia](https://github.com/FaveroNath)<br>
 * [Ellen](https://github.com/Ellen-code)<br>
-* [Luciano](https://github.com/Lucianf5)
+* [Luciano](https://github.com/Lucianf5)<br>
+* [Julio](https://github.com/Julio-0417)<br>
 
