@@ -33,8 +33,12 @@ public class UsuariosController {
 	@GetMapping("/id/{id_usuario}")
 	public ResponseEntity<Usuarios> buscarUsuarioPorId(@PathVariable(value = "id_usuario") Long idUsuario) {
 		return serviceUsuarios.procurarIdUsuario(idUsuario);
-}	
+	}	
 	
+	@GetMapping("/nome/{nome_completo}")
+	public ResponseEntity<Object> buscarUsuarioPorNomeCompleto(@PathVariable(value="nome_completo") String nomeCompleto){
+		return serviceUsuarios.procurarNomeUsuario(nomeCompleto);
+	}
 
 	@PostMapping("/salvar")
 	public ResponseEntity<Usuarios> salvarNovoUsuario(@RequestBody Usuarios novoUsuario) {
