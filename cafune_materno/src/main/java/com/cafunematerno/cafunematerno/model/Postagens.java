@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -16,15 +16,15 @@ public class Postagens {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idPostagem;
 	
-	@NotNull
+	@NotBlank
 	@Size(min = 5, max = 45, message = "Entre 5 e 45 caracteres")
 	private String tituloPostagem;
 	
-	@NotNull
-	@Size(min = 10, max = 255, message = "Entre 10 e 255 caracteres")
+	@NotBlank
+	@Size(min = 5, max = 255, message = "Entre 10 e 255 caracteres")
 	private String descricaoPostagem;
 	
-	@Size(min = 10, max = 255, message = "Entre 10 e 255 caracteres")
+	@Size(min = 5, max = 255, message = "Entre 10 e 255 caracteres")
 	private String localizacaoPostagem;
 	
 	@Size(min = 10, max = 255, message = "Entre 10 e 255 caracteres")

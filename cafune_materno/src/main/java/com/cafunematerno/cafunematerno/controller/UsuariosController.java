@@ -2,18 +2,19 @@ package com.cafunematerno.cafunematerno.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cafunematerno.cafunematerno.model.Usuarios;
-import com.cafunematerno.cafunematerno.repository.UsuariosRepository;
 import com.cafunematerno.cafunematerno.service.UsuariosService;
 
 @RestController
@@ -21,25 +22,36 @@ import com.cafunematerno.cafunematerno.service.UsuariosService;
 public class UsuariosController {
 	
 	@Autowired
-	private UsuariosRepository repository;
+	private UsuariosService serviceUsuarios;
 	
-	@Autowired
-	private UsuariosService service;
 	
 	@GetMapping
-	public ResponseEntity<List<Usuarios>> pegarTodesUsuarios(){
-		List<Usuarios> listaDeUsuarios = repository.findAll();
-		if(listaDeUsuarios.isEmpty()) {
-			return ResponseEntity.status(204).build();
-		} else {		
-			return ResponseEntity.status(200).body(listaDeUsuarios);
-		}
+	public ResponseEntity<List<Usuarios>> getAll() {
+		return serviceUsuarios.findAll();
 	}
 	
+	@GetMapping("/id/{id_usuario}")
+	public ResponseEntity<Usuarios> buscarUsuarioPorId(@PathVariable(value = "id_usuario") Long idUsuario) {
+		return serviceUsuarios.procurarIdUsuario(idUsuario);
+}	
+	
+
 	@PostMapping("/salvar")
-	public ResponseEntity<Object> salvarNovoUsuario(@Valid @RequestBody Usuarios novoUsuario) {
-		return service.cadastrarUsuario(novoUsuario)
-				.map(adicionarUsuario -> ResponseEntity.status(201).body(adicionarUsuario))
-				.orElse(ResponseEntity.status(400).body("E-mail já cadastrado. Por favor, insira outro."));
+	public ResponseEntity<Usuarios> salvarNovoUsuario(@RequestBody Usuarios novoUsuario) {
+			return serviceUsuarios.cadastrarNovoUsuario(novoUsuario);
+	}
+	
+	@PutMapping("/atualizar/{id_usuario}")
+	public ResponseEntity<Usuarios> alterarUsuario(@PathVariable(value = "id_usuario") Long idUsuario, @RequestBody Usuarios usuarioAtualizado) {
+			return serviceUsuarios.atualizarUsuario(idUsuario, usuarioAtualizado);
+	}
+	
+	@DeleteMapping("/deletar")
+	public ResponseEntity<Object> deletarUsuarioAtravesDoId(@RequestParam Long idUsuario) {
+		return serviceUsuarios.deletarIdUsuario(idUsuario);
 	}
 }
+
+
+
+

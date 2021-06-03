@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -16,11 +17,11 @@ public class Grupos {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idGrupo;
 	
-	@NotNull
+	@NotBlank
 	@Size(min = 5, max = 45, message = "Entre 5 e 45 caracteres")
 	private String nomeGrupo;
 	
-	@NotNull
+	@NotBlank
 	@Size(min = 5, max = 45, message = "Entre 5 e 45 caracteres")
 	private String tema;
 	

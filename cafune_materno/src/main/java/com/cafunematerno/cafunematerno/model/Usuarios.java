@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -16,16 +16,16 @@ public class Usuarios {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idUsuario;
 	
-	@NotNull
-	@Size(min = 10, max = 70, message = "Entre 10 e 70 caracteres.")
+	@NotBlank
+	@Size(min = 5, max = 70, message = "Entre 5 e 70 caracteres.")
 	private String nomeCompleto;
 	
-	@NotNull
+	@NotBlank
 	@Size(min = 10, max = 50, message = "Entre 10 e 50 caracteres.")
 	private String email;
 	
-	@NotNull
-	@Size(min = 10, max = 100, message = "Entre 10 e 100 caracteres.")
+	@NotBlank
+	@Size(min = 8, max = 100, message = "Entre 8 e 100 caracteres.")
 	private String senha;
 	
 	
