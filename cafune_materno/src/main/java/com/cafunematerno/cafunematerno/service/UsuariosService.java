@@ -49,6 +49,15 @@ public class UsuariosService {
 				.orElse(ResponseEntity.status(204).build());
 	}
 
+	public ResponseEntity<Object> procurarNomeUsuario(String nomeCompleto){
+		List<Object> listaUsuarios = usuariosRepository.findAllByNomeCompletoContaining(nomeCompleto);
+		if (listaUsuarios.isEmpty()) {
+			return ResponseEntity.status(204).build();
+		} else {
+			return ResponseEntity.status(200).body(listaUsuarios);
+		}
+	}
+	
 	/**
 	 * Método utilizado para cadastrar um novo usuário no sistema, validando sua
 	 * existência a partir do e-mail.
