@@ -71,8 +71,17 @@ public class GruposService {
 	public ResponseEntity<Grupos> salvarGrupos(Long idUsuario, Grupos novoGrupo) {
 		Optional<Usuarios> verificaUsuario = repositoryUsuarios.findById(idUsuario);
 		Optional<Object> verificaGrupo = repositoryGrupos.findByNomeGrupo(novoGrupo.getNomeGrupo());
+		
+		List<Usuarios> verificaIdUsuario = repositoryUsuarios.findByIdUsuario(idUsuario);
 
 		if (verificaUsuario.isPresent() && verificaGrupo.isEmpty()) {
+			
+			novoGrupo.setNomeGrupo(novoGrupo.getNomeGrupo());
+			novoGrupo.setTema(novoGrupo.getTema());
+			novoGrupo.setQntUsuarios(1);
+			
+			novoGrupo.setListaParticipantes(verificaIdUsuario);
+			
 			return ResponseEntity.status(201).body(repositoryGrupos.save(novoGrupo));
 		} else {
 			return ResponseEntity.status(406).build();
