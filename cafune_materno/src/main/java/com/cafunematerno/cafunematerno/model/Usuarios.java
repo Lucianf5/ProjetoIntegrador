@@ -1,8 +1,7 @@
 package com.cafunematerno.cafunematerno.model;
 
 import java.util.ArrayList;
-import java.util.List;
-
+import java.util.List;import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +12,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "tb_usuarios")
@@ -36,6 +37,7 @@ public class Usuarios {
 	
 	
 	@ManyToMany
+	@JsonIgnoreProperties("listaParticipantes")
 	@JoinTable(
 			name = "tb_integra",
 			joinColumns = @JoinColumn (name = "fk_usuario"),

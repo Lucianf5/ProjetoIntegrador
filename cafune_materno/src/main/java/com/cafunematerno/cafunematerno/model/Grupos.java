@@ -13,6 +13,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="tb_grupos")
 public class Grupos {
@@ -34,6 +36,7 @@ public class Grupos {
 	private int qntUsuarios;
 	
 	@ManyToMany(mappedBy = "listaGrupos")
+	@JsonIgnoreProperties("listaGrupos")
 	public List<Usuarios> listaParticipantes = new ArrayList<>();
 	
 	

@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.cafunematerno.cafunematerno.model.Grupos;
+import com.cafunematerno.cafunematerno.model.Usuarios;
 
 @Repository
 public interface GruposRepository extends JpaRepository<Grupos, Long> {
@@ -14,5 +15,6 @@ public interface GruposRepository extends JpaRepository<Grupos, Long> {
 	public Optional<Object> findByNomeGrupo(String nomeGrupo);
 	
 	public List<Grupos> findAllByNomeGrupoContaining(String nomeGrupo);
+	
 	
 }
