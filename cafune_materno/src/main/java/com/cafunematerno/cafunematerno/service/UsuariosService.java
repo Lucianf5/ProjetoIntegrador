@@ -36,7 +36,7 @@ public class UsuariosService {
 	}
 
 	/**
-	 * Método utilizado para acessar um usuário no DB a partir de seu Id.
+	 * Método utilizado para acessar um usuário no BD a partir de seu Id.
 	 * 
 	 * @return ResponseEntity com status No Content caso não encontre um Id no BD
 	 *         esteja vazia ou ResponseEntity com status Ok, caso exista o Id no BD.
@@ -49,6 +49,15 @@ public class UsuariosService {
 				.orElse(ResponseEntity.status(204).build());
 	}
 
+	/**
+	 * Método utilizado para acessar um usuário no BD a partir de seu Nome Completo.
+	 * @param nomeCompleto
+	 * @return ResponseEntity com Status No Content caso não encontre o Nome Completo no BD
+	 * 			e esteja vazia ou ResponseEntity com status Ok, caso exista o Nome Completo no BD.
+	 * 
+	 * @since 1.0
+	 * @author Grupo: Angelo, Ellen, Julio, Luciano e Nathalia.
+	 */
 	public ResponseEntity<Object> procurarNomeUsuario(String nomeCompleto){
 		List<Object> listaUsuarios = usuariosRepository.findAllByNomeCompletoContaining(nomeCompleto);
 		if (listaUsuarios.isEmpty()) {

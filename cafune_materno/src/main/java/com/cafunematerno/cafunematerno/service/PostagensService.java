@@ -39,7 +39,7 @@ public class PostagensService {
 	}
 	
 	/**
-	 * Método utilizado para acessar uma postagem no DB a partir de seu Id.
+	 * Método utilizado para acessar uma postagem no BD a partir de seu Id.
 	 * @param id
 	 * @return ResponseEntity com status No Content caso não encontre um Id no BD
 	 *         esteja vazia ou ResponseEntity com status Ok, caso exista o Id no BD.
@@ -68,19 +68,19 @@ public class PostagensService {
 		Optional<Usuarios> verificaUsuario = repositoryUsuarios.findById(idUsuario);
 		
 		if (verificaUsuario.isPresent()) {
-			return ResponseEntity.status(200).body(repositoryPostagem.save(novaPostagem));
+			return ResponseEntity.status(201).body(repositoryPostagem.save(novaPostagem));
 		} else {
 			return ResponseEntity.status(406).build();
 		}
 	}
 	
 	/**
-	 * Método utilizado para verificar se exite o Id da postagem no BD se esse id é existente.
+	 * Método utilizado para verificar se existe o Id da postagem no BD se esse id é existente.
 	 * 
 	 * @param idPostagem
 	 * @param postagemAtualizado
 	 * @return ResponseEntity com status Not Modified caso não encontre um Id no BD, 
-	 * ou ResponseEntity com status Accepted, alterando as informações da postagem selecionado no BD.
+	 * 	ou ResponseEntity com status Accepted, alterando as informações da postagem selecionado no BD.
 	 * @since 1.0
 	 * @author Grupo: Angelo, Ellen, Julio, Luciano e Nathalia.
 	 */
