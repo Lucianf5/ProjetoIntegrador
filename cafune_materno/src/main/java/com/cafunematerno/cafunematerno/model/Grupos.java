@@ -26,7 +26,7 @@ public class Grupos {
 	private String tema;
 	
 	@NotNull
-	@Size(max = 45, message = "Máximo de 45 participantes.")
+	
 	private int qntUsuarios;
 	
 	
