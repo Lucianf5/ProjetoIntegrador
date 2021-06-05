@@ -30,7 +30,6 @@ public class Grupos {
 	private String tema;
 	
 	@NotNull
-	
 	private int qntUsuarios;
 	
 	@ManyToMany(mappedBy = "listaGrupos")

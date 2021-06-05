@@ -3,6 +3,8 @@ package com.cafunematerno.cafunematerno.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.constraints.Size;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -71,22 +73,24 @@ public class GruposService {
 	public ResponseEntity<Grupos> salvarGrupos(Long idUsuario, Grupos novoGrupo) {
 		Optional<Usuarios> verificaUsuario = repositoryUsuarios.findById(idUsuario);
 		Optional<Object> verificaGrupo = repositoryGrupos.findByNomeGrupo(novoGrupo.getNomeGrupo());
+		Grupos usuarioLogado = new Grupos();
 		
-		List<Usuarios> verificaIdUsuario = repositoryUsuarios.findByIdUsuario(idUsuario);
-
 		if (verificaUsuario.isPresent() && verificaGrupo.isEmpty()) {
 			
 			novoGrupo.setNomeGrupo(novoGrupo.getNomeGrupo());
 			novoGrupo.setTema(novoGrupo.getTema());
 			novoGrupo.setQntUsuarios(1);
-			
-			novoGrupo.setListaParticipantes(verificaIdUsuario);
+			usuarioLogado.listaParticipantes.addAll(usuarioLogado.getQntUsuarios());
+			novoGrupo.setListaParticipantes(usuarioLogado.listaParticipantes);
 			
 			return ResponseEntity.status(201).body(repositoryGrupos.save(novoGrupo));
 		} else {
 			return ResponseEntity.status(406).build();
 		}
-	}
+
+		
+		}
+		
 	
 	/**
 	 * Método utilizado para verificar se existe o Id do grupo no BD se esse id é existente.
