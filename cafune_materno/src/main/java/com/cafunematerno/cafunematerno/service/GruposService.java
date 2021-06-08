@@ -3,8 +3,6 @@ package com.cafunematerno.cafunematerno.service;
 import java.util.List;
 import java.util.Optional;
 
-import javax.validation.constraints.Size;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -73,7 +71,6 @@ public class GruposService {
 	public ResponseEntity<Usuarios> salvarGrupos(Long idUsuario, Grupos novoGrupo) {
 		Optional<Usuarios> verificaUsuario = repositoryUsuarios.findById(idUsuario);
 		Optional<Object> verificaGrupo = repositoryGrupos.findByNomeGrupo(novoGrupo.getNomeGrupo());
-		Grupos usuarioLogado = new Grupos();
 		
 		if (verificaUsuario.isPresent() && verificaGrupo.isEmpty()) {
 			
@@ -86,10 +83,8 @@ public class GruposService {
 			return ResponseEntity.status(201).body(repositoryUsuarios.save(verificaUsuario.get()));
 		} else {
 			return ResponseEntity.status(406).build();
-		}
-
-		
-		}
+		}	
+	}
 		
 	
 	/**
@@ -115,7 +110,6 @@ public class GruposService {
 		} else {
 			return ResponseEntity.status(304).build();
 		}
-
 	}
 	
 	/**
