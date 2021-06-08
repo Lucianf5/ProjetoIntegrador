@@ -80,7 +80,7 @@ public class GruposService {
 			novoGrupo.setNomeGrupo(novoGrupo.getNomeGrupo());
 			novoGrupo.setTema(novoGrupo.getTema());
 			novoGrupo.setQntUsuarios(1);
-			usuarioLogado.listaParticipantes.addAll(usuarioLogado.getQntUsuarios());
+			usuarioLogado.listaParticipantes.add(100, idUsuario);
 			novoGrupo.setListaParticipantes(usuarioLogado.listaParticipantes);
 			
 			return ResponseEntity.status(201).body(repositoryGrupos.save(novoGrupo));
