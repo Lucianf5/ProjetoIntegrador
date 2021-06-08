@@ -70,7 +70,7 @@ public class GruposService {
 	 * @author Grupo: Angelo, Ellen, Julio, Luciano e Nathalia.
 	 */
 
-	public ResponseEntity<Grupos> salvarGrupos(Long idUsuario, Grupos novoGrupo) {
+	public ResponseEntity<Usuarios> salvarGrupos(Long idUsuario, Grupos novoGrupo) {
 		Optional<Usuarios> verificaUsuario = repositoryUsuarios.findById(idUsuario);
 		Optional<Object> verificaGrupo = repositoryGrupos.findByNomeGrupo(novoGrupo.getNomeGrupo());
 		Grupos usuarioLogado = new Grupos();
@@ -79,11 +79,19 @@ public class GruposService {
 			
 			novoGrupo.setNomeGrupo(novoGrupo.getNomeGrupo());
 			novoGrupo.setTema(novoGrupo.getTema());
+<<<<<<< HEAD
 			novoGrupo.setQntUsuarios(1);
 			usuarioLogado.listaParticipantes.add(100, idUsuario);
 			novoGrupo.setListaParticipantes(usuarioLogado.listaParticipantes);
 			
 			return ResponseEntity.status(201).body(repositoryGrupos.save(novoGrupo));
+=======
+			novoGrupo.setQntUsuarios(novoGrupo.getQntUsuarios()+1);
+			novoGrupo.getListaParticipantes().add(verificaUsuario.get());
+			Grupos grupoCriado = repositoryGrupos.save(novoGrupo);
+			verificaUsuario.get().getListaGrupos().add(grupoCriado);
+			return ResponseEntity.status(201).body(repositoryUsuarios.save(verificaUsuario.get()));
+>>>>>>> a6ba6a1f8bd97395665debf73c0c31f4eefdad57
 		} else {
 			return ResponseEntity.status(406).build();
 		}

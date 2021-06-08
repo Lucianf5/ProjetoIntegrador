@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cafunematerno.cafunematerno.model.Grupos;
+import com.cafunematerno.cafunematerno.model.Usuarios;
 import com.cafunematerno.cafunematerno.service.GruposService;
 
 @RestController
@@ -37,7 +38,7 @@ public class GruposController {
 	}
 	
 	@PostMapping("/salvar/usuario/{id_usuario}")
-	public ResponseEntity<Grupos> salvarNovoGrupo(@PathVariable(value = "id_usuario") Long idUsuario, @RequestBody Grupos novoGrupo) {
+	public ResponseEntity<Usuarios> salvarNovoGrupo(@PathVariable(value = "id_usuario") Long idUsuario, @RequestBody Grupos novoGrupo) {
 		return serviceGrupos.salvarGrupos(idUsuario, novoGrupo);
 	}
 	
