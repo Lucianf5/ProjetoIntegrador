@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.cafunematerno.cafunematerno.model.Usuarios;
@@ -79,11 +80,14 @@ public class UsuariosService {
 	 * @author Grupo: Angelo, Ellen, Julio, Luciano e Nathalia.
 	 */
 	public ResponseEntity<Usuarios> cadastrarNovoUsuario(@Valid Usuarios novoUsuario) {
-		Optional<Object> verificarUsuario = usuariosRepository.findByEmail(novoUsuario.getEmail());
-
+		Optional<Usuarios> verificarUsuario = usuariosRepository.findByEmail(novoUsuario.getEmail());
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		
 		if (verificarUsuario.isPresent()) {
 			return ResponseEntity.status(406).build();
 		} else {
+			String senhaEncoder = encoder.encode(novoUsuario.getSenha());
+			novoUsuario.setSenha(senhaEncoder);
 			return ResponseEntity.status(201).body(usuariosRepository.save(novoUsuario));
 		}
 	}
@@ -100,12 +104,14 @@ public class UsuariosService {
 	 */
 	public ResponseEntity<Usuarios> atualizarUsuario(Long idUsuario, Usuarios usuarioAtualizado) {
 		Optional<Usuarios> idUsuarioJaExiste = usuariosRepository.findById(idUsuario);
-		Optional<Object> emailUsuarioJaExiste = usuariosRepository.findByEmail(usuarioAtualizado.getEmail());
-
+		Optional<Usuarios> emailUsuarioJaExiste = usuariosRepository.findByEmail(usuarioAtualizado.getEmail());
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		
 		if (idUsuarioJaExiste.isPresent() && emailUsuarioJaExiste.isEmpty()) {
 
 			if (usuarioAtualizado.getNomeCompleto() == null) {
-				idUsuarioJaExiste.get().setSenha(usuarioAtualizado.getSenha());
+				String senhaEncoder = encoder.encode(usuarioAtualizado.getSenha());
+				idUsuarioJaExiste.get().setSenha(senhaEncoder);
 				return ResponseEntity.status(202).body(usuariosRepository.save(idUsuarioJaExiste.get()));
 
 			} else if (usuarioAtualizado.getSenha() == null) {
@@ -113,8 +119,9 @@ public class UsuariosService {
 				return ResponseEntity.status(202).body(usuariosRepository.save(idUsuarioJaExiste.get()));
 
 			} else {
+				String senhaEncoder = encoder.encode(usuarioAtualizado.getSenha());
 				idUsuarioJaExiste.get().setNomeCompleto(usuarioAtualizado.getNomeCompleto());
-				idUsuarioJaExiste.get().setSenha(usuarioAtualizado.getSenha());
+				idUsuarioJaExiste.get().setSenha(senhaEncoder);
 				return ResponseEntity.status(202).body(usuariosRepository.save(idUsuarioJaExiste.get()));
 			}
 		} else {
