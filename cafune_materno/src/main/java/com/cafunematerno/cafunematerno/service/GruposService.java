@@ -83,8 +83,9 @@ public class GruposService {
 			return ResponseEntity.status(201).body(repositoryUsuarios.save(verificaUsuario.get()));
 		} else {
 			return ResponseEntity.status(406).build();
-		}
+		}	
 	}
+		
 	
 	/**
 	 * Método utilizado para verificar se existe o Id do grupo no BD se esse id é existente.
@@ -109,7 +110,6 @@ public class GruposService {
 		} else {
 			return ResponseEntity.status(304).build();
 		}
-
 	}
 	
 	/**
