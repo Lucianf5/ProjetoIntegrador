@@ -1,11 +1,15 @@
 package com.cafunematerno.cafunematerno.model;
 
+import javax.validation.constraints.NotBlank;
+
 public class UserLogin {
 	
 	private String nome;
 	
-	private String usuario;
+	@NotBlank
+	private String email;
 	
+	@NotBlank
 	private String senha;
 	
 	private String token;
@@ -18,12 +22,12 @@ public class UserLogin {
 		this.nome = nome;
 	}
 
-	public String getUsuario() {
-		return usuario;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getSenha() {

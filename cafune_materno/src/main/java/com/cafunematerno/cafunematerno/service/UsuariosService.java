@@ -1,15 +1,18 @@
 package com.cafunematerno.cafunematerno.service;
 
+import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.cafunematerno.cafunematerno.model.UserLogin;
 import com.cafunematerno.cafunematerno.model.Usuarios;
 import com.cafunematerno.cafunematerno.repository.UsuariosRepository;
 
@@ -80,7 +83,7 @@ public class UsuariosService {
 	 * @author Grupo: Angelo, Ellen, Julio, Luciano e Nathalia.
 	 */
 	public ResponseEntity<Usuarios> cadastrarNovoUsuario(@Valid Usuarios novoUsuario) {
-		Optional<Usuarios> verificarUsuario = usuariosRepository.findByEmail(novoUsuario.getEmail());
+		Optional<Usuarios> verificarUsuario = usuariosRepository.findByEmailIgnoreCase(novoUsuario.getEmail());
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		
 		if (verificarUsuario.isPresent()) {
@@ -104,7 +107,7 @@ public class UsuariosService {
 	 */
 	public ResponseEntity<Usuarios> atualizarUsuario(Long idUsuario, Usuarios usuarioAtualizado) {
 		Optional<Usuarios> idUsuarioJaExiste = usuariosRepository.findById(idUsuario);
-		Optional<Usuarios> emailUsuarioJaExiste = usuariosRepository.findByEmail(usuarioAtualizado.getEmail());
+		Optional<Usuarios> emailUsuarioJaExiste = usuariosRepository.findByEmailIgnoreCase(usuarioAtualizado.getEmail());
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		
 		if (idUsuarioJaExiste.isPresent() && emailUsuarioJaExiste.isEmpty()) {
@@ -146,6 +149,26 @@ public class UsuariosService {
 		} else {
 			usuariosRepository.deleteById(idUsuario);
 			return ResponseEntity.status(200).body("Usuário deletado com sucesso!");
+		}
+	}
+	
+	public ResponseEntity<Object> logarUsuario(UserLogin user) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		Optional<Usuarios> usuarioExistente = usuariosRepository.findByEmailIgnoreCase(user.getEmail());
+		
+		if(usuarioExistente.isPresent() && encoder.matches(user.getSenha(), usuarioExistente.get().getSenha())) {
+			String auth = user.getEmail() + ":" + user.getSenha();
+			
+			byte[] encodeAuth = Base64.encodeBase64(auth.getBytes(Charset.forName("US-ASCII")));
+			String authHeader = "Basic " + new String(encodeAuth);
+			
+			user.setToken(authHeader);
+			user.setEmail(usuarioExistente.get().getEmail());
+			
+			return ResponseEntity.status(200).body(user);
+			
+		} else {
+			return ResponseEntity.status(404).build();
 		}
 	}
 

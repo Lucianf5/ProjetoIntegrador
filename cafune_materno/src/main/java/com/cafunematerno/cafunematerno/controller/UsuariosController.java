@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cafunematerno.cafunematerno.model.UserLogin;
 import com.cafunematerno.cafunematerno.model.Usuarios;
 import com.cafunematerno.cafunematerno.service.UsuariosService;
 
@@ -40,7 +41,7 @@ public class UsuariosController {
 		return serviceUsuarios.procurarNomeUsuario(nomeCompleto);
 	}
 
-	@PostMapping("/salvar")
+	@PostMapping("/cadastrar")
 	public ResponseEntity<Usuarios> salvarNovoUsuario(@RequestBody Usuarios novoUsuario) {
 			return serviceUsuarios.cadastrarNovoUsuario(novoUsuario);
 	}
@@ -53,6 +54,11 @@ public class UsuariosController {
 	@DeleteMapping("/deletar")
 	public ResponseEntity<Object> deletarUsuarioAtravesDoId(@RequestParam Long idUsuario) {
 		return serviceUsuarios.deletarIdUsuario(idUsuario);
+	}
+	
+	@PostMapping("/logar")
+	public ResponseEntity<Object> logarUsuario(@RequestBody UserLogin user) {
+		return serviceUsuarios.logarUsuario(user);
 	}
 }
 
