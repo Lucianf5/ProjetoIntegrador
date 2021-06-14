@@ -55,14 +55,16 @@ public class UsuariosService {
 
 	/**
 	 * Método utilizado para acessar um usuário no BD a partir de seu Nome Completo.
+	 * 
 	 * @param nomeCompleto
-	 * @return ResponseEntity com Status No Content caso não encontre o Nome Completo no BD
-	 * 			e esteja vazia ou ResponseEntity com status Ok, caso exista o Nome Completo no BD.
+	 * @return ResponseEntity com Status No Content caso não encontre o Nome
+	 *         Completo no BD e esteja vazia ou ResponseEntity com status Ok, caso
+	 *         exista o Nome Completo no BD.
 	 * 
 	 * @since 1.0
 	 * @author Grupo: Angelo, Ellen, Julio, Luciano e Nathalia.
 	 */
-	public ResponseEntity<Object> procurarNomeUsuario(String nomeCompleto){
+	public ResponseEntity<Object> procurarNomeUsuario(String nomeCompleto) {
 		List<Object> listaUsuarios = usuariosRepository.findAllByNomeCompletoContaining(nomeCompleto);
 		if (listaUsuarios.isEmpty()) {
 			return ResponseEntity.status(204).build();
@@ -70,7 +72,7 @@ public class UsuariosService {
 			return ResponseEntity.status(200).body(listaUsuarios);
 		}
 	}
-	
+
 	/**
 	 * Método utilizado para cadastrar um novo usuário no sistema, validando sua
 	 * existência a partir do e-mail.
@@ -85,7 +87,7 @@ public class UsuariosService {
 	public ResponseEntity<Usuarios> cadastrarNovoUsuario(@Valid Usuarios novoUsuario) {
 		Optional<Usuarios> verificarUsuario = usuariosRepository.findByEmailIgnoreCase(novoUsuario.getEmail());
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		
+
 		if (verificarUsuario.isPresent()) {
 			return ResponseEntity.status(406).build();
 		} else {
@@ -96,40 +98,26 @@ public class UsuariosService {
 	}
 
 	/**
-	 * Método utilizado para verificar se existe o Id do usuário no BD e se este
-	 * e-mail já está sendo utilizado.
+	 * Método utilizado atualizar as informações do usuário, validando sua
+	 * existência a partir do e-mail
 	 * 
-	 * @return ResponseEntity com status Not Modified caso não encontre um Id no BD
-	 *         ou caso exista o e-mal, ou ResponseEntity com status Accepted,
-	 *         alterando as informações do Usuário selecionado no BD.
-	 * @since 1.0
+	 * @return ResponseEntity com status Not Modified caso não encontre o e-mail no
+	 *         BD ou ResponseEntity com status Accepted, alterando as informações do
+	 *         Usuário selecionado no BD.
+	 * @since 2.0
 	 * @author Grupo: Angelo, Ellen, Julio, Luciano e Nathalia.
 	 */
-	public ResponseEntity<Usuarios> atualizarUsuario(Long idUsuario, Usuarios usuarioAtualizado) {
-		Optional<Usuarios> idUsuarioJaExiste = usuariosRepository.findById(idUsuario);
-		Optional<Usuarios> emailUsuarioJaExiste = usuariosRepository.findByEmailIgnoreCase(usuarioAtualizado.getEmail());
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		
-		if (idUsuarioJaExiste.isPresent() && emailUsuarioJaExiste.isEmpty()) {
 
-			if (usuarioAtualizado.getNomeCompleto() == null) {
-				String senhaEncoder = encoder.encode(usuarioAtualizado.getSenha());
-				idUsuarioJaExiste.get().setSenha(senhaEncoder);
-				return ResponseEntity.status(202).body(usuariosRepository.save(idUsuarioJaExiste.get()));
+	public ResponseEntity<Usuarios> atualizarUsuario(UserLogin usuarioParaAtualizar) {
+		return usuariosRepository.findByEmailIgnoreCase(usuarioParaAtualizar.getEmail()).map(usuarioExistente -> {
+			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+			String senhaCodificada = encoder.encode(usuarioParaAtualizar.getSenha());
+			usuarioExistente.setNomeCompleto(usuarioParaAtualizar.getNome());
+			usuarioExistente.setSenha(senhaCodificada);
 
-			} else if (usuarioAtualizado.getSenha() == null) {
-				idUsuarioJaExiste.get().setNomeCompleto(usuarioAtualizado.getNomeCompleto());
-				return ResponseEntity.status(202).body(usuariosRepository.save(idUsuarioJaExiste.get()));
+			return ResponseEntity.status(202).body(usuariosRepository.save(usuarioExistente));
+		}).orElse(ResponseEntity.status(401).build());
 
-			} else {
-				String senhaEncoder = encoder.encode(usuarioAtualizado.getSenha());
-				idUsuarioJaExiste.get().setNomeCompleto(usuarioAtualizado.getNomeCompleto());
-				idUsuarioJaExiste.get().setSenha(senhaEncoder);
-				return ResponseEntity.status(202).body(usuariosRepository.save(idUsuarioJaExiste.get()));
-			}
-		} else {
-			return ResponseEntity.status(304).build();
-		}
 	}
 
 	/**
@@ -151,22 +139,22 @@ public class UsuariosService {
 			return ResponseEntity.status(200).body("Usuário deletado com sucesso!");
 		}
 	}
-	
+
 	public ResponseEntity<Object> logarUsuario(UserLogin user) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		Optional<Usuarios> usuarioExistente = usuariosRepository.findByEmailIgnoreCase(user.getEmail());
-		
-		if(usuarioExistente.isPresent() && encoder.matches(user.getSenha(), usuarioExistente.get().getSenha())) {
+
+		if (usuarioExistente.isPresent() && encoder.matches(user.getSenha(), usuarioExistente.get().getSenha())) {
 			String auth = user.getEmail() + ":" + user.getSenha();
-			
+
 			byte[] encodeAuth = Base64.encodeBase64(auth.getBytes(Charset.forName("US-ASCII")));
 			String authHeader = "Basic " + new String(encodeAuth);
-			
+
 			user.setToken(authHeader);
 			user.setEmail(usuarioExistente.get().getEmail());
-			
+
 			return ResponseEntity.status(200).body(user);
-			
+
 		} else {
 			return ResponseEntity.status(404).build();
 		}

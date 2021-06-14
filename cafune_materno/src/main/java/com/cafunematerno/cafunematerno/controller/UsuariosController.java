@@ -2,6 +2,8 @@ package com.cafunematerno.cafunematerno.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -46,9 +48,9 @@ public class UsuariosController {
 			return serviceUsuarios.cadastrarNovoUsuario(novoUsuario);
 	}
 	
-	@PutMapping("/atualizar/{id_usuario}")
-	public ResponseEntity<Usuarios> alterarUsuario(@PathVariable(value = "id_usuario") Long idUsuario, @RequestBody Usuarios usuarioAtualizado) {
-			return serviceUsuarios.atualizarUsuario(idUsuario, usuarioAtualizado);
+	@PutMapping("/atualizar")
+	public ResponseEntity<Usuarios> alterarUsuario(@Valid @RequestBody UserLogin usuarioParaAtualiza) {
+			return serviceUsuarios.atualizarUsuario(usuarioParaAtualiza);
 	}
 	
 	@DeleteMapping("/deletar")
