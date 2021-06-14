@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "tb_usuarios")
+@JsonIgnoreProperties({"senha"})
 public class Usuarios {
 	
 	@Id
@@ -38,7 +39,7 @@ public class Usuarios {
 	
 	
 	@ManyToMany
-	@JsonIgnoreProperties({"listaParticipantes","post"})
+	@JsonIgnoreProperties({"listaParticipantes", "post"})
 	@JoinTable(
 			name = "tb_integra",
 			joinColumns = @JoinColumn (name = "fk_usuario"),
@@ -46,7 +47,7 @@ public class Usuarios {
 	private List<Grupos> listaGrupos = new ArrayList<>();	
 	
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("usuario")
+	@JsonIgnoreProperties({"usuario"})
 	private List<Postagens> postagens;
 	
 	
