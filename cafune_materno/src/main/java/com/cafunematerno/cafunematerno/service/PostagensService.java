@@ -73,6 +73,7 @@ public class PostagensService {
 		Optional<Usuarios> verificaUsuario = repositoryUsuarios.findById(idUsuario);
 		
 		if (verificaUsuario.isPresent()) {
+			novaPostagem.setUsuario(verificaUsuario.get());
 			return ResponseEntity.status(201).body(repositoryPostagem.save(novaPostagem));
 		} else {
 			return ResponseEntity.status(406).build();

@@ -36,11 +36,11 @@ public class Postagens {
 	private String urlAnexo;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JsonIgnoreProperties("post")
+	@JsonIgnoreProperties({"post","listaParticipantes","usuario"})
 	private Grupos grupoPertencente;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JsonIgnoreProperties("postagens")
+	@JsonIgnoreProperties({"postagens","listaGrupos"})
 	private Usuarios usuario;
 	
 	

@@ -38,7 +38,7 @@ public class Usuarios {
 	
 	
 	@ManyToMany
-	@JsonIgnoreProperties("listaParticipantes")
+	@JsonIgnoreProperties({"listaParticipantes","post"})
 	@JoinTable(
 			name = "tb_integra",
 			joinColumns = @JoinColumn (name = "fk_usuario"),

@@ -37,7 +37,7 @@ public class Grupos {
 	private int qntUsuarios;
 	
 	@ManyToMany(mappedBy = "listaGrupos")
-	@JsonIgnoreProperties("listaGrupos")
+	@JsonIgnoreProperties({"listaGrupos","postagens"})
 	public List<Usuarios> listaParticipantes = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "grupoPertencente", cascade = CascadeType.ALL)
