@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -44,8 +45,20 @@ public class Usuarios {
 			inverseJoinColumns = @JoinColumn (name = "fk_grupo"))
 	private List<Grupos> listaGrupos = new ArrayList<>();	
 	
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("usuario")
+	private List<Postagens> postagens;
 	
 	
+	
+	public List<Postagens> getPostagens() {
+		return postagens;
+	}
+
+	public void setPostagens(List<Postagens> postagens) {
+		this.postagens = postagens;
+	}
+
 	public List<Grupos> getListaGrupos() {
 		return listaGrupos;
 	}
