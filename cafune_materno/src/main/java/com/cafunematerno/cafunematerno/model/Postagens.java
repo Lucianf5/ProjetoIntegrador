@@ -1,12 +1,17 @@
 package com.cafunematerno.cafunematerno.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "tb_postagens")
@@ -30,7 +35,31 @@ public class Postagens {
 	@Size(min = 10, max = 255, message = "Entre 10 e 255 caracteres")
 	private String urlAnexo;
 	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JsonIgnoreProperties("post")
+	private Grupos grupoPertencente;
 	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JsonIgnoreProperties("postagens")
+	private Usuarios usuario;
+	
+	
+	public Usuarios getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuarios usuario) {
+		this.usuario = usuario;
+	}
+
+	public Grupos getGrupoPertencente() {
+		return grupoPertencente;
+	}
+
+	public void setGrupoPertencente(Grupos grupoPertencente) {
+		this.grupoPertencente = grupoPertencente;
+	}
+
 	public Long getIdPostagem() {
 		return idPostagem;
 	}

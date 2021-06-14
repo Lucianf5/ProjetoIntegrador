@@ -25,8 +25,7 @@ public class GruposController {
 	@Autowired
 	private GruposService serviceGrupos;
 	
-	
-	
+
 	@GetMapping
 	public ResponseEntity<List<Grupos>> getAll(){
 		return serviceGrupos.pegarTodosGrupos();

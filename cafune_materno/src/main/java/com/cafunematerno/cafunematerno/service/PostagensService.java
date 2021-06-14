@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.cafunematerno.cafunematerno.model.Grupos;
 import com.cafunematerno.cafunematerno.model.Postagens;
 import com.cafunematerno.cafunematerno.model.Usuarios;
+import com.cafunematerno.cafunematerno.repository.GruposRepository;
 import com.cafunematerno.cafunematerno.repository.PostagensRepository;
 import com.cafunematerno.cafunematerno.repository.UsuariosRepository;
 
@@ -20,6 +22,9 @@ public class PostagensService {
 	
 	@Autowired
 	private UsuariosRepository repositoryUsuarios;
+	
+	@Autowired
+	private GruposRepository repositoryGrupo;
 	
 	/**
 	 * Método utilizado para acessar a lista de postagens no BD.
