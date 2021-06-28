@@ -1,0 +1,21 @@
+#img-bg{
+    background-image: url(https://i.imgur.com/SewRF2E.jpg);
+
+    min-height: 695px;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+
+}
+
+.bg-img{
+    background-image: url(https://i.imgur.com/oJduIVE.png);
+
+    background-blend-mode: saturation;
+
+    
+
+
+}
