@@ -1,4 +1,4 @@
-package com.cafunematerno.cafunematerno.model;
+	package com.cafunematerno.cafunematerno.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +46,10 @@ public class Grupos {
 	
 	
 	
+	public Grupos() {
+		
+	}
+
 	public List<Postagens> getPost() {
 		return post;
 	}

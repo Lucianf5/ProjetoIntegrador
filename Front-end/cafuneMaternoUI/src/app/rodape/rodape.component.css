@@ -1,3 +1,29 @@
+.bg-gold {
+    background-color: gold;
+}
+
+.bg-purple {
+    background-color: rgb(180, 65, 242);
+}
+
+.bg-w-purple {
+    background-color: #BF99E8
+}
+
+.bg-w-yellow {
+    background-color: rgb(255, 226, 153)
+}
+
+.bg-pink{
+    background-color: rgb(254, 168, 243);
+}
+
+.bg-white{
+    background-color: white;
+}
+
+
+
 ul.social-network{
     list-style: none;
     padding: 0;
@@ -11,18 +37,10 @@ ul.social-network li{
 
 .fa{
     font-size: 35pt;
-    color: white;
+    color: black;
     padding: 10px;
 }
 
 .fa-github:hover{
-    color: black;
-}
-
-.fa-instagram:hover{
-    color: #C13584;
-}
-
-.fa-linkedin-square:hover{
-    color: #0072b1;
+    color: grey;
 }
