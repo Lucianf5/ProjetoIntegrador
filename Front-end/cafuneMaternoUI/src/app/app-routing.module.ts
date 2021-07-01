@@ -4,7 +4,6 @@ import { CadastrarComponent } from './cadastrar/cadastrar.component';
 import { EntrarComponent } from './entrar/entrar.component';
 import { HomeComponent } from './home/home.component';
 
-
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 
