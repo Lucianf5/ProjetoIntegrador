@@ -5,12 +5,12 @@ import { EntrarComponent } from './entrar/entrar.component';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'entrar', pathMatch: 'full' },
 
 
   { path: 'entrar', component: EntrarComponent },
-  { path: 'cadastrar', component: CadastrarComponent },
-  { path: 'home', component: HomeComponent }
+  { path: 'cadastrar', component: CadastrarComponent }
+  //{ path: 'home', component: HomeComponent }
 ];
 
 @NgModule({
