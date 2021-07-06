@@ -18,7 +18,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "tb_usuarios")
-@JsonIgnoreProperties({"senha"})
 public class Usuarios {
 	
 	@Id

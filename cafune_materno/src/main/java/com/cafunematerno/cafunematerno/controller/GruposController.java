@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import com.cafunematerno.cafunematerno.service.GruposService;
 
 @RestController
 @RequestMapping("/grupos")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class GruposController {
 	
 	@Autowired
@@ -39,6 +41,16 @@ public class GruposController {
 	@PostMapping("/salvar/usuario/{id_usuario}")
 	public ResponseEntity<Usuarios> salvarNovoGrupo(@PathVariable(value = "id_usuario") Long idUsuario, @RequestBody Grupos novoGrupo) {
 		return serviceGrupos.salvarGrupos(idUsuario, novoGrupo);
+	}
+	
+	@PutMapping("/id/add/grupo/{id_grupo}/usuario/{id_usuario}")
+	public ResponseEntity<Object> adicionarUsuario(@PathVariable(value = "id_usuario") Long idUsuario, @PathVariable(value = "id_grupo") Long idGrupo) {
+		return serviceGrupos.adicionarUsuarioGrupo(idUsuario, idGrupo);
+	}
+	
+	@PutMapping("/id/remove/grupo/{id_grupo}/usuario/{id_usuario}")
+	public ResponseEntity<Object> removeUsuario(@PathVariable(value = "id_usuario") Long idUsuario, @PathVariable(value = "id_grupo") Long idGrupo) {
+		return serviceGrupos.removerUsuarioGrupo(idUsuario, idGrupo);
 	}
 	
 	@PutMapping("/atualizar/{id_grupo}")
