@@ -152,11 +152,15 @@ public class UsuariosService {
 
 			user.setToken(authHeader);
 			user.setEmail(usuarioExistente.get().getEmail());
+			user.setNome(usuarioExistente.get().getNomeCompleto());
+			user.setIdUserLogin(usuarioExistente.get().getIdUsuario());
+			user.setFoto(usuarioExistente.get().getFoto());
+			user.setTipo(usuarioExistente.get().getTipo());
 
 			return ResponseEntity.status(200).body(user);
 
 		} else {
-			return ResponseEntity.status(404).build();
+			return ResponseEntity.status(204).build();
 		}
 	}
 

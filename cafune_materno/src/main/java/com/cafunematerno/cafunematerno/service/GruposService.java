@@ -76,8 +76,8 @@ public class GruposService {
 			
 			novoGrupo.setNomeGrupo(novoGrupo.getNomeGrupo());
 			novoGrupo.setTema(novoGrupo.getTema());
-			novoGrupo.setQntUsuarios(novoGrupo.getQntUsuarios()+1);
-			novoGrupo.getListaParticipantes().add(verificaUsuario.get());
+			//novoGrupo.setQntUsuarios(novoGrupo.getQntUsuarios()+1);
+			//novoGrupo.getListaParticipantes().add(verificaUsuario.get());
 			Grupos grupoCriado = repositoryGrupos.save(novoGrupo);
 			verificaUsuario.get().getListaGrupos().add(grupoCriado);
 			return ResponseEntity.status(201).body(repositoryUsuarios.save(verificaUsuario.get()));
@@ -85,7 +85,47 @@ public class GruposService {
 			return ResponseEntity.status(406).build();
 		}	
 	}
+	
+	/**
+	 * Adicionar usuario em um grupo.
+	 * @param idUsuario
+	 * @param idGrupo
+	 * @return Response entity com status 201 se adicionado na lista.
+	 * @since 1.0
+	 * @author Grupo: Angelo, Ellen, Julio, Luciano e Nathalia.
+	 */
+	public ResponseEntity<Object> adicionarUsuarioGrupo(Long idUsuario, Long idGrupo) {
+		Optional<Usuarios> verificaUsuario = repositoryUsuarios.findById(idUsuario);
+		Optional<Grupos> verificaGrupo = repositoryGrupos.findById(idGrupo);
 		
+		if (verificaUsuario.isPresent() && verificaGrupo.isPresent() && !verificaGrupo.get().getListaParticipantes().contains(verificaUsuario.get())) {
+			verificaUsuario.get().getListaGrupos().add(verificaGrupo.get());
+			return ResponseEntity.status(201).body(repositoryUsuarios.save(verificaUsuario.get()));
+		} else {
+			return ResponseEntity.status(406).build();
+		}	
+	}
+	
+	/**
+	 * Remove o usuario da lista de grupos.
+	 * @param idUsuario
+	 * @param idGrupo
+	 * @return Response Entity com stauts 201 se removido do grupo. 
+	 * @since 1.0
+	 * @author Grupo: Angelo, Ellen, Julio, Luciano e Nathalia.
+	 */
+	public ResponseEntity<Object> removerUsuarioGrupo(Long idUsuario, Long idGrupo) {
+		Optional<Usuarios> verificaUsuario = repositoryUsuarios.findById(idUsuario);
+		Optional<Grupos> verificaGrupo = repositoryGrupos.findById(idGrupo);
+		
+		if (verificaUsuario.isPresent() && verificaGrupo.isPresent() && verificaGrupo.get().getListaParticipantes().contains(verificaUsuario.get())) {
+			verificaUsuario.get().getListaGrupos().remove(verificaGrupo.get());
+			return ResponseEntity.status(201).body(repositoryUsuarios.save(verificaUsuario.get()));
+		} else {
+			return ResponseEntity.status(406).build();
+		}	
+	}
+	
 	
 	/**
 	 * Método utilizado para verificar se existe o Id do grupo no BD se esse id é existente.

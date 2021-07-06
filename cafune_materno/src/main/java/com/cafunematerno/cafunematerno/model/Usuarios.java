@@ -18,7 +18,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "tb_usuarios")
-@JsonIgnoreProperties({"senha"})
 public class Usuarios {
 	
 	@Id
@@ -37,6 +36,9 @@ public class Usuarios {
 	@Size(min = 8, max = 100, message = "Entre 8 e 100 caracteres.")
 	private String senha;
 	
+	private String foto;
+	
+	private String tipo; 
 	
 	@ManyToMany
 	@JsonIgnoreProperties({"listaParticipantes", "post"})
@@ -51,6 +53,9 @@ public class Usuarios {
 	private List<Postagens> postagens;
 	
 	
+	public Usuarios() {
+		
+	}
 	
 	public List<Postagens> getPostagens() {
 		return postagens;
@@ -99,5 +104,23 @@ public class Usuarios {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+	
+	
 	
 }
