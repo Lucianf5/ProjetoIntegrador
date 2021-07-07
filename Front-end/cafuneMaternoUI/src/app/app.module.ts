@@ -11,7 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { EntrarComponent } from './entrar/entrar.component';
 import { CadastrarComponent } from './cadastrar/cadastrar.component';
 import { FeedComponent } from './feed/feed.component';
-
+import { GruposComponent } from './grupos/grupos.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,8 @@ import { FeedComponent } from './feed/feed.component';
     HomeComponent,
     EntrarComponent,
     CadastrarComponent,
-    FeedComponent
+    FeedComponent,
+    GruposComponent
   ],
   imports: [
     BrowserModule,

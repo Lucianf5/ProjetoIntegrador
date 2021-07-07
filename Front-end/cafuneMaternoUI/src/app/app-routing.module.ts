@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { CadastrarComponent } from './cadastrar/cadastrar.component';
 import { EntrarComponent } from './entrar/entrar.component';
 import { FeedComponent } from './feed/feed.component';
+import { GruposComponent } from './grupos/grupos.component';
+
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
@@ -12,7 +14,9 @@ const routes: Routes = [
   { path: 'entrar', component: EntrarComponent },
   { path: 'cadastrar', component: CadastrarComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'feed', component: FeedComponent}
+  { path: 'feed', component: FeedComponent },
+  { path: 'grupos', component: GruposComponent }
+
 ];
 
 @NgModule({

@@ -43,6 +43,16 @@ public class GruposController {
 		return serviceGrupos.salvarGrupos(idUsuario, novoGrupo);
 	}
 	
+	@PutMapping("/id/add/grupo/{id_grupo}/usuario/{id_usuario}")
+	public ResponseEntity<Object> adicionarUsuario(@PathVariable(value = "id_usuario") Long idUsuario, @PathVariable(value = "id_grupo") Long idGrupo) {
+		return serviceGrupos.adicionarUsuarioGrupo(idUsuario, idGrupo);
+	}
+	
+	@PutMapping("/id/remove/grupo/{id_grupo}/usuario/{id_usuario}")
+	public ResponseEntity<Object> removeUsuario(@PathVariable(value = "id_usuario") Long idUsuario, @PathVariable(value = "id_grupo") Long idGrupo) {
+		return serviceGrupos.removerUsuarioGrupo(idUsuario, idGrupo);
+	}
+	
 	@PutMapping("/atualizar/{id_grupo}")
 	public ResponseEntity<Grupos> alterarGrupo(@PathVariable (value = "id_grupo") Long idGrupo, @RequestBody Grupos grupoAtualizado) {
 		return serviceGrupos.atualizarGrupo(idGrupo, grupoAtualizado);

@@ -160,7 +160,7 @@ public class UsuariosService {
 			return ResponseEntity.status(200).body(user);
 
 		} else {
-			return ResponseEntity.status(404).build();
+			return ResponseEntity.status(204).build();
 		}
 	}
 

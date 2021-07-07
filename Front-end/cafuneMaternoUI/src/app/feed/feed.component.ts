@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment.prod';
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeedComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    if(environment.token == '') {
+      this.router.navigate(['/entrar'])
+    }
   }
 
 }
