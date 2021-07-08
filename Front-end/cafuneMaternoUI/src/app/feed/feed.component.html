@@ -23,8 +23,9 @@
               aria-controls="pills-feed" aria-selected="true">Feed</a>
           </li>
           <li class="nav-item">
+            <!--routerLink="/grupos"-->
             <a class="nav-link text-white bb-1 ml-2" id="grupos" data-toggle="pill" href="#pills-grupos" role="tab"
-              aria-controls="pills-grupos" aria-selected="false" routerLink="/grupos">Grupos</a>
+              aria-controls="pills-grupos" aria-selected="false" (click)='findUsuarioId()'>Grupos</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-white bb-1 ml-2" id="doacoes" data-toggle="pill" href="#pills-doacoes" role="tab"
@@ -53,9 +54,52 @@
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, atque velit iusto beatae excepturi amet
               doloribus id magnam maiores ipsum sint delectus voluptate, neque, reprehenderit at numquam quisquam culpa
               ipsa!</div>
-            <div class="tab-pane fade" id="pills-grupos" role="tabpanel" aria-labelledby="grupos">2 Lorem ipsum dolor sit
-              amet consectetur adipisicing elit. Molestiae minus quod facilis accusantium, aspernatur ex, rerum, vitae
-              expedita voluptates unde ducimus et ea placeat nisi tenetur sequi provident officiis? Ea.</div>
+            <div class="tab-pane fade" id="pills-grupos" role="tabpanel" aria-labelledby="grupos">
+              <div class="row">
+                <div class="col-md-6 d-flex align-items-center justify-content-center">
+                  <!-- Botão para acionar modal -->
+                  <div class="row">
+                    <div class="col-md-12 mb-4">
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExemplo">
+                        Criar um Grupo
+                      </button>
+                    </div>
+                    <div class="col-md-12">
+                      <!--*ngFor='let item of usuarios.listaGrupos'-->
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalMeusGrupos" (click)='findAllGrupos()'>
+                        Meus grupos
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                    <div class="col-md-6">
+                      <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nome do Grupo</th>
+                            <th scope="col">Quantidade de usuarios</th>
+                            <th scope="col" class="text-right">Modificações</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor='let i of listaGrupos'>
+                            <th>{{i.idGrupo}}</th>
+                            <td>{{i.nomeGrupo}}</td>
+                            <td>{{i.listaParticipantes.length}}</td>
+                            <td class="d-flex justify-content-end">
+                              <button class="btn btn-outline-danger mr-3 d-flex justify-content-end" (click)='deleteGrupo(i)'>Excluir</button>
+                              <button class="btn btn-outline-primary" *ngIf="verificaUsuarioGrupo(i)" (click)='entrarGrupo(i)'>Entrar</button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+               </div>
+
+
+            </div>
             <div class="tab-pane fade" id="pills-doacoes" role="tabpanel" aria-labelledby="doacoes">3 Lorem ipsum dolor
               sit amet consectetur adipisicing elit. Molestiae minus quod facilis accusantium, aspernatur ex, rerum, vitae
               expedita voluptates unde ducimus et ea placeat nisi tenetur sequi provident officiis? Ea.</div>
@@ -68,3 +112,68 @@
     </div>
 </div>
 
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Criar Grupo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <input [(ngModel)]='grupos.nomeGrupo' type="text" class="form-control" id="grupos.nomeGrupo"
+            placeholder="Digite o nome do grupo:">
+        </div>
+        <div class="form-group">
+          <input [(ngModel)]='grupos.tema' type="text" class="form-control" id="grupos.tema"
+            placeholder="Digite a descrição do tema do grupo:">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-light mr-2" (click)='cadastrar()'  data-dismiss="modal">Cadastrar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="modalMeusGrupos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Meus Grupos</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nome do Grupo</th>
+              <th scope="col" class="text-right">Modificações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let item of usuarios.listaGrupos'>
+              <th>{{item.idGrupo}}</th>
+              <td>{{item.nomeGrupo}}</td>
+              <td class="d-flex justify-content-end">
+                <button class="btn btn-outline-warning mr-3" data-dismiss="modal" [routerLink]="['/pagina-grupo',item.idGrupo]"> Ver </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>

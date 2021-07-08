@@ -12,6 +12,7 @@ import { EntrarComponent } from './entrar/entrar.component';
 import { CadastrarComponent } from './cadastrar/cadastrar.component';
 import { FeedComponent } from './feed/feed.component';
 import { GruposComponent } from './grupos/grupos.component';
+import { PaginaGrupoComponent } from './grupos/pagina-grupo/pagina-grupo.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { GruposComponent } from './grupos/grupos.component';
     EntrarComponent,
     CadastrarComponent,
     FeedComponent,
-    GruposComponent
+    GruposComponent,
+    PaginaGrupoComponent
   ],
   imports: [
     BrowserModule,
