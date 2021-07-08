@@ -39,5 +39,10 @@ export class GruposService {
     return this.http.put<Usuarios>(`https://appcafunematerno.herokuapp.com/grupos/id/add/grupo/${idGrupo}/usuario/${idUsuario}`, this.usuario , this.token)
   }
 
+  removerGrupo(idUsuario: number, idGrupo: number): Observable<Usuarios>{
+    return this.http.put<Usuarios>(`https://appcafunematerno.herokuapp.com/grupos/id/remove/grupo/${idGrupo}/usuario/${idUsuario}`, this.usuario , this.token)
+  }
+
+  
 
 }

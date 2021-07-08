@@ -55,6 +55,17 @@ export class GruposComponent implements OnInit {
   }
 
 
+  sairGrupo(grupo: Grupos) {
+    console.log(grupo.listaParticipantes.length)
+    this.gruposService.removerGrupo(environment.idUserLogin, grupo.idGrupo ).subscribe((resp)=>{
+      this.usuarios = resp
+      alert('Removido com sucesso')
+    })
+  }
 
+  verificaUsuarioGrupo(grupo: Grupos) {
+    return grupo.listaParticipantes.indexOf(this.usuarios) == -1
+
+ }
 
 }
