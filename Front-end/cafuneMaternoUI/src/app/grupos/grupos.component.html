@@ -78,8 +78,8 @@
                           <th>{{i.idGrupo}}</th>
                           <td>{{i.nomeGrupo}}</td>
                           <td class="d-flex justify-content-end">
-                           <!-- <button class="btn btn-info mr-3" [routerLink]="">Editar</button>-->
-                            <button class="btn btn-outline-primary"  (click)='entrarGrupo(i)'>Entrar</button>
+                            <button class="btn btn-outline-warning mr-3"(click)='sairGrupo(i)'>Sair</button>
+                            <button class="btn btn-outline-primary" *ngIf="verificaUsuarioGrupo(i)"  (click)='entrarGrupo(i)'>Entrar</button>
                           </td>
                         </tr>
                       </tbody>
