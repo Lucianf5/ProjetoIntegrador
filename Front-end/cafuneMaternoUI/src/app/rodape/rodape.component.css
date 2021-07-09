@@ -7,7 +7,7 @@
 }
 
 .bg-w-purple {
-    background-color: #BF99E8
+    background-color: #BF99E8;
 }
 
 .bg-w-yellow {
@@ -42,5 +42,5 @@ ul.social-network li{
 }
 
 .fa-github:hover{
-    color: grey;
+    color:  purple;
 }
