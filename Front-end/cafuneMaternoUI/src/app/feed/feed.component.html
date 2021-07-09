@@ -1,5 +1,5 @@
 
-<div class="container-fluid">
+<div class="container-fluid bg-w-pink">
 
     <div class="row bg-w-purple">
       <div class="col-md-12 text-white">
@@ -23,13 +23,13 @@
               aria-controls="pills-feed" aria-selected="true"><i class="fa fa-book fa-2x" aria-hidden="true"></i></a>
           </li>
           <li class="nav-item">
-            
+
             <a class="nav-link text-white bb-1 ml-2" data-toggle="tooltip" title="Grupos" id="grupos" data-toggle="pill" href="#pills-grupos" role="tab"
               aria-controls="pills-grupos" aria-selected="false" (click)='findUsuarioId()'><i class="fa fa-users fa-2x" aria-hidden="true"></i></a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-white bb-1 ml-2"  data-toggle="tooltip" title="Doações" id="doacoes" data-toggle="pill" href="#pills-doacoes" role="tab"
-              aria-controls="pills-doacoes" aria-selected="false" routerLink="/doacoes"><i class="fa fa-hand-holding-heart fa-2x"></i></a>
+              aria-controls="pills-doacoes" aria-selected="false"><i class="fa fa-hand-holding-heart fa-2x"></i></a>
 
           </li>
           <li class="nav-item">
@@ -56,18 +56,22 @@
               doloribus id magnam maiores ipsum sint delectus voluptate, neque, reprehenderit at numquam quisquam culpa
               ipsa!</div>
             <div class="tab-pane fade" id="pills-grupos" role="tabpanel" aria-labelledby="grupos">
-              <div class="row">
+              <div class="row mb-0">
                 <div class="col-md-6 d-flex align-items-center justify-content-center">
                   <!-- Botão para acionar modal -->
-                  <div class="row">
-                    <div class="col-md-12 mb-4">
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExemplo">
+                  <div class="row mr-4">
+                    <div class="col-md-12 bg-w-purple w-100 h-100 ">
+                      <h4 class="text-center">Crie um grupo de seu interesse</h4>
+                    </div>
+                    <div class="col-md-12 mt-5 mb-4 w-100">
+                      <button type="button" class="btn bg-pink btn-lg w-100" data-toggle="modal" data-target="#modalExemplo">
                         Criar um Grupo
+                        <i class="fas fa-plus-circle"></i>
                       </button>
                     </div>
                     <div class="col-md-12">
                       <!--*ngFor='let item of usuarios.listaGrupos'-->
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalMeusGrupos" (click)='findAllGrupos()'>
+                      <button type="button" class="btn bg-pink btn-lg w-100" data-toggle="modal" data-target="#modalMeusGrupos" (click)='findAllGrupos()'>
                         Meus grupos
                       </button>
                     </div>
@@ -99,9 +103,59 @@
                     </div>
                </div>
             </div>
-            <div class="tab-pane fade" id="pills-doacoes" role="tabpanel" aria-labelledby="doacoes">3 Lorem ipsum dolor
-              sit amet consectetur adipisicing elit. Molestiae minus quod facilis accusantium, aspernatur ex, rerum, vitae
-              expedita voluptates unde ducimus et ea placeat nisi tenetur sequi provident officiis? Ea.</div>
+            <div class="tab-pane fade" id="pills-doacoes" role="tabpanel" aria-labelledby="doacoes">
+              <div class="container mt-4 mb-3">
+                <div>
+                <div class="row d-flex justify-content-center">
+                  <div class="col-md-3">
+                      <div class="card mt-3" style="width: 18rem;">
+                          <div class="card-body text-center">
+                            Um espaço de solidariedade e sororidade
+                          </div>
+                        </div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                  <div class="row d-flex justify-content-center mt-4">
+                      <div class="col-md-3">
+                          <div class="card" style="width: 18rem;">
+                              <div class="card-body">
+                                  <p class="card-text text-center font-weight-bold">Leite Materno</p>
+                                </div>
+                              <img class="card-img-top" src="https://i.imgur.com/ktWlP02.png" alt="Imagem de capa do card">
+                              <div class="d-flex justify-content-center">
+                                <a class="btn bg-purple text-light w-75 mt-2 mb-4" href="https://www.google.com/" role="button">Saiba Mais</a>
+                              </div>
+                            </div>
+                      </div>
+                      <div class="col-md-3 mr-4 ml-4">
+                          <div class="card" style="width: 18rem;">
+                              <div class="card-body">
+                                  <p class="card-text text-center font-weight-bold">Higiene Menstrual</p>
+                                </div>
+                              <img class="card-img-top" src="https://i.imgur.com/k9St2VY.png" alt="Imagem de capa do card">
+                              <div class="d-flex justify-content-center">
+                                <a class="btn bg-purple text-light w-75 mt-2 mb-4" href="https://www.google.com/" role="button">Saiba Mais</a>
+                              </div>
+                            </div>
+                      </div>
+                      <div class="col-md-3">
+                          <div class="card" style="width: 18rem;">
+                              <div class="card-body">
+                                  <p class="card-text text-center font-weight-bold">Roupas e Brinquedos</p>
+                                </div>
+                              <img class="card-img-top" src="https://i.imgur.com/JS8tewl.png" alt="Imagem de capa do card">
+                              <div class="d-flex justify-content-center">
+                                <a class="btn bg-purple text-light w-75 mt-2 mb-4" href="https://www.google.com/" role="button">Saiba Mais</a>
+                              </div>
+                            </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+            </div>
             <div class="tab-pane fade" id="pills-delegacia" role="tabpanel" aria-labelledby="delegacia">4 Lorem ipsum dolor sit
               amet consectetur adipisicing elit. Molestiae minus quod facilis accusantium, aspernatur ex, rerum, vitae
               expedita voluptates unde ducimus et ea placeat nisi tenetur sequi provident officiis? Ea.</div>
@@ -134,8 +188,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-light mr-2" (click)='cadastrar()'  data-dismiss="modal">Cadastrar</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button class="btn btn-light mr-2 bg-pink" (click)='cadastrar()'  data-dismiss="modal">Cadastrar</button>
+        <button type="button" class="btn bg-w-yellow" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>

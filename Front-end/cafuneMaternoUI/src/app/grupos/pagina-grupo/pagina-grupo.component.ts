@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Grupos } from 'src/app/model/Grupos';
 import { Usuarios } from 'src/app/model/Usuarios';
-import { AuthService } from 'src/app/service/auth.service';
 import { GruposService } from 'src/app/service/grupos.service';
 import { environment } from 'src/environments/environment.prod';
 
