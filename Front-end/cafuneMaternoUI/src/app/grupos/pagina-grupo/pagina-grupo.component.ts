@@ -2,9 +2,11 @@ import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Grupos } from 'src/app/model/Grupos';
+import { Postagens } from 'src/app/model/Postagens';
 import { Usuarios } from 'src/app/model/Usuarios';
 import { AuthService } from 'src/app/service/auth.service';
 import { GruposService } from 'src/app/service/grupos.service';
+import { PostagemService } from 'src/app/service/postagem.service';
 import { environment } from 'src/environments/environment.prod';
 
 
@@ -20,11 +22,13 @@ export class PaginaGrupoComponent implements OnInit {
   idUsuario: number
   idGrupo: number
   qtdMembros: number
+  postagens: Postagens = new Postagens()
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private grupoService: GruposService
+    private grupoService: GruposService,
+    private postagemService: PostagemService
   ) { }
 
   ngOnInit()  {
