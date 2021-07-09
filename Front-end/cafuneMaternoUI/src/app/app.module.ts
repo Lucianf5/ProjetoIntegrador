@@ -13,6 +13,7 @@ import { CadastrarComponent } from './cadastrar/cadastrar.component';
 import { FeedComponent } from './feed/feed.component';
 import { GruposComponent } from './grupos/grupos.component';
 import { PaginaGrupoComponent } from './grupos/pagina-grupo/pagina-grupo.component';
+import { GrupoEditComponent } from './edit/grupo-edit/grupo-edit.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PaginaGrupoComponent } from './grupos/pagina-grupo/pagina-grupo.compone
     CadastrarComponent,
     FeedComponent,
     GruposComponent,
-    PaginaGrupoComponent
+    PaginaGrupoComponent,
+    GrupoEditComponent
   ],
   imports: [
     BrowserModule,

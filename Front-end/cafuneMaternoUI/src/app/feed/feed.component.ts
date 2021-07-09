@@ -26,8 +26,8 @@ export class FeedComponent implements OnInit {
     }
     this.gruposService.refreshToken()
     this.findAllGrupos()
-
   }
+
 
   findAllGrupos(){
     this.gruposService.getAllGrupos().subscribe((resp: Grupos[])=> {
@@ -53,6 +53,17 @@ export class FeedComponent implements OnInit {
   }
 
 
+  verificarUser() {
+    let ok : boolean = false
+    console.log(this.usuarios.tipo)
+    if(this.usuarios.tipo == "adm") {
+      ok = true
+    } else {
+      ok = false
+    }
+    console.log(ok)
+    return ok
+  }
 
   verificaUsuarioGrupo(grupo: Grupos) {
     return grupo.listaParticipantes.indexOf(this.usuarios) == -1
