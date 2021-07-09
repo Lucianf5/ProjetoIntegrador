@@ -21,41 +21,42 @@
                             <label for="nome">Nome</label>
                             <input [(ngModel)]='usuarios.nomeCompleto'class="form-control" type="text" name="nome" id="nome" placeholder="Seu nome">
                         </div>
-    
+
                         <div class="form-group">
                             <label for="email">E-mail</label>
                             <input [(ngModel)]='usuarios.email'class="form-control" type="email" name="email" id="email" placeholder="Seu email">
                         </div>
-    
+
                         <div class="form-group">
                             <label for="foto">Link da Foto</label>
                             <input [(ngModel)]='usuarios.foto'class="form-control" type="text" name="foto" id="foto" placeholder="Link da sua foto">
                         </div>
-    
+
                         <div class="form-group">
                             <label for="senha">Senha</label>
                             <input class="form-control" type="password" name="senha" id="senha" placeholder="Sua senha"  (input) = 'confirmSenha($event)'>
                         </div>
-    
+
                         <div class="form-group">
                             <label for="confirmSenha">Confirmar Senha</label>
                             <input [(ngModel)]='usuarios.senha' class="form-control" type="password" name="confirmSenha" id="confirmSenha"
                                 placeholder="Confirme sua senha">
                         </div>
-    
+
                         <div class="form-group">
                             <label for="tipo">Tipo de usuário</label>
-                            <select class="form-control" name="tipo" id="tipo">
+                            <select class="form-control" name="tipo" id="tipo"  (change)='tipoUser($event)'>
                                 <option>Selecione um tipo de usuário</option>
-                                <option value="normal">Normal</option>
-                                <option value="adm">Administrador</option>
+                                <option  value="normal">Normal</option>
+                                <option  value="adm">Administrador</option>
+                                <option  value="usuario-especialista">Usuário Especialista</option>
                             </select>
                         </div>
-    
+
                         <div class="d-flex justify-content-center">
                             <button type="submit" class="btn bg-purple text-light w-75 mt-2" (click)='cadastrar()'>Cadastrar</button>
                         </div>
-                        
+
                         <hr class="mt-4 mb-4">
 
                         <p class="text-center mb-4">
@@ -63,9 +64,9 @@
                         </p>
 
                     </div>
-    
+
                 </div>
-    
+
             </div>
         </div>
     <p>
