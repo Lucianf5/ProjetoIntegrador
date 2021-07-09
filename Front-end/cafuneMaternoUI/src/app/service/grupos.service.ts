@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
@@ -35,8 +35,27 @@ export class GruposService {
     return this.http.post<Grupos>(`https://appcafunematerno.herokuapp.com/grupos/salvar/usuario/${id}`, grupos, this.token)
   }
 
+  putGrupos(grupos: Grupos, idGrupo: number): Observable<Grupos> {
+    return this.http.put<Grupos>(`https://appcafunematerno.herokuapp.com/grupos/atualizar/${idGrupo}`, grupos, this.token)
+  }
+
+  deleteGrupos(idGrupo: number){
+    let params = new HttpParams().set('idGrupo', idGrupo)
+    return this.http.delete<Grupos>(`https://appcafunematerno.herokuapp.com/grupos/deletar?${params}`, this.token)
+  }
+
   addGrupo(idUsuario: number, idGrupo: number): Observable<Usuarios>{
     return this.http.put<Usuarios>(`https://appcafunematerno.herokuapp.com/grupos/id/add/grupo/${idGrupo}/usuario/${idUsuario}`, this.usuario , this.token)
+  }
+
+  removerGrupo(idUsuario: number, idGrupo: number): Observable<Usuarios>{
+    return this.http.put<Usuarios>(`https://appcafunematerno.herokuapp.com/grupos/id/remove/grupo/${idGrupo}/usuario/${idUsuario}`, this.usuario , this.token)
+  }
+
+
+
+  findByIdUsuario(idUsuario: number): Observable<Usuarios>{
+    return this.http.get<Usuarios>(`https://appcafunematerno.herokuapp.com/usuarios/id/${idUsuario}`, this.token )
   }
 
 
