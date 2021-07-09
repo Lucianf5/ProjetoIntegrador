@@ -6,6 +6,7 @@ export class Postagens{
     public descricaoPostagem: string
     public idPostagem: number
     public localizacaoPostagem: string
+    public tituloPostagem: string
     public urlAnexo: string
     public usuario: Usuarios
     public grupoPertencente: Grupos[]

@@ -9,6 +9,17 @@
             <p>Ele usa classes utilitárias para tipografia e espaçamento de conteúdo, dentro do maior container.</p>
             <a class="btn btn-primary btn-lg" href="#" role="button">Leia mais</a>
           </div>
+          <div class="card" style="width: 36rem;">
+            <div class="card-body">
+              <div class="form-group">
+                <input [(ngModel)]='postagens.tituloPostagem' placeholder="Título da Postagem" class="w-75">
+              </div>
+              <div class="form-group">
+                <input [(ngModel)]='postagens.descricaoPostagem' placeholder="Escreva suas ideias, dúvidas e experiências." class="w-75">
+              </div>
+              <a href="#" class="btn btn-primary">Publicar</a>
+            </div>
+          </div>
         </div>
         <div class="col-md-4">
           <div class="jumbotron">
