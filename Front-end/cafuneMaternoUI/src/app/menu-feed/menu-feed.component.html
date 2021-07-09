@@ -1,0 +1,41 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 bg-w-yellow">
+            <p></p>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-w-purple d-flex flex-row align-items-center posicaoNav">
+
+    <a class="navbar-brand" routerLink='/home'><img src="https://i.imgur.com/rz5Qm6V.png" alt="Logo"
+            class=" logo-size img-fluid rounded-circle"></a>
+
+
+    <button class="navbar-toggler bg-white" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado"
+        aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item pl-3">
+                <p class="m-0 font-wheight-bold text-white fs-16">Olá, {{nome}}</p>
+            </li>
+        </ul>
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="navbar-nav ml-auto d-flex align-items-center">
+                    <img src="{{foto}}" alt="Imagem do usuario" width="70px" height="70px"
+                        class="img-fluid rounded-circle">
+                    <div class="col-md-6">
+                        <li class="nav-item pl-3">
+                            <a (click)='sair()' class="m-0 font-wheight-bold text-white fs-16"> Sair<i
+                                    class="fas fa-sign-out-alt"></i></a>
+                        </li>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

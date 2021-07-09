@@ -14,6 +14,7 @@ import { FeedComponent } from './feed/feed.component';
 import { GruposComponent } from './grupos/grupos.component';
 import { PaginaGrupoComponent } from './grupos/pagina-grupo/pagina-grupo.component';
 import { GrupoEditComponent } from './edit/grupo-edit/grupo-edit.component';
+import { MenuFeedComponent } from './menu-feed/menu-feed.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { GrupoEditComponent } from './edit/grupo-edit/grupo-edit.component';
     FeedComponent,
     GruposComponent,
     PaginaGrupoComponent,
-    GrupoEditComponent
+    GrupoEditComponent,
+    MenuFeedComponent
   ],
   imports: [
     BrowserModule,
