@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
 import { Grupos } from '../model/Grupos';
+import { Usuarios } from '../model/Usuarios';
 import { GruposService } from '../service/grupos.service';
 
 @Component({
@@ -12,6 +13,7 @@ import { GruposService } from '../service/grupos.service';
 export class GruposComponent implements OnInit {
 
   grupos: Grupos = new Grupos()
+  usuarios: Usuarios = new Usuarios()
   listaGrupos: Grupos[]
 
   constructor(
@@ -23,7 +25,7 @@ export class GruposComponent implements OnInit {
     if(environment.token == '') {
       this.router.navigate(['/entrar'])
     }
-
+    this.gruposService.refreshToken()
     this.findAllGrupos()
   }
 
@@ -33,13 +35,37 @@ export class GruposComponent implements OnInit {
     })
   }
 
+
+
   cadastrar() {
-    this.gruposService.postGrupos(this.grupos).subscribe((resp: Grupos) => {
+    this.gruposService.postGrupos(this.grupos, environment.idUserLogin).subscribe((resp: Grupos) => {
       this.grupos = resp
-      alert('Grupo cadastrado comm sucesso!')
+      alert('Grupo cadastrado com sucesso!')
       this.findAllGrupos()
       this.grupos = new Grupos()
     })
   }
+
+  entrarGrupo(grupo: Grupos) {
+    console.log(grupo.idGrupo)
+    this.gruposService.addGrupo(environment.idUserLogin, grupo.idGrupo ).subscribe((resp)=>{
+      this.usuarios = resp
+      alert('Adicionado com sucesso')
+    })
+  }
+
+
+  sairGrupo(grupo: Grupos) {
+    console.log(grupo.listaParticipantes.length)
+    this.gruposService.removerGrupo(environment.idUserLogin, grupo.idGrupo ).subscribe((resp)=>{
+      this.usuarios = resp
+      alert('Removido com sucesso')
+    })
+  }
+
+  verificaUsuarioGrupo(grupo: Grupos) {
+    return grupo.listaParticipantes.indexOf(this.usuarios) == -1
+
+ }
 
 }

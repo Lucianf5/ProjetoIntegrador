@@ -10,6 +10,9 @@ import { RodapeComponent } from './rodape/rodape.component';
 import { HomeComponent } from './home/home.component';
 import { EntrarComponent } from './entrar/entrar.component';
 import { CadastrarComponent } from './cadastrar/cadastrar.component';
+import { FeedComponent } from './feed/feed.component';
+import { GruposComponent } from './grupos/grupos.component';
+import { PaginaGrupoComponent } from './grupos/pagina-grupo/pagina-grupo.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { CadastrarComponent } from './cadastrar/cadastrar.component';
     RodapeComponent,
     HomeComponent,
     EntrarComponent,
-    CadastrarComponent
+    CadastrarComponent,
+    FeedComponent,
+    GruposComponent,
+    PaginaGrupoComponent
   ],
   imports: [
     BrowserModule,
