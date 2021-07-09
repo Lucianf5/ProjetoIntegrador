@@ -89,7 +89,7 @@
                             <td>{{i.nomeGrupo}}</td>
                             <td>{{i.listaParticipantes.length}}</td>
                             <td class="d-flex justify-content-end">
-                              <button class="btn btn-outline-danger mr-3 d-flex justify-content-end" (click)='deleteGrupo(i)'>Excluir</button>
+                              <button class="btn btn-outline-danger mr-3 d-flex justify-content-end" *ngIf="verificarUser()" (click)='deleteGrupo(i)'>Excluir</button>
                               <button class="btn btn-outline-primary" *ngIf="verificaUsuarioGrupo(i)" (click)='entrarGrupo(i)'>Entrar</button>
                             </td>
                           </tr>
@@ -97,8 +97,6 @@
                       </table>
                     </div>
                </div>
-
-
             </div>
             <div class="tab-pane fade" id="pills-doacoes" role="tabpanel" aria-labelledby="doacoes">3 Lorem ipsum dolor
               sit amet consectetur adipisicing elit. Molestiae minus quod facilis accusantium, aspernatur ex, rerum, vitae

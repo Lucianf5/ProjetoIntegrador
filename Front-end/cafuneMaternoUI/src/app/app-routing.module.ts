@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CadastrarComponent } from './cadastrar/cadastrar.component';
+import { GrupoEditComponent } from './edit/grupo-edit/grupo-edit.component';
 import { EntrarComponent } from './entrar/entrar.component';
 import { FeedComponent } from './feed/feed.component';
 import { GruposComponent } from './grupos/grupos.component';
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'feed', component: FeedComponent },
   { path: 'grupos', component: GruposComponent },
-  { path: 'pagina-grupo/:id', component: PaginaGrupoComponent}
+  { path: 'pagina-grupo/:id', component: PaginaGrupoComponent},
+  { path: 'grupo-edit/:id', component: GrupoEditComponent}
 
 ];
 
