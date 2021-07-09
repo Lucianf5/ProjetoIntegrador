@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CadastrarComponent } from './cadastrar/cadastrar.component';
+import { DoacoesComponent } from './doacoes/doacoes.component';
 import { EntrarComponent } from './entrar/entrar.component';
 import { FeedComponent } from './feed/feed.component';
 import { GruposComponent } from './grupos/grupos.component';
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'cadastrar', component: CadastrarComponent },
   { path: 'home', component: HomeComponent },
   { path: 'feed', component: FeedComponent },
-  { path: 'grupos', component: GruposComponent }
+  { path: 'grupos', component: GruposComponent },
+  {path: 'doacoes', component: DoacoesComponent }
 
 ];
 
