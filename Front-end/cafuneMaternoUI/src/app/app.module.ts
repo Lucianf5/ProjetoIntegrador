@@ -17,6 +17,7 @@ import { DoacoesComponent } from './doacoes/doacoes.component';
 
 import { PaginaGrupoComponent } from './grupos/pagina-grupo/pagina-grupo.component';
 import { GrupoEditComponent } from './edit/grupo-edit/grupo-edit.component';
+import { MenuFeedComponent } from './menu-feed/menu-feed.component';
 
 
 @NgModule({
@@ -29,10 +30,10 @@ import { GrupoEditComponent } from './edit/grupo-edit/grupo-edit.component';
     CadastrarComponent,
     FeedComponent,
     GruposComponent,
-
-    DoacoesComponent
-
+    DoacoesComponent,
     PaginaGrupoComponent,
+    GrupoEditComponent,
+    MenuFeedComponent,
     GrupoEditComponent
 
   ],

@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { UserLogin } from '../model/UserLogin';
+import { environment } from 'src/environments/environment.prod';
+import { UserLogin } from '../model/Userlogin';
 import { Usuarios } from '../model/Usuarios';
 import { GruposService } from './grupos.service';
 
@@ -28,14 +29,26 @@ export class AuthService {
 
 
 
-  //TODO: Verificar se é necessário
-  /*logado() {
-    let ok : boolean = false
+  logado() {
+    let ok: boolean = false
 
-    if(environment.token != '') {
-        ok = true
+
+
+    if (environment.token != '') {
+      ok = true
     }
     return ok
-  }*/
+  }
+
+  deslogado() {
+    let ok: boolean = true
+
+
+
+    if (environment.token != '') {
+      ok = false
+    }
+    return ok
+  }
 
 }
