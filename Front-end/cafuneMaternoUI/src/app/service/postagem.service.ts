@@ -13,7 +13,7 @@ export class PostagemService {
   constructor(private http: HttpClient) { }
 
   token = {
-    headers: new HttpHeaders().set('Authorization', environment.token)  
+    headers: new HttpHeaders().set('Authorization', environment.token)
   }
   usuario: Usuarios = new Usuarios()
 
@@ -43,9 +43,5 @@ export class PostagemService {
     let params = new HttpParams().set('idPostagem', idPostagem)
     return this.http.delete<Postagens>(`https://appcafunematerno.herokuapp.com/postagens/deletar?${params}`, this.token)
   }
-
-  
-
-
 
 }

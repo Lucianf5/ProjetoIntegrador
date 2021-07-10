@@ -32,7 +32,7 @@
             <div class="row">
             <div class="col-md-12 d-flex justify-content-center">
               <div class="btn-group">
-                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button type="button" class="btn bg-pink btn-lg w-100 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Participantes
                 </button>
                 <div class="dropdown-menu dropdown-menu-right w-100">
@@ -50,13 +50,14 @@
             </div>
             <div class="col-md-12 mt-3">
               <div class="col-md-12 mt-3 d-flex justify-content-end">
-
                 <button class="btn btn-outline-warning mr-3" *ngIf="verificarUser()" [routerLink]="['/grupo-edit', grupo.idGrupo]">Editar</button>
-                <button class="btn btn-outline-danger"(click)='sairGrupo(grupo)'>Sair <i
-                  class="fas fa-sign-out-alt"></i></button>
               </div>
             </div>
             </div>
+          </div>
+          <div class="col-md-12 d-flex justify-content-end">
+            <button class="btn bg-w-yellow btn-lg w-75 "(click)='sairGrupo(grupo)'>Sair <i
+              class="fas fa-sign-out-alt"></i></button>
           </div>
         </div>
 

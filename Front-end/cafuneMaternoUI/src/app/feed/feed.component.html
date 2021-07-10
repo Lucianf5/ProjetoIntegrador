@@ -55,47 +55,45 @@
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, atque velit iusto beatae excepturi amet
               doloribus id magnam maiores ipsum sint delectus voluptate, neque, reprehenderit at numquam quisquam culpa
               ipsa!</div>
-            <div class="tab-pane fade" id="pills-grupos" role="tabpanel" aria-labelledby="grupos">
-              <div class="row mb-0">
-                <div class="col-md-6 d-flex align-items-center justify-content-center">
-                  <!-- Botão para acionar modal -->
-                  <div class="row mr-4">
-                    <div class="col-md-12 bg-w-purple w-100 h-100 ">
-                      <h4 class="text-center">Crie um grupo de seu interesse</h4>
-                    </div>
-                    <div class="col-md-12 mt-5 mb-4 w-100">
-                      <button type="button" class="btn bg-pink btn-lg w-100" data-toggle="modal" data-target="#modalExemplo">
-                        Criar um Grupo
-                        <i class="fas fa-plus-circle"></i>
-                      </button>
-                    </div>
+            <div class="tab-pane fade " id="pills-grupos" role="tabpanel" aria-labelledby="grupos">
+              <div class="row">
+                <div class="col-md-6 ">
+                  <div class="row">
                     <div class="col-md-12">
-                      <!--*ngFor='let item of usuarios.listaGrupos'-->
-                      <button type="button" class="btn bg-pink btn-lg w-100" data-toggle="modal" data-target="#modalMeusGrupos" (click)='findAllGrupos()'>
-                        Meus grupos
-                      </button>
+                      <h4 class="text-center p-4 mb-5 bg-white">Crie um grupo de seu interesse!</h4>
+                      <div class="col-md-12 bg-white p-5">
+                        <button type="button" class="btn bg-pink btn-lg w-100 mb-3" data-toggle="modal" data-target="#modalExemplo">
+                          Criar um Grupo
+                          <i class="fas fa-plus-circle"></i>
+                        </button>
+                        <!--*ngFor='let item of usuarios.listaGrupos'-->
+                        <button type="button" class="btn bg-pink btn-lg w-100" data-toggle="modal" data-target="#modalMeusGrupos" (click)='findAllGrupos()'>
+                          Meus grupos
+                        </button>
+
+                      </div>
                     </div>
                   </div>
-                </div>
-
+                  </div>
                     <div class="col-md-6">
+                      <div class="col-md-12 bg-white">
+                        <h4 class="text-center p-4">Encontre o grupo ideal para você!</h4>
+                      </div>
                       <table class="table table-hover">
                         <thead>
                           <tr>
-                            <th scope="col">#</th>
                             <th scope="col">Nome do Grupo</th>
-                            <th scope="col">Quantidade de usuarios</th>
-                            <th scope="col" class="text-right">Modificações</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr *ngFor='let i of listaGrupos'>
-                            <th>{{i.idGrupo}}</th>
                             <td>{{i.nomeGrupo}}</td>
-                            <td>{{i.listaParticipantes.length}}</td>
                             <td class="d-flex justify-content-end">
-                              <button class="btn btn-outline-danger mr-3 d-flex justify-content-end" *ngIf="verificarUser()" (click)='deleteGrupo(i)'>Excluir</button>
-                              <button class="btn btn-outline-primary" *ngIf="verificaUsuarioGrupo(i)" (click)='entrarGrupo(i)'>Entrar</button>
+                              <button class="btn btn bg-pink w-100"  *ngIf="verificaUsuarioGrupo(i)" (click)='entrarGrupo(i)'>Participar<i class=" ml-2 fas fa-plus-circle"></i></button>
+                              <p class="btn btn-outline-secondary aria-disabled w-100"  *ngIf="!verificaUsuarioGrupo(i)">Membro</p>
+                            </td>
+                            <td>
+                              <button class="btn btn-outline-danger  w-100" *ngIf="verificarUser()" (click)='deleteGrupo(i)'>Excluir</button>
                             </td>
                           </tr>
                         </tbody>
@@ -210,7 +208,6 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">Nome do Grupo</th>
-              <th scope="col" class="text-right">Modificações</th>
             </tr>
           </thead>
           <tbody>
