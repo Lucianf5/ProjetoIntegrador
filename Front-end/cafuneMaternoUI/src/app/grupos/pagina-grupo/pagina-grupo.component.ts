@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Grupos } from 'src/app/model/Grupos';
 import { Postagens } from 'src/app/model/Postagens';
 import { Usuarios } from 'src/app/model/Usuarios';
-import { AuthService } from 'src/app/service/auth.service';
 import { GruposService } from 'src/app/service/grupos.service';
 import { PostagemService } from 'src/app/service/postagem.service';
 import { environment } from 'src/environments/environment.prod';

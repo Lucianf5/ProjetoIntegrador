@@ -55,19 +55,25 @@ export class FeedComponent implements OnInit {
 
   verificarUser() {
     let ok : boolean = false
-    console.log(this.usuarios.tipo)
     if(this.usuarios.tipo == "adm") {
       ok = true
     } else {
       ok = false
     }
-    console.log(ok)
     return ok
   }
 
   verificaUsuarioGrupo(grupo: Grupos) {
-    return grupo.listaParticipantes.indexOf(this.usuarios) == -1
-
+  let ok: boolean = true
+  //console.log(this.usuarios.listaGrupos.includes(grupo))
+  //return this.usuarios.listaGrupos.includes(grupo)
+  for(let i = 0; i < this.usuarios.listaGrupos.length; i++) {
+    if(this.usuarios.listaGrupos[i].idGrupo == grupo.idGrupo) {
+      ok = false
+      return ok
+    }
+  }
+  return ok
  }
 
  deleteGrupo(grupo: Grupos) {
