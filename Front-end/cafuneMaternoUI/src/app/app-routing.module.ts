@@ -16,12 +16,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'feed', component: FeedComponent },
   { path: 'grupos', component: GruposComponent },
-<<<<<<< HEAD
 
-  {path: 'doacoes', component: DoacoesComponent },
 
-=======
->>>>>>> 4e21cfc6c2cd24730f72583c122689d89d2ae416
   { path: 'pagina-grupo/:id', component: PaginaGrupoComponent},
   { path: 'grupo-edit/:id', component: GrupoEditComponent}
 
