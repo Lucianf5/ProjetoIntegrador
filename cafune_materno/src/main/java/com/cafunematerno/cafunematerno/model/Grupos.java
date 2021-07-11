@@ -44,6 +44,7 @@ public class Grupos {
 	@JsonIgnoreProperties({"grupoPertencente", "usuario"})
 	private List<Postagens> post;
 	
+	private String foto;
 	
 	
 	public Grupos() {
@@ -96,6 +97,14 @@ public class Grupos {
 
 	public void setQntUsuarios(int qntUsuarios) {
 		this.qntUsuarios = qntUsuarios;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 	
 }
