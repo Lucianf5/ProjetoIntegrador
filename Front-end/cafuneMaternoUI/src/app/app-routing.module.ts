@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'feed', component: FeedComponent },
   { path: 'grupos', component: GruposComponent },
 
-  {path: 'doacoes', component: DoacoesComponent }
+  {path: 'doacoes', component: DoacoesComponent },
 
   { path: 'pagina-grupo/:id', component: PaginaGrupoComponent},
   { path: 'grupo-edit/:id', component: GrupoEditComponent}

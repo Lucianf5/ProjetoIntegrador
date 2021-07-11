@@ -1,60 +1,126 @@
-
 <div class="container-fluid">
 
-    <div class="row bg-w-purple">
-      <div class="col-md-12 text-white">
-        <div class="row d-flex justify-content-center mt-4 mb-5">
-          <div class="col-md-4">
-            <div class="form-group d-flex align-items-center">
-              <input type="text" class="form-control" id="descricao" placeholder="Digite o que você deseja buscar">
-              <span class="input-group-addon">
-                <button class="ml-1 fas fa-search fa-2x text-white" style="background:transparent;border:none"></button>
-              </span>
-            </div>
+  <div class="row bg-w-purple">
+    <div class="col-md-12 text-white">
+      <div class="row d-flex justify-content-center mt-4 mb-5">
+        <div class="col-md-4">
+          <div class="form-group d-flex align-items-center">
+            <input type="text" class="form-control" id="descricao" placeholder="Digite o que você deseja buscar">
+            <span class="input-group-addon">
+              <button class="ml-1 fas fa-search fa-2x text-white" style="background:transparent;border:none"></button>
+            </span>
           </div>
         </div>
-
       </div>
-      <!--routerLink="/grupos"-->
-      <div class="container d-flex justify-content-center">
-        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link active text-white bb-1" data-toggle="tooltip" title="Feed" id="feed" data-toggle="pill" href="#pills-feed" role="tab"
-              aria-controls="pills-feed" aria-selected="true"><i class="fa fa-book fa-2x" aria-hidden="true"></i></a>
-          </li>
-          <li class="nav-item">
-            
-            <a class="nav-link text-white bb-1 ml-2" data-toggle="tooltip" title="Grupos" id="grupos" data-toggle="pill" href="#pills-grupos" role="tab"
-              aria-controls="pills-grupos" aria-selected="false" (click)='findUsuarioId()'><i class="fa fa-users fa-2x" aria-hidden="true"></i></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white bb-1 ml-2"  data-toggle="tooltip" title="Doações" id="doacoes" data-toggle="pill" href="#pills-doacoes" role="tab"
-              aria-controls="pills-doacoes" aria-selected="false" routerLink="/doacoes"><i class="fa fa-hand-holding-heart fa-2x"></i></a>
 
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white bb-1 ml-2" data-toggle="tooltip" title="Delegacia da mulher" id="delegacia" data-toggle="pill" href="#pills-delegacia" role="tab"
-              aria-controls="pills-delegacia" aria-selected="false"><i class="fas fa-shield-alt fa-2x"></i></a>
-          </li>
-        </ul>
+    </div>
+    <!--routerLink="/grupos"-->
+    <div class="container d-flex justify-content-center">
+      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active text-white bb-1" data-spy="affix" data-toggle="tooltip" title="Feed" id="feed"
+            data-toggle="pill" href="#pills-feed" role="tab" aria-controls="pills-feed" aria-selected="true"><i
+              class="fa fa-book fa-2x" aria-hidden="true"></i></a>
+        </li>
+        <li class="nav-item">
 
-      </div>
-      <div class="container-fluid">
-        <div class="row posicaoNav">
-          <div class="col-md-12 bg-w-yellow">
-            <p></p>
-          </div>
+          <a class="nav-link text-white bb-1 ml-2" data-toggle="tooltip" title="Grupos" id="grupos" data-toggle="pill"
+            href="#pills-grupos" role="tab" aria-controls="pills-grupos" aria-selected="false"
+            (click)='findUsuarioId()'><i class="fa fa-users fa-2x" aria-hidden="true"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white bb-1 ml-2" data-toggle="tooltip" title="Doações" id="doacoes" data-toggle="pill"
+            href="#pills-doacoes" role="tab" aria-controls="pills-doacoes" aria-selected="false"
+            routerLink="/doacoes"><i class="fa fa-hand-holding-heart fa-2x"></i></a>
+
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white bb-1 ml-2" data-toggle="tooltip" title="Delegacia da mulher" id="delegacia"
+            data-toggle="pill" href="#pills-delegacia" role="tab" aria-controls="pills-delegacia"
+            aria-selected="false"><i class="fas fa-shield-alt fa-2x"></i></a>
+        </li>
+      </ul>
+
+    </div>
+    <div class="container-fluid">
+      <div class="row posicaoNav">
+        <div class="col-md-12 bg-w-yellow">
+          <p></p>
         </div>
       </div>
     </div>
-    <div class="container mt-3">
+
+  </div>
+  <div class="bg-w-pink">
+    <div class="mt-3 container">
       <div class="row">
         <div class="col-md-12">
           <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="pills-feed" role="tabpanel" aria-labelledby="feed">1
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, atque velit iusto beatae excepturi amet
-              doloribus id magnam maiores ipsum sint delectus voluptate, neque, reprehenderit at numquam quisquam culpa
-              ipsa!</div>
+            <div class="tab-pane fade show active" id="pills-feed" role="tabpanel" aria-labelledby="feed">
+
+              <div class="row justify-content-center mt-4 text-center">
+                <div class="col-md-4 mr-5">
+                  <table class="table table-borderless bg-white mb-4">
+                    <thead>
+                      <tr>
+                        <th scope="col" class="p-size"><i class="fas fa-book"></i> Artigos</th>
+                      </tr>
+                    </thead>
+                    <p class="mb-5 mr-2 ml-2">__________________________________</p>
+                    <tbody class="a-size">
+                      <tr>
+                        <td><i class="fas fa-list-ul"></i> Artigo 1</td>
+                      </tr>
+                      <tr>
+                        <td><i class="fas fa-list-ul"></i> Artigo 2</td>
+                      </tr>
+                      <tr>
+                        <td><i class="fas fa-list-ul"></i> Artigo 3</td>
+                      </tr>
+                      <tr>
+                        <td><i class="fas fa-list-ul mb-3"></i> Artigo 4</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                </div>
+
+                <div class="col-md-4 mt-5">
+
+                  <table class="table table-borderless bg-white mt-5">
+                    <div class="form-group m-4">
+                      <input type="email" class="form-control" id="publicacao"
+                        placeholder="Publique seus pensamentos aqui.">
+                        <p class="mb-2 mr-1 ml-1">_____________________________________________</p>
+                        <p class="text-left"><i class="fas fa-camera-retro ml-2 mr-4"></i><i class="fas fa-paperclip"></i></p>
+                    </div>
+                  </table>
+                  <ul class="list-group mt-5 bg-white">
+                    <h3>Grupos recomendados</h3>
+                    <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor>
+                      Grupo blabla
+                      <span class="badge badge-primary badge-pill">7</span>
+                    </li>
+
+                  </ul>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
             <div class="tab-pane fade" id="pills-grupos" role="tabpanel" aria-labelledby="grupos">
               <div class="row">
                 <div class="col-md-6 d-flex align-items-center justify-content-center">
@@ -67,111 +133,120 @@
                     </div>
                     <div class="col-md-12">
                       <!--*ngFor='let item of usuarios.listaGrupos'-->
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalMeusGrupos" (click)='findAllGrupos()'>
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalMeusGrupos"
+                        (click)='findAllGrupos()'>
                         Meus grupos
                       </button>
                     </div>
                   </div>
                 </div>
 
-                    <div class="col-md-6">
-                      <table class="table table-hover">
-                        <thead>
-                          <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Nome do Grupo</th>
-                            <th scope="col">Quantidade de usuarios</th>
-                            <th scope="col" class="text-right">Modificações</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr *ngFor='let i of listaGrupos'>
-                            <th>{{i.idGrupo}}</th>
-                            <td>{{i.nomeGrupo}}</td>
-                            <td>{{i.listaParticipantes.length}}</td>
-                            <td class="d-flex justify-content-end">
-                              <button class="btn btn-outline-danger mr-3 d-flex justify-content-end" *ngIf="verificarUser()" (click)='deleteGrupo(i)'>Excluir</button>
-                              <button class="btn btn-outline-primary" *ngIf="verificaUsuarioGrupo(i)" (click)='entrarGrupo(i)'>Entrar</button>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-               </div>
+                <div class="col-md-6">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nome do Grupo</th>
+                        <th scope="col">Quantidade de usuarios</th>
+                        <th scope="col" class="text-right">Modificações</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor='let i of listaGrupos'>
+                        <th>{{i.idGrupo}}</th>
+                        <td>{{i.nomeGrupo}}</td>
+                        <td>{{i.listaParticipantes.length}}</td>
+                        <td class="d-flex justify-content-end">
+                          <button class="btn btn-outline-danger mr-3 d-flex justify-content-end" *ngIf="verificarUser()"
+                            (click)='deleteGrupo(i)'>Excluir</button>
+                          <button class="btn btn-outline-primary" *ngIf="verificaUsuarioGrupo(i)"
+                            (click)='entrarGrupo(i)'>Entrar</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
             <div class="tab-pane fade" id="pills-doacoes" role="tabpanel" aria-labelledby="doacoes">3 Lorem ipsum dolor
-              sit amet consectetur adipisicing elit. Molestiae minus quod facilis accusantium, aspernatur ex, rerum, vitae
+              sit amet consectetur adipisicing elit. Molestiae minus quod facilis accusantium, aspernatur ex, rerum,
+              vitae
               expedita voluptates unde ducimus et ea placeat nisi tenetur sequi provident officiis? Ea.</div>
-            <div class="tab-pane fade" id="pills-delegacia" role="tabpanel" aria-labelledby="delegacia">4 Lorem ipsum dolor sit
+            <div class="tab-pane fade" id="pills-delegacia" role="tabpanel" aria-labelledby="delegacia">4 Lorem ipsum
+              dolor sit
               amet consectetur adipisicing elit. Molestiae minus quod facilis accusantium, aspernatur ex, rerum, vitae
               expedita voluptates unde ducimus et ea placeat nisi tenetur sequi provident officiis? Ea.</div>
           </div>
         </div>
       </div>
     </div>
-</div>
+  </div>
 
 
 
-<!-- Modal -->
-<div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Criar Grupo</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <input [(ngModel)]='grupos.nomeGrupo' type="text" class="form-control" id="grupos.nomeGrupo"
-            placeholder="Digite o nome do grupo:">
+  <!-- Modal -->
+  <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Criar Grupo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-        <div class="form-group">
-          <input [(ngModel)]='grupos.tema' type="text" class="form-control" id="grupos.tema"
-            placeholder="Digite a descrição do tema do grupo:">
+        <div class="modal-body">
+          <div class="form-group">
+            <input [(ngModel)]='grupos.nomeGrupo' type="text" class="form-control" id="grupos.nomeGrupo"
+              placeholder="Digite o nome do grupo:">
+          </div>
+          <div class="form-group">
+            <input [(ngModel)]='grupos.tema' type="text" class="form-control" id="grupos.tema"
+              placeholder="Digite a descrição do tema do grupo:">
+          </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-light mr-2" (click)='cadastrar()'  data-dismiss="modal">Cadastrar</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <div class="modal-footer">
+          <button class="btn btn-light mr-2" (click)='cadastrar()' data-dismiss="modal">Cadastrar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="modalMeusGrupos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Meus Grupos</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Nome do Grupo</th>
-              <th scope="col" class="text-right">Modificações</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor='let item of usuarios.listaGrupos'>
-              <th>{{item.idGrupo}}</th>
-              <td>{{item.nomeGrupo}}</td>
-              <td class="d-flex justify-content-end">
-                <button class="btn btn-outline-warning mr-3" data-dismiss="modal" [routerLink]="['/pagina-grupo',item.idGrupo]"> Ver </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+  <!-- Modal -->
+  <div class="modal fade" id="modalMeusGrupos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Meus Grupos</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome do Grupo</th>
+                <th scope="col" class="text-right">Modificações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor='let item of usuarios.listaGrupos'>
+                <th>{{item.idGrupo}}</th>
+                <td>{{item.nomeGrupo}}</td>
+                <td class="d-flex justify-content-end">
+                  <button class="btn btn-outline-warning mr-3" data-dismiss="modal"
+                    [routerLink]="['/pagina-grupo',item.idGrupo]"> Ver </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        </div>
       </div>
     </div>
   </div>

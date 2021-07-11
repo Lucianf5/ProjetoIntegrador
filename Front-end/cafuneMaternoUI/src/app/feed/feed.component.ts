@@ -21,7 +21,7 @@ export class FeedComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if(environment.token == '') {
+    if (environment.token == '') {
       this.router.navigate(['/entrar'])
     }
     this.gruposService.refreshToken()
@@ -29,11 +29,12 @@ export class FeedComponent implements OnInit {
   }
 
 
-  findAllGrupos(){
-    this.gruposService.getAllGrupos().subscribe((resp: Grupos[])=> {
+  findAllGrupos() {
+    this.gruposService.getAllGrupos().subscribe((resp: Grupos[]) => {
       this.listaGrupos = resp
     })
   }
+  
 
   cadastrar() {
     this.gruposService.postGrupos(this.grupos, environment.idUserLogin).subscribe((resp: Grupos) => {
@@ -46,7 +47,7 @@ export class FeedComponent implements OnInit {
 
   entrarGrupo(grupo: Grupos) {
     console.log(grupo.idGrupo)
-    this.gruposService.addGrupo(environment.idUserLogin, grupo.idGrupo ).subscribe((resp : Usuarios)=>{
+    this.gruposService.addGrupo(environment.idUserLogin, grupo.idGrupo).subscribe((resp: Usuarios) => {
       this.usuarios = resp
       alert('Adicionado com sucesso')
     })
@@ -54,9 +55,9 @@ export class FeedComponent implements OnInit {
 
 
   verificarUser() {
-    let ok : boolean = false
+    let ok: boolean = false
     console.log(this.usuarios.tipo)
-    if(this.usuarios.tipo == "adm") {
+    if (this.usuarios.tipo == "adm") {
       ok = true
     } else {
       ok = false
@@ -68,25 +69,25 @@ export class FeedComponent implements OnInit {
   verificaUsuarioGrupo(grupo: Grupos) {
     return grupo.listaParticipantes.indexOf(this.usuarios) == -1
 
- }
-
- deleteGrupo(grupo: Grupos) {
-  console.log(grupo.listaParticipantes.length)
-  if(grupo.listaParticipantes.length == 0) {
-    this.gruposService.deleteGrupos(grupo.idGrupo).subscribe(()=>{
-      alert("Grupo apagado com sucesso")
-      this.findAllGrupos()
-    })
-  } else {
-    alert("Não é possível exclir um grupo com membros ativos")
   }
-}
+
+  deleteGrupo(grupo: Grupos) {
+    console.log(grupo.listaParticipantes.length)
+    if (grupo.listaParticipantes.length == 0) {
+      this.gruposService.deleteGrupos(grupo.idGrupo).subscribe(() => {
+        alert("Grupo apagado com sucesso")
+        this.findAllGrupos()
+      })
+    } else {
+      alert("Não é possível exclir um grupo com membros ativos")
+    }
+  }
 
 
- findUsuarioId() {
-    return this.gruposService.findByIdUsuario(this.idUsuario).subscribe((resp: Usuarios)=>{
+  findUsuarioId() {
+    return this.gruposService.findByIdUsuario(this.idUsuario).subscribe((resp: Usuarios) => {
       this.usuarios = resp
     })
- }
+  }
 
 }
