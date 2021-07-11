@@ -40,9 +40,9 @@ export class FeedComponent implements OnInit {
     this.gruposService.postGrupos(this.grupos, environment.idUserLogin).subscribe((resp: Grupos) => {
       this.grupos = resp
       alert('Grupo cadastrado com sucesso!')
-      this.findAllGrupos()
       this.grupos = new Grupos()
     })
+    this.findAllGrupos()
   }
 
   entrarGrupo(grupo: Grupos) {
@@ -55,32 +55,37 @@ export class FeedComponent implements OnInit {
 
 
   verificarUser() {
-    let ok: boolean = false
-    console.log(this.usuarios.tipo)
-    if (this.usuarios.tipo == "adm") {
+
+    let ok : boolean = false
+    if(this.usuarios.tipo == "adm") {
       ok = true
     } else {
       ok = false
     }
-    console.log(ok)
     return ok
   }
 
   verificaUsuarioGrupo(grupo: Grupos) {
-    return grupo.listaParticipantes.indexOf(this.usuarios) == -1
-
-  }
-
-  deleteGrupo(grupo: Grupos) {
-    console.log(grupo.listaParticipantes.length)
-    if (grupo.listaParticipantes.length == 0) {
-      this.gruposService.deleteGrupos(grupo.idGrupo).subscribe(() => {
-        alert("Grupo apagado com sucesso")
-        this.findAllGrupos()
-      })
-    } else {
-      alert("Não é possível exclir um grupo com membros ativos")
+  let ok: boolean = true
+  //console.log(this.usuarios.listaGrupos.includes(grupo))
+  //return this.usuarios.listaGrupos.includes(grupo)
+  for(let i = 0; i < this.usuarios.listaGrupos.length; i++) {
+    if(this.usuarios.listaGrupos[i].idGrupo == grupo.idGrupo) {
+      ok = false
+      return ok
     }
+  }
+  return ok
+ }
+
+ deleteGrupo(grupo: Grupos) {
+  console.log(grupo.listaParticipantes.length)
+  if(grupo.listaParticipantes.length == 0) {
+    alert("Grupo apagado com sucesso")
+    this.gruposService.deleteGrupos(grupo.idGrupo)
+    this.findAllGrupos()
+  } else {
+    alert("Não é possível exclir um grupo com membros ativos")
   }
 
 

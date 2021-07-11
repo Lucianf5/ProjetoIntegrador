@@ -145,6 +145,7 @@ public class GruposService {
 		if (idGrupoJaExiste.isPresent()) {
 			idGrupoJaExiste.get().setNomeGrupo(grupoAtualizado.getNomeGrupo());
 			idGrupoJaExiste.get().setTema(grupoAtualizado.getTema());
+			idGrupoJaExiste.get().setFoto(grupoAtualizado.getFoto());
 
 			return ResponseEntity.status(202).body(repositoryGrupos.save(idGrupoJaExiste.get()));
 		} else {

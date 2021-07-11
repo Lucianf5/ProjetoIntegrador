@@ -20,6 +20,14 @@ public class UserLogin {
 	
 	private String tipo;
 	
+	private String status;
+	
+	private String sobre;
+	
+	private String localizacao;
+	
+	private String pronome;
+	
 	public UserLogin() {
 		
 	}
@@ -78,6 +86,38 @@ public class UserLogin {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getSobre() {
+		return sobre;
+	}
+
+	public void setSobre(String sobre) {
+		this.sobre = sobre;
+	}
+
+	public String getLocalizacao() {
+		return localizacao;
+	}
+
+	public void setLocalizacao(String localizacao) {
+		this.localizacao = localizacao;
+	}
+
+	public String getPronome() {
+		return pronome;
+	}
+
+	public void setPronome(String pronome) {
+		this.pronome = pronome;
 	}
 	
 	

@@ -1,4 +1,5 @@
-<div class="container-fluid">
+<div class="container-fluid bg-w-pink">
+
 
   <div class="row bg-w-purple">
     <div class="col-md-12 text-white">
@@ -12,6 +13,29 @@
           </div>
         </div>
       </div>
+
+      <!--routerLink="/grupos"-->
+      <div class="container d-flex justify-content-center">
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active text-white bb-1" data-toggle="tooltip" title="Feed" id="feed" data-toggle="pill" href="#pills-feed" role="tab"
+              aria-controls="pills-feed" aria-selected="true"><i class="fa fa-book fa-2x" aria-hidden="true"></i></a>
+          </li>
+          <li class="nav-item">
+
+            <a class="nav-link text-white bb-1 ml-2" data-toggle="tooltip" title="Grupos" id="grupos" data-toggle="pill" href="#pills-grupos" role="tab"
+              aria-controls="pills-grupos" aria-selected="false" (click)='findUsuarioId()'><i class="fa fa-users fa-2x" aria-hidden="true"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white bb-1 ml-2"  data-toggle="tooltip" title="Doações" id="doacoes" data-toggle="pill" href="#pills-doacoes" role="tab"
+              aria-controls="pills-doacoes" aria-selected="false"><i class="fa fa-hand-holding-heart fa-2x"></i></a>
+
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white bb-1 ml-2" data-toggle="tooltip" title="Delegacia da mulher" id="delegacia" data-toggle="pill" href="#pills-delegacia" role="tab"
+              aria-controls="pills-delegacia" aria-selected="false"><i class="fas fa-shield-alt fa-2x"></i></a>
+          </li>
+        </ul>
 
     </div>
     <!--routerLink="/grupos"-->
@@ -110,70 +134,105 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
             </div>
             <div class="tab-pane fade" id="pills-grupos" role="tabpanel" aria-labelledby="grupos">
+
               <div class="row">
-                <div class="col-md-6 d-flex align-items-center justify-content-center">
-                  <!-- Botão para acionar modal -->
+                <div class="col-md-6 ">
                   <div class="row">
-                    <div class="col-md-12 mb-4">
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExemplo">
-                        Criar um Grupo
-                      </button>
-                    </div>
                     <div class="col-md-12">
-                      <!--*ngFor='let item of usuarios.listaGrupos'-->
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalMeusGrupos"
-                        (click)='findAllGrupos()'>
-                        Meus grupos
-                      </button>
+                      
+                      <h4 class="text-center p-4 mb-5 bg-white">Crie um grupo de seu interesse!</h4>
+                      <div class="col-md-12 bg-white p-5">
+                        <button type="button" class="btn bg-pink btn-lg w-100 mb-3" data-toggle="modal" data-target="#modalExemplo">
+                          Criar um Grupo
+                          <i class="fas fa-plus-circle"></i>
+                        </button>
+                        <!--*ngFor='let item of usuarios.listaGrupos'-->
+                        <button type="button" class="btn bg-pink btn-lg w-100" data-toggle="modal" data-target="#modalMeusGrupos" (click)='findAllGrupos()'>
+                          Meus grupos
+                        </button>
+
+                      </div>
                     </div>
                   </div>
-                </div>
+                  </div>
+                    <div class="col-md-6">
+                      <div class="col-md-12 bg-white">
+                        <h4 class="text-center p-4">Encontre grupos ideais para você!</h4>
+                      </div>
+                      <table class="table table-hover">
 
-                <div class="col-md-6">
-                  <table class="table table-hover">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nome do Grupo</th>
-                        <th scope="col">Quantidade de usuarios</th>
-                        <th scope="col" class="text-right">Modificações</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor='let i of listaGrupos'>
-                        <th>{{i.idGrupo}}</th>
-                        <td>{{i.nomeGrupo}}</td>
-                        <td>{{i.listaParticipantes.length}}</td>
-                        <td class="d-flex justify-content-end">
-                          <button class="btn btn-outline-danger mr-3 d-flex justify-content-end" *ngIf="verificarUser()"
-                            (click)='deleteGrupo(i)'>Excluir</button>
-                          <button class="btn btn-outline-primary" *ngIf="verificaUsuarioGrupo(i)"
-                            (click)='entrarGrupo(i)'>Entrar</button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                        <tbody>
+                          <tr *ngFor='let i of listaGrupos'>
+                            <td>{{i.nomeGrupo}}</td>
+                            <td class="d-flex justify-content-end">
+                              <button class="btn btn bg-pink w-100"  *ngIf="verificaUsuarioGrupo(i)" (click)='entrarGrupo(i)'>Participar<i class=" ml-2 fas fa-plus-circle"></i></button>
+                              <p class="btn btn-outline-secondary aria-disabled w-100"  *ngIf="!verificaUsuarioGrupo(i)">Membro</p>
+                            </td>
+                            <td>
+                              <button class="btn btn-outline-danger  w-100" *ngIf="verificarUser()" (click)='deleteGrupo(i)'>Excluir</button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+               </div>
+            </div>
+            <div class="tab-pane fade" id="pills-doacoes" role="tabpanel" aria-labelledby="doacoes">
+              <div class="container mt-4 mb-3">
+                <div>
+                <div class="row d-flex justify-content-center">
+                  <div class="col-md-3">
+                      <div class="card mt-3" style="width: 18rem;">
+                          <div class="card-body text-center">
+                            Um espaço de solidariedade e sororidade
+                          </div>
+                        </div>
+                  </div>
                 </div>
               </div>
+
+              <div>
+                  <div class="row d-flex justify-content-center mt-4">
+                      <div class="col-md-3">
+                          <div class="card" style="width: 18rem;">
+                              <div class="card-body">
+                                  <p class="card-text text-center font-weight-bold">Leite Materno</p>
+                                </div>
+                              <img class="card-img-top" src="https://i.imgur.com/ktWlP02.png" alt="Imagem de capa do card">
+                              <div class="d-flex justify-content-center">
+                                <a class="btn bg-purple text-light w-75 mt-2 mb-4" href="https://www.google.com/" role="button">Saiba Mais</a>
+                              </div>
+                            </div>
+                      </div>
+                      <div class="col-md-3 mr-4 ml-4">
+                          <div class="card" style="width: 18rem;">
+                              <div class="card-body">
+                                  <p class="card-text text-center font-weight-bold">Higiene Menstrual</p>
+                                </div>
+                              <img class="card-img-top" src="https://i.imgur.com/k9St2VY.png" alt="Imagem de capa do card">
+                              <div class="d-flex justify-content-center">
+                                <a class="btn bg-purple text-light w-75 mt-2 mb-4" href="https://www.google.com/" role="button">Saiba Mais</a>
+                              </div>
+                            </div>
+                      </div>
+                      <div class="col-md-3">
+                          <div class="card" style="width: 18rem;">
+                              <div class="card-body">
+                                  <p class="card-text text-center font-weight-bold">Roupas e Brinquedos</p>
+                                </div>
+                              <img class="card-img-top" src="https://i.imgur.com/JS8tewl.png" alt="Imagem de capa do card">
+                              <div class="d-flex justify-content-center">
+                                <a class="btn bg-purple text-light w-75 mt-2 mb-4" href="https://www.google.com/" role="button">Saiba Mais</a>
+                              </div>
+                            </div>
+                      </div>
+                  </div>
+              </div>
             </div>
-            <div class="tab-pane fade" id="pills-doacoes" role="tabpanel" aria-labelledby="doacoes">3 Lorem ipsum dolor
-              sit amet consectetur adipisicing elit. Molestiae minus quod facilis accusantium, aspernatur ex, rerum,
-              vitae
-              expedita voluptates unde ducimus et ea placeat nisi tenetur sequi provident officiis? Ea.</div>
-            <div class="tab-pane fade" id="pills-delegacia" role="tabpanel" aria-labelledby="delegacia">4 Lorem ipsum
-              dolor sit
+            </div>
+            <div class="tab-pane fade" id="pills-delegacia" role="tabpanel" aria-labelledby="delegacia">4 Lorem ipsum dolor sit
               amet consectetur adipisicing elit. Molestiae minus quod facilis accusantium, aspernatur ex, rerum, vitae
               expedita voluptates unde ducimus et ea placeat nisi tenetur sequi provident officiis? Ea.</div>
           </div>
@@ -209,44 +268,47 @@
           <button class="btn btn-light mr-2" (click)='cadastrar()' data-dismiss="modal">Cadastrar</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
         </div>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-light mr-2 bg-pink" (click)='cadastrar()'  data-dismiss="modal">Cadastrar</button>
+        <button type="button" class="btn bg-w-yellow" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
-  <!-- Modal -->
-  <div class="modal fade" id="modalMeusGrupos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Meus Grupos</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nome do Grupo</th>
-                <th scope="col" class="text-right">Modificações</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor='let item of usuarios.listaGrupos'>
-                <th>{{item.idGrupo}}</th>
-                <td>{{item.nomeGrupo}}</td>
-                <td class="d-flex justify-content-end">
-                  <button class="btn btn-outline-warning mr-3" data-dismiss="modal"
-                    [routerLink]="['/pagina-grupo',item.idGrupo]"> Ver </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="modalMeusGrupos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Meus Grupos</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nome do Grupo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let item of usuarios.listaGrupos'>
+              <th>{{item.idGrupo}}</th>
+              <td>{{item.nomeGrupo}}</td>
+              <td class="d-flex justify-content-end">
+                <button class="btn btn-outline-warning mr-3" data-dismiss="modal" [routerLink]="['/pagina-grupo',item.idGrupo]"> Ver </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+p
       </div>
     </div>
   </div>

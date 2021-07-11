@@ -114,6 +114,11 @@ public class UsuariosService {
 			String senhaCodificada = encoder.encode(usuarioParaAtualizar.getSenha());
 			usuarioExistente.setNomeCompleto(usuarioParaAtualizar.getNome());
 			usuarioExistente.setSenha(senhaCodificada);
+			usuarioExistente.setFoto(usuarioParaAtualizar.getFoto());
+			usuarioExistente.setStatus(usuarioParaAtualizar.getStatus());
+			usuarioExistente.setPronome(usuarioParaAtualizar.getPronome());
+			usuarioExistente.setLocalizacao(usuarioParaAtualizar.getLocalizacao());
+			usuarioExistente.setSobre(usuarioParaAtualizar.getSobre());
 
 			return ResponseEntity.status(202).body(usuariosRepository.save(usuarioExistente));
 		}).orElse(ResponseEntity.status(401).build());
