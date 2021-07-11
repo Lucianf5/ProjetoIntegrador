@@ -39,9 +39,9 @@ export class FeedComponent implements OnInit {
     this.gruposService.postGrupos(this.grupos, environment.idUserLogin).subscribe((resp: Grupos) => {
       this.grupos = resp
       alert('Grupo cadastrado com sucesso!')
-      this.findAllGrupos()
       this.grupos = new Grupos()
     })
+    this.findAllGrupos()
   }
 
   entrarGrupo(grupo: Grupos) {
@@ -79,10 +79,9 @@ export class FeedComponent implements OnInit {
  deleteGrupo(grupo: Grupos) {
   console.log(grupo.listaParticipantes.length)
   if(grupo.listaParticipantes.length == 0) {
-    this.gruposService.deleteGrupos(grupo.idGrupo).subscribe(()=>{
-      alert("Grupo apagado com sucesso")
-      this.findAllGrupos()
-    })
+    alert("Grupo apagado com sucesso")
+    this.gruposService.deleteGrupos(grupo.idGrupo)
+    this.findAllGrupos()
   } else {
     alert("Não é possível exclir um grupo com membros ativos")
   }

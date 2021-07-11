@@ -8,6 +8,10 @@ export class Usuarios{
     public senha: string
     public foto: string
     public tipo: string
+    public status: string
+    public sobre: string
+    public pronome: string
+    public localizacao: string
     public postagens: Postagens[]
     public listaGrupos : Grupos[]
 

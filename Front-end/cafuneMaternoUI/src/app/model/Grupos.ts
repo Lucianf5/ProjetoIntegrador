@@ -8,4 +8,5 @@ export class Grupos{
     public qntUsuarios: number
     public tema : string
     public listaParticipantes: Usuarios[]
+    public foto: string
 }

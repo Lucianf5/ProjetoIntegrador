@@ -6,4 +6,8 @@ export class UserLogin{
     public token: string
     public foto: string
     public tipo: string
+    public status: string
+    public sobre: string
+    public pronome: string
+    public localizacao: string
 }
