@@ -15,6 +15,7 @@ import { GruposComponent } from './grupos/grupos.component';
 import { PaginaGrupoComponent } from './grupos/pagina-grupo/pagina-grupo.component';
 import { GrupoEditComponent } from './edit/grupo-edit/grupo-edit.component';
 import { MenuFeedComponent } from './menu-feed/menu-feed.component';
+import { PaginaUsuarioComponent } from './pagina-usuario/pagina-usuario.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { MenuFeedComponent } from './menu-feed/menu-feed.component';
     PaginaGrupoComponent,
     GrupoEditComponent,
     MenuFeedComponent,
-    GrupoEditComponent
+    GrupoEditComponent,
+    PaginaUsuarioComponent
 
   ],
   imports: [
