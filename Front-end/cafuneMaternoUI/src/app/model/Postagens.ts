@@ -9,5 +9,5 @@ export class Postagens{
     public tituloPostagem: string
     public urlAnexo: string
     public usuario: Usuarios
-    public grupoPertencente: Grupos[]
+    public grupoPertencente: Grupos
 }

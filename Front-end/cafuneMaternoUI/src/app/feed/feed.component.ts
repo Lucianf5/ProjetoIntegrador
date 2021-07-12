@@ -96,6 +96,16 @@ export class FeedComponent implements OnInit {
     return ok
   }
 
+
+ deleteGrupo(grupo: Grupos) {
+  //console.log(grupo.listaParticipantes.length)
+  if(grupo.listaParticipantes.length == 0) {
+    alert("Grupo apagado com sucesso")
+    this.gruposService.deleteGrupos(grupo.idGrupo)
+    this.findAllGrupos()
+  } else {
+    alert("Não é possível exclir um grupo com membros ativos")
+
   deleteGrupo(grupo: Grupos) {
     console.log(grupo.listaParticipantes.length)
     if (grupo.listaParticipantes.length == 0) {
@@ -105,6 +115,7 @@ export class FeedComponent implements OnInit {
     } else {
       alert("Não é possível exclir um grupo com membros ativos")
     }
+
   }
 
   findUsuarioId() {
