@@ -17,7 +17,6 @@ const routes: Routes = [
   { path: 'feed', component: FeedComponent },
   { path: 'grupos', component: GruposComponent },
 
-
   { path: 'pagina-grupo/:id', component: PaginaGrupoComponent},
   { path: 'grupo-edit/:id', component: GrupoEditComponent}
 
