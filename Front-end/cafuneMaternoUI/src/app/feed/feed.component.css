@@ -71,3 +71,8 @@
     max-width: 250px;
 }
 
+.font-verdana{
+    font-family: Verdana, sans-serif;
+    font-variant: small-caps;
+}
+

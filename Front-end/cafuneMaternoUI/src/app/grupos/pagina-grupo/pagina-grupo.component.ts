@@ -33,7 +33,7 @@ export class PaginaGrupoComponent implements OnInit {
 
   ngOnInit()  {
     if(environment.token == '') {
-      this.router.navigate(['/entrar'])
+      this.router.navigate(['/home'])
     }
     this.idUsuario = environment.idUserLogin
     this.idGrupo = this.route.snapshot.params['id']

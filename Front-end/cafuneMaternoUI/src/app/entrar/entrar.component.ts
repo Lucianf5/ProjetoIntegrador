@@ -19,7 +19,7 @@ export class EntrarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    window.scroll(0,0)
+    window.scroll(0, 0)
   }
 
   entrar() {
@@ -30,11 +30,21 @@ export class EntrarComponent implements OnInit {
       environment.nome = this.userLogin.nome
       environment.foto = this.userLogin.foto
       environment.idUserLogin = this.userLogin.idUserLogin
+      
+
+      console.log(environment.token)
+      console.log(environment.idUserLogin)
+      console.log(environment.foto)
+      console.log(environment.nome)
+
+
       this.router.navigate(['/feed'])
     }, erro => {
-      if(erro.status == 204) {
-        alert('Usuário ou senha estão incorretos!')
+      if (erro.status == 204) {
+        alert('E-mail ou senha estão incorretos!')
       }
     })
   }
+
+
 }
