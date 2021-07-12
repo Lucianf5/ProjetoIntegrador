@@ -77,7 +77,7 @@ export class FeedComponent implements OnInit {
  }
 
  deleteGrupo(grupo: Grupos) {
-  console.log(grupo.listaParticipantes.length)
+  //console.log(grupo.listaParticipantes.length)
   if(grupo.listaParticipantes.length == 0) {
     alert("Grupo apagado com sucesso")
     this.gruposService.deleteGrupos(grupo.idGrupo)
