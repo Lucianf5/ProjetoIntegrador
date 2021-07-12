@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment.prod';
+import { GruposService } from '../service/grupos.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+   private router: Router,
+   private gruposService: GruposService
+  ) { }
 
-  ngOnInit(): void {
+  ngOnInit(){
+      window.scroll(0,0)
+      if (environment.token == '') {
+        this.router.navigate(['/home'])
+      }
+      this.gruposService.refreshToken()
   }
 
 }

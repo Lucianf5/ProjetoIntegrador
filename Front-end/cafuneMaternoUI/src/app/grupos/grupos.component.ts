@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
 import { Grupos } from '../model/Grupos';
+
 import { Usuarios } from '../model/Usuarios';
 import { GruposService } from '../service/grupos.service';
 
@@ -16,12 +17,14 @@ export class GruposComponent implements OnInit {
   usuarios: Usuarios = new Usuarios()
   listaGrupos: Grupos[]
 
+
   constructor(
     private router: Router,
     private gruposService: GruposService
   ) { }
 
   ngOnInit() {
+    window.scroll(0,0)
     if(environment.token == '') {
       this.router.navigate(['/entrar'])
     }
@@ -35,6 +38,9 @@ export class GruposComponent implements OnInit {
     })
   }
 
+  
+
+
 
 
   cadastrar() {
@@ -45,6 +51,8 @@ export class GruposComponent implements OnInit {
       this.grupos = new Grupos()
     })
   }
+
+  
 
   entrarGrupo(grupo: Grupos) {
     console.log(grupo.idGrupo)

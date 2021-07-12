@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
 import { Grupos } from '../model/Grupos';
+import { Postagens } from '../model/Postagens';
 import { Usuarios } from '../model/Usuarios';
-import { AuthService } from '../service/auth.service';
 import { GruposService } from '../service/grupos.service';
 @Component({
   selector: 'app-feed',
@@ -11,9 +11,11 @@ import { GruposService } from '../service/grupos.service';
   styleUrls: ['./feed.component.css']
 })
 export class FeedComponent implements OnInit {
+  postagens: Postagens = new Postagens()
   grupos: Grupos = new Grupos()
   usuarios: Usuarios = new Usuarios()
   listaGrupos: Grupos[]
+  listaPostagens: Postagens[]
   idUsuario = environment.idUserLogin
   constructor(
     private router: Router,
@@ -21,6 +23,7 @@ export class FeedComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    window.scroll(0,0)
     if (environment.token == '') {
       this.router.navigate(['/entrar'])
     }
@@ -35,6 +38,12 @@ export class FeedComponent implements OnInit {
     })
   }
 
+  findAllPostagens(){
+    this.gruposService.getAllPostagens().subscribe((resp: Postagens[])=> {
+      this.listaPostagens = resp
+    })
+  }
+
 
   cadastrar() {
     this.gruposService.postGrupos(this.grupos, environment.idUserLogin).subscribe((resp: Grupos) => {
@@ -43,6 +52,15 @@ export class FeedComponent implements OnInit {
       this.grupos = new Grupos()
     })
     this.findAllGrupos()
+  }
+
+  postar() {
+    this.gruposService.postPostagem(this.postagens, environment.idUserLogin).subscribe((resp: Postagens) => {
+      this.postagens = resp
+      alert('Postagem cadastrado com sucesso!')
+      this.postagens = new Postagens()
+    })
+    this.listaPostagens
   }
 
   entrarGrupo(grupo: Grupos) {
@@ -94,7 +112,7 @@ export class FeedComponent implements OnInit {
       this.usuarios = resp
     })
   }
-
-
+  
+ 
 
 }

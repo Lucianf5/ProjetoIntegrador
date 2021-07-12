@@ -22,7 +22,7 @@
               <div class="form-group">
                 <input [(ngModel)]='postagens.descricaoPostagem' placeholder="Escreva suas ideias, dúvidas e experiências." class="w-75">
               </div>
-              <a href="#" class="btn btn-primary">Publicar</a>
+              <a (click)='publicar()' class="btn btn-primary">Publicar</a>
             </div>
           </div>
         </div>

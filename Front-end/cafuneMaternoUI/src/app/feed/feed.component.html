@@ -32,8 +32,8 @@
         </li>
         <li class="nav-item">
           <a class="nav-link text-white bb-1 ml-2" data-toggle="tooltip" title="Doações" id="doacoes" data-toggle="pill"
-            href="#pills-doacoes" role="tab" aria-controls="pills-doacoes" aria-selected="false"
-            routerLink="/doacoes"><i class="fa fa-hand-holding-heart fa-2x"></i></a>
+            href="#pills-doacoes" role="tab" aria-controls="pills-doacoes" aria-selected="false"><i
+              class="fa fa-hand-holding-heart fa-2x"></i></a>
 
         </li>
         <li class="nav-item">
@@ -60,12 +60,12 @@
           <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-feed" role="tabpanel" aria-labelledby="feed">
 
-              <div class="row justify-content-center mt-4 text-center">
+              <div class="row justify-content-center mt-4 mb-4 text-center">
                 <div class="col-md-4 mr-5">
-                  <table class="table table-borderless bg-white mb-4">
+                  <table class="table table-borderless bg-white">
                     <thead>
                       <tr>
-                        <th scope="col" class="p-size"><i class="fas fa-book"></i> Artigos</th>
+                        <th scope="col" class="p-size"><i class="fas fa-book-open"></i> Artigos</th>
                       </tr>
                     </thead>
                     <p class="mb-5 mr-2 ml-2">__________________________________</p>
@@ -90,23 +90,29 @@
 
                 <div class="col-md-4 mt-5">
 
-                  <table class="table table-borderless bg-white mt-5">
-                    <div class="form-group m-4">
-                      <input type="email" class="form-control" id="publicacao"
-                        placeholder="Publique seus pensamentos aqui.">
+                  <table class="table table-borderless bg-white container">
+                    <div class="form-group m-4 input-group mr-3">
+                      <div class="input-group-append align-items-center mr-1"><i class="fas fa-pencil-alt"></i></div>
+                      <input type="email" class="form-control bg-cz inpsize" id="publicacao"
+                        placeholder="O que esta pensando?">
+                      <button class="btn btn-primary input-group-append" (click)='postar()'><i class="fas fa-share fa"></i></button>
                       <p class="mb-2 mr-1 ml-1">_____________________________________________</p>
-                      <p class="text-left"><i class="fas fa-camera-retro ml-2 mr-4"></i><i class="fas fa-paperclip"></i>
+                      <p class="text-left"><a class="fas fa-camera-retro ml-3 mr-5 text-dark"></a><a
+                          class="fas fa-paperclip text-dark"></a>
                       </p>
                     </div>
                   </table>
-                  <ul class="list-group mt-5 bg-white">
-                    <h3>Grupos recomendados</h3>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                      Grupo blabla
-                      <span class="badge badge-primary badge-pill">7</span>
-                    </li>
+                  <table class="table table-borderless bg-white container text-center">
+                    <div class="form-group m-4 input-group mr-3">
+                      <h3>Grupos recomendados</h3>
+                      <p class="mb-2 mr-1 ml-1">_____________________________________________</p>
+                      <div class="d-flex justify-content-between">
+                        <p>Mamãe acolhedora</p>
+                        <!-- <span class="badge badge-primary badge-pill">7</span> -->
+                      </div>
+                    </div>
 
-                  </ul>
+                  </table>
 
                 </div>
               </div>
@@ -148,11 +154,12 @@
                     <tbody>
                       <tr *ngFor='let i of listaGrupos'>
                         <td>{{i.nomeGrupo}}</td>
-                        <td class="d-flex justify-content-end">
+                        <td class="d-flex justify-content-end" *ngFor='let item of usuarios.listaGrupos'>
                           <button class="btn btn bg-pink w-100" *ngIf="verificaUsuarioGrupo(i)"
                             (click)='entrarGrupo(i)'>Participar<i class=" ml-2 fas fa-plus-circle"></i></button>
-                          <p class="btn btn-outline-secondary aria-disabled w-100" *ngIf="!verificaUsuarioGrupo(i)">
-                            Membro</p>
+                          <button class="btn btn-outline-secondary aria-disabled w-100" *ngIf="!verificaUsuarioGrupo(i)"
+                            [routerLink]="['/pagina-grupo',item.idGrupo]">
+                            Membro</button>
                         </td>
                         <td>
                           <button class="btn btn-outline-danger  w-100" *ngIf="verificarUser()"
@@ -254,15 +261,12 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-light mr-2" (click)='cadastrar()' data-dismiss="modal">Cadastrar</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <button class="btn btn-light mr-2 bg-pink" (click)='cadastrar()' data-dismiss="modal">Cadastrar</button>
+            <button type="button" class="btn bg-w-yellow" data-dismiss="modal">Fechar</button>
           </div>
 
         </div>
-        <div class="modal-footer">
-          <button class="btn btn-light mr-2 bg-pink" (click)='cadastrar()' data-dismiss="modal">Cadastrar</button>
-          <button type="button" class="btn bg-w-yellow" data-dismiss="modal">Fechar</button>
-        </div>
+
       </div>
     </div>
     <!-- Modal -->
@@ -298,7 +302,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-            p
+            
           </div>
         </div>
       </div>
