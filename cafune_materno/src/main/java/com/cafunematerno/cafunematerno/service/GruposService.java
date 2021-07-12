@@ -76,8 +76,6 @@ public class GruposService {
 			
 			novoGrupo.setNomeGrupo(novoGrupo.getNomeGrupo());
 			novoGrupo.setTema(novoGrupo.getTema());
-			//novoGrupo.setQntUsuarios(novoGrupo.getQntUsuarios()+1);
-			//novoGrupo.getListaParticipantes().add(verificaUsuario.get());
 			Grupos grupoCriado = repositoryGrupos.save(novoGrupo);
 			verificaUsuario.get().getListaGrupos().add(grupoCriado);
 			return ResponseEntity.status(201).body(repositoryUsuarios.save(verificaUsuario.get()));
@@ -145,6 +143,7 @@ public class GruposService {
 		if (idGrupoJaExiste.isPresent()) {
 			idGrupoJaExiste.get().setNomeGrupo(grupoAtualizado.getNomeGrupo());
 			idGrupoJaExiste.get().setTema(grupoAtualizado.getTema());
+			idGrupoJaExiste.get().setFoto(grupoAtualizado.getFoto());
 
 			return ResponseEntity.status(202).body(repositoryGrupos.save(idGrupoJaExiste.get()));
 		} else {

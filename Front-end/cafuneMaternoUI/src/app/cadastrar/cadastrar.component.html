@@ -3,7 +3,7 @@
         ⠀⠀⠀⠀⠀⠀⠀⠀⠀
     </p>
     <div class="d-flex justify-content-center">
-        <img src="https://i.imgur.com/rz5Qm6V.png" alt="Logo" class="img-fluid rounded-circle logo-size2">
+        <img src="https://i.imgur.com/sxeokOr.jpg" alt="Logo" class="img-fluid rounded-circle logo-size2">
     </div>
     <div class="container-fluid">
 
@@ -14,32 +14,33 @@
 
                 <div class="row d-flex justify-content-center">
                     <div class="col-md-6 bg-white">
+                        <img class="logo-tipo img-fluid" src="https://i.imgur.com/y9k3B9T.png" alt="Cafune Materno">
 
-                        <h1 class="text-center mb-3">Cadastra-se</h1>
+                        <h2 class="text-center mb-3">Cadastra-se</h2>
 
                         <div class="form-group">
                             <label for="nome">Nome</label>
-                            <input [(ngModel)]='usuarios.nomeCompleto'class="form-control" type="text" name="nome" id="nome" placeholder="Seu nome">
+                            <input [(ngModel)]='usuarios.nomeCompleto'class="form-control" type="text" name="nome" id="nome" placeholder="Seu nome" (keydown.enter)='cadastrar()'>
                         </div>
 
                         <div class="form-group">
                             <label for="email">E-mail</label>
-                            <input [(ngModel)]='usuarios.email'class="form-control" type="email" name="email" id="email" placeholder="Seu email">
+                            <input [(ngModel)]='usuarios.email' class="form-control" type="email" name="email" id="email" placeholder="Seu email" (keydown.enter)='cadastrar()'>
                         </div>
 
                         <div class="form-group">
                             <label for="foto">Link da Foto</label>
-                            <input [(ngModel)]='usuarios.foto'class="form-control" type="text" name="foto" id="foto" placeholder="Link da sua foto">
+                            <input [(ngModel)]='usuarios.foto'class="form-control" type="text" name="foto" id="foto" placeholder="Link da sua foto" (keydown.enter)='cadastrar()'>
                         </div>
 
                         <div class="form-group">
                             <label for="senha">Senha</label>
-                            <input class="form-control" type="password" name="senha" id="senha" placeholder="Sua senha"  (input) = 'confirmSenha($event)'>
+                            <input class="form-control" type="password" name="senha" id="senha" placeholder="Sua senha"  (input) = 'confirmSenha($event)' (keydown.enter)='cadastrar()'>
                         </div>
 
                         <div class="form-group">
                             <label for="confirmSenha">Confirmar Senha</label>
-                            <input [(ngModel)]='usuarios.senha' class="form-control" type="password" name="confirmSenha" id="confirmSenha"
+                            <input [(ngModel)]='usuarios.senha' class="form-control" type="password" name="confirmSenha" id="confirmSenha" (keydown.enter)='cadastrar()'
                                 placeholder="Confirme sua senha">
                         </div>
 

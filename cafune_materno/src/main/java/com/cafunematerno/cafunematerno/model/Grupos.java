@@ -33,17 +33,16 @@ public class Grupos {
 	@Size(min = 5, max = 45, message = "Entre 5 e 45 caracteres")
 	private String tema;
 	
-	@NotNull
-	private int qntUsuarios;
 	
 	@ManyToMany(mappedBy = "listaGrupos")
 	@JsonIgnoreProperties({"postagens", "listaGrupos"})
 	public List<Usuarios> listaParticipantes = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "grupoPertencente", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties({"grupoPertencente", "usuario"})
+	@JsonIgnoreProperties({"grupoPertencente"})
 	private List<Postagens> post;
 	
+	private String foto;
 	
 	
 	public Grupos() {
@@ -90,12 +89,13 @@ public class Grupos {
 		this.tema = tema;
 	}
 
-	public int getQntUsuarios() {
-		return qntUsuarios;
+
+	public String getFoto() {
+		return foto;
 	}
 
-	public void setQntUsuarios(int qntUsuarios) {
-		this.qntUsuarios = qntUsuarios;
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 	
 }
