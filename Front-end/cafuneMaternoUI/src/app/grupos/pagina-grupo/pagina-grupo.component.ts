@@ -1,4 +1,3 @@
-import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Grupos } from 'src/app/model/Grupos';
@@ -22,12 +21,14 @@ export class PaginaGrupoComponent implements OnInit {
   idGrupo: number
   qtdMembros: number
   postagens: Postagens = new Postagens()
+  listaPostagens: Postagens[]
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private grupoService: GruposService,
     private postagemService: PostagemService
+    
   ) { }
 
   ngOnInit()  {
@@ -54,6 +55,12 @@ export class PaginaGrupoComponent implements OnInit {
     })
   }
 
+  findAllPostagens(){
+    this.grupoService.getAllPostagens().subscribe((resp: Postagens[])=> {
+      this.listaPostagens = resp
+    })
+  }
+
   sairGrupo(grupo: Grupos) {
     console.log(grupo.listaParticipantes.length)
     this.grupoService.removerGrupo(environment.idUserLogin, grupo.idGrupo ).subscribe((resp: Usuarios)=>{
@@ -61,6 +68,15 @@ export class PaginaGrupoComponent implements OnInit {
       alert('Removido com sucesso')
       this.router.navigate(['/feed'])
     })
+  }
+
+  publicar() {
+    this.grupoService.postPostagem(this.postagens, environment.idUserLogin).subscribe((resp: Postagens) => {
+      this.postagens = resp
+      alert('Postagem cadastrado com sucesso!')
+      this.postagens = new Postagens()
+    })
+    this.listaPostagens
   }
 
   verificarUser() {

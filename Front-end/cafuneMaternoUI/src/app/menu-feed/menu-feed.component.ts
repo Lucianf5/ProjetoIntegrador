@@ -17,10 +17,14 @@ export class MenuFeedComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    if(environment.token == ''){
+      alert('Sua sessão expirou, faça o login novamente')
+      this.router.navigate(['/home'])
+    }
     
     }
     sair() {
-      this.router.navigate(['/entrar'])
+      this.router.navigate(['/home'])
       environment.token =  ''
       environment.nome = ''
       environment.foto = ''

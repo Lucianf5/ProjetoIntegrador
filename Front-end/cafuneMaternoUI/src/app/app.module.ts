@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -16,6 +17,7 @@ import { PaginaGrupoComponent } from './grupos/pagina-grupo/pagina-grupo.compone
 import { GrupoEditComponent } from './edit/grupo-edit/grupo-edit.component';
 import { MenuFeedComponent } from './menu-feed/menu-feed.component';
 import { PaginaUsuarioComponent } from './pagina-usuario/pagina-usuario.component';
+
 
 
 @NgModule({
@@ -41,7 +43,10 @@ import { PaginaUsuarioComponent } from './pagina-usuario/pagina-usuario.componen
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: LocationStrategy,
+    useClass: HashLocationStrategy
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
