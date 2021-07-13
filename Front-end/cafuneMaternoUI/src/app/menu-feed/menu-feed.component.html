@@ -32,7 +32,7 @@
                     aria-expanded="false"><img src="{{foto}}" alt="Foto do usuario" onerror="src='https://i.imgur.com/SrzGe8e.png'" style="background-color: rgb(255, 255, 255);" width="70px" height="70px"
                         class="img-fluid rounded-circle"></a>
                 <div class="dropdown-menu dropdown drop-pos">
-                    <a class="dropdown-item" href="#">Meu Perfil</a>
+                    <a class="dropdown-item" [routerLink]="['/pagina-usuario', idUser]">Meu Perfil</a>
                     <a class="dropdown-item" href="#">Meus Grupos</a>
                     <a class="dropdown-item" [routerLink]="['/minhas-postagens', idUser]">Minhas postagens</a>
                     <div class="dropdown-divider"></div>
