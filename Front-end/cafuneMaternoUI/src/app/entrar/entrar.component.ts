@@ -12,6 +12,8 @@ import { AuthService } from '../service/auth.service';
 export class EntrarComponent implements OnInit {
 
   userLogin: UserLogin = new UserLogin()
+  show: boolean
+  pwdType = 'password'
 
   constructor(
     private auth: AuthService,
@@ -30,7 +32,7 @@ export class EntrarComponent implements OnInit {
       environment.nome = this.userLogin.nome
       environment.foto = this.userLogin.foto
       environment.idUserLogin = this.userLogin.idUserLogin
-      
+
 
       console.log(environment.token)
       console.log(environment.idUserLogin)
@@ -44,6 +46,13 @@ export class EntrarComponent implements OnInit {
         alert('E-mail ou senha estão incorretos!')
       }
     })
+  }
+
+  showPass() {
+
+    this.show = !this.show
+    this.pwdType = this.show ? 'password' : 'text'
+
   }
 
 

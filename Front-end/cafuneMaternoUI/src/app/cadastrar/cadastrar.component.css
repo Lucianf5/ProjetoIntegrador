@@ -56,3 +56,8 @@
     margin-top: 20px;
     width: 300px;
 }
+
+.eyetop{
+    z-index: 8;
+    cursor: pointer;
+}
