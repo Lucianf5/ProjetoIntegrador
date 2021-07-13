@@ -23,7 +23,7 @@ export class FeedComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    window.scroll(0,0)
+    window.scroll(0, 0)
     if (environment.token == '') {
       this.router.navigate(['/home'])
     }
@@ -38,8 +38,8 @@ export class FeedComponent implements OnInit {
     })
   }
 
-  findAllPostagens(){
-    this.gruposService.getAllPostagens().subscribe((resp: Postagens[])=> {
+  findAllPostagens() {
+    this.gruposService.getAllPostagens().subscribe((resp: Postagens[]) => {
       this.listaPostagens = resp
     })
   }
@@ -97,33 +97,27 @@ export class FeedComponent implements OnInit {
   }
 
 
- deleteGrupo(grupo: Grupos) {
-  //console.log(grupo.listaParticipantes.length)
-  if(grupo.listaParticipantes.length == 0) {
-    alert("Grupo apagado com sucesso")
-    this.gruposService.deleteGrupos(grupo.idGrupo)
-    this.findAllGrupos()
-  } else {
-    alert("Não é possível exclir um grupo com membros ativos")
-
   deleteGrupo(grupo: Grupos) {
-    console.log(grupo.listaParticipantes.length)
+    //console.log(grupo.listaParticipantes.length)
     if (grupo.listaParticipantes.length == 0) {
       alert("Grupo apagado com sucesso")
       this.gruposService.deleteGrupos(grupo.idGrupo)
       this.findAllGrupos()
     } else {
       alert("Não é possível exclir um grupo com membros ativos")
-    }
 
+    }
   }
+
+
 
   findUsuarioId() {
     return this.gruposService.findByIdUsuario(this.idUsuario).subscribe((resp: Usuarios) => {
       this.usuarios = resp
     })
   }
-  
- 
+
+
+
 
 }
