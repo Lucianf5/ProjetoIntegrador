@@ -1,4 +1,10 @@
+import { ThrowStmt } from '@angular/compiler';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'src/environments/environment.prod';
+import { Usuarios } from '../model/Usuarios';
+import { GruposService } from '../service/grupos.service';
 
 @Component({
   selector: 'app-pagina-usuario',
@@ -7,9 +13,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaginaUsuarioComponent implements OnInit {
 
-  constructor() { }
+  user: Usuarios = new Usuarios()
+  foto: string
+  id: number
+  
 
-  ngOnInit(): void {
+  constructor(
+    private router: Router,
+    private gruposervice: GruposService,
+    private route: ActivatedRoute
+  ) { }
+
+  ngOnInit() {
+    if(environment.token == ''){
+      alert('Sua sessão expirou, faça o login novamente')
+      this.router.navigate(['/entrar'])
   }
+  this.id = this.route.snapshot.params['id']
+  this.foto = environment.foto
+  this.findByUsuario()
+  } 
 
+  findByUsuario(){
+    this.gruposervice.findByIdUsuario(this.id).subscribe((resp: Usuarios) => {
+      this.user = resp
+    })
+  }
 }
