@@ -37,4 +37,10 @@ li {
   padding-bottom: 0;
 }
 
+.w-85 {
+  width: 80%;
+}
 
+.testador {
+  background-color: #0069D9;
+}

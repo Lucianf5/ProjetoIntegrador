@@ -1,65 +1,69 @@
 <div class="container-fluid bg-w-pink">
   <div class="row">
     <div class="col-md-1 mt-1 point">
-      <p> <i class="fa fa-arrow-left point" aria-hidden="true" routerLink='/feed'></i> Voltar</p>
+      <p routerLink='/feed'> <i class="fa fa-arrow-left point" aria-hidden="true" routerLink='/feed'></i> Voltar</p>
     </div>
   </div>
-  <div class="row d-flex justify-content-center ">
-    <div class="col-md-8 mt-3">
-      <div class="card w-75">
-        <div class="card-body bgwh jumbotron mb-0">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-5 mt-3 mr-3">
+      <div class="card w-100">
+        <div class="card-body bgwh jumbotron mb-0 p-4">
           <div class="form-group">
-
-            <input [(ngModel)]='postagens.tituloPostagem' placeholder="Título da Postagem" class="w-75 bg-w-purple">
+            <img src="https://i.imgur.com/y9k3B9T.png" alt="Logo" class="w-100 mb-2">
+            <input [(ngModel)]='postagens.tituloPostagem' placeholder="Título da Postagem" class="w-100 bg-w-purple">
           </div>
           <div class="form-group">
             <input [(ngModel)]='postagens.descricaoPostagem' placeholder="Escreva suas ideias, dúvidas e experiências."
-              class="w-75 bg-w-purple">
+              class="w-100 bg-w-purple">
           </div>
           <div class="form-group">
-            <input [(ngModel)]='postagens.urlAnexo' placeholder="Coloque seus anexos" class="w-75 bg-w-purple">
+            <input [(ngModel)]='postagens.urlAnexo' placeholder="Coloque seus anexos" class="w-100 bg-w-purple">
           </div>
-          <button class="btn d-flex justify-content-end bg-purple mb-0 text-white"
-            (click)='cadastrarPostagem()'>Publicar</button>
+          <div class="d-flex justify-content-end mt-3">
+            <button class="btn bg-purple mb-0 text-white w-25" (click)='cadastrarPostagem()'>Publicar</button>
+          </div>
         </div>
       </div>
 
-      <div class="card scrollpost mb-5 mt-2">
+      <div class="card scrollpost mb-5 mt-3 w-100">
         <div class="row" *ngFor='let i of grupo.post'>
-          <li>
-            <div class="col-md-12 justify-content-center">
-              <div class="card bg-light mb-2">
-                <div class="card-header bg-pink pdbt-0">
+          <div class="w-100 p-4">
+            <li>
+              <div class="col-md-12 justify-content-center">
+                <div class="card bg-light mb-2">
+                  <div class="card-header bg-pink pdbt-0">
 
-                  <div class="row align-items-center">
-                    <div class="col-md-12 justify-content-center">
+                    <div class="row align-items-center">
+                      <div class="col-md-12 justify-content-center">
 
-                      <img src="{{i.usuario.foto}}" alt="foto perfil" width="70px" height="70px" class="rounded-circle">
+                        <img src="{{i.usuario.foto}}" alt="foto perfil" width="70px" height="70px"
+                          class="rounded-circle">
 
-                      <h5>{{i.usuario.nomeCompleto}}</h5>
-                      <br>
+                        <h5>{{i.usuario.nomeCompleto}}</h5>
+                        <br>
+
+                      </div>
 
                     </div>
-
                   </div>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">{{i.tituloPostagem}}</h5>
-                  <p class="card-text">
-                    {{i.descricaoPostagem}}
-                  </p>
-                </div>
-                <div class="row ">
-                  <div class="col-md-12 ">
-                    <h5 class="card-text "><small class="text-muted d-flex justify-content-end mr-1">{{i.date | date: 'dd/MM/yyyy'}} às
-                        {{i.date | date: 'HH:mm'}}</small></h5>
+                  <div class="card-body">
+                    <h5 class="card-title">{{i.tituloPostagem}}</h5>
+                    <p class="card-text">
+                      {{i.descricaoPostagem}}
+                    </p>
                   </div>
-                </div>
+                  <div class="row">
+                    <div class="col-md-12 ">
+                      <h5 class="card-text "><small class="text-muted d-flex justify-content-end mr-1">{{i.date | date:
+                          'dd/MM/yyyy'}} às
+                          {{i.date | date: 'HH:mm'}}</small></h5>
+                    </div>
+                  </div>
 
+                </div>
               </div>
-            </div>
-          </li>
-
+            </li>
+          </div>
 
         </div>
       </div>
@@ -92,7 +96,7 @@
         </div>
 
 
-        <div class="row">
+        <div class="row d-flex justify-content-center p-3">
           <div class="col-md-12 d-flex justify-content-center">
             <div class="btn-group">
               <button type="button" class="btn bg-pink btn-lg w-100 dropdown-toggle" data-toggle="dropdown"
@@ -116,9 +120,10 @@
           <div class="row d-flex justify-content-center">
 
             <div class="col-md-12 mt-3 d-flex justify-content-center">
-
-              <button class="btn btn-info d-flex justify-content-center " *ngIf="verificarUser()"
-                [routerLink]="['/grupo-edit', grupo.idGrupo]">Editar</button>
+              <div class="d-flex justify-content-center">
+                <button class="btn testador text-white" *ngIf="verificarUser()"
+                  [routerLink]="['/grupo-edit', grupo.idGrupo]">Editar</button>
+              </div>
 
             </div>
           </div>
