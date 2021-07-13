@@ -29,6 +29,7 @@ export class FeedComponent implements OnInit {
     }
     this.gruposService.refreshToken()
     this.findAllGrupos()
+    this.findAllPostagens()
   }
 
 
@@ -57,7 +58,7 @@ export class FeedComponent implements OnInit {
   postar() {
     this.gruposService.postPostagem(this.postagens, environment.idUserLogin).subscribe((resp: Postagens) => {
       this.postagens = resp
-      alert('Postagem cadastrado com sucesso!')
+      alert('Postagem cadastrada com sucesso!')
       this.postagens = new Postagens()
     })
     this.listaPostagens
