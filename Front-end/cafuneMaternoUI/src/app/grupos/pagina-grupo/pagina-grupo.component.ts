@@ -21,6 +21,9 @@ export class PaginaGrupoComponent implements OnInit {
   idGrupo: number
   qtdMembros: number
   postagens: Postagens = new Postagens()
+
+  idUser: number
+
   listaPostagens: Postagens[]
 
   constructor(
@@ -39,7 +42,9 @@ export class PaginaGrupoComponent implements OnInit {
     this.idGrupo = this.route.snapshot.params['id']
     this.findByIdGrupo(this.idGrupo)
     this.findByUsuario(this.idUsuario)
+    this.idUser = environment.idUserLogin
     // this.qtdMembros = this.grupo.listaParticipantes.length
+    this.findAllPostagem()
   }
 
   findByIdGrupo(id: number) {
@@ -62,7 +67,7 @@ export class PaginaGrupoComponent implements OnInit {
   }
 
   sairGrupo(grupo: Grupos) {
-    console.log(grupo.listaParticipantes.length)
+    //console.log(grupo.listaParticipantes.length)
     this.grupoService.removerGrupo(environment.idUserLogin, grupo.idGrupo ).subscribe((resp: Usuarios)=>{
       this.usuarios = resp
       alert('Removido com sucesso')
@@ -81,14 +86,30 @@ export class PaginaGrupoComponent implements OnInit {
 
   verificarUser() {
     let ok : boolean = false
-    console.log(this.usuarios.tipo)
+    //console.log(this.usuarios.tipo)
     if(this.usuarios.tipo == "adm") {
       ok = true
     } else {
       ok = false
     }
-    console.log(ok)
+    //console.log(ok)
     return ok
   }
 
+  cadastrarPostagem() {
+    console.log(this.grupo)
+    this.postagens.grupoPertencente = this.grupo
+    this.postagemService.postPostagem(this.postagens, this.idUser).subscribe((resp: Postagens)=>{
+      this.postagens = resp
+      alert("Postagem realizada com sucesso!")
+      this.postagens = new Postagens()
+      this.findAllPostagem()
+    })
+  }
+
+  findAllPostagem() {
+    return this.postagemService.getAllPostagens().subscribe((resp: Postagens[])=>{
+      this.listaPostagens = resp
+    })
+  }
 }
