@@ -91,30 +91,80 @@
                 <div class="col-md-4 mt-5">
 
                   <table class="table table-borderless bg-white container">
-                    <div class="form-group m-4 input-group mr-3">
-                      <div class="input-group-append align-items-center mr-1"><i class="fas fa-pencil-alt"></i></div>
-                      <input type="email" class="form-control bg-cz inpsize" id="publicacao"
-                        placeholder="O que esta pensando?">
-                      <button class="btn btn-primary input-group-append" (click)='postar()'><i
-                          class="fas fa-share fa"></i></button>
-                      <p class="mb-2 mr-1 ml-1">_____________________________________________</p>
-                      <p class="text-left"><a class="fas fa-camera-retro ml-3 mr-5 text-dark"></a><a
-                          class="fas fa-paperclip text-dark"></a>
-                      </p>
-                    </div>
+
+                      <div class="form-group d-flex justify-content-start mt-3 ml-3">
+                        <div class="row">
+                          <div class="col-md-2"><i class="fas fa-pencil-alt"></i></div>
+                          <div class="col-md-10">
+                            <input [(ngModel)] = 'postagens.tituloPostagem' type="email" class="form-control bg-cz inpsize" id="titulo"
+                            placeholder="tituloPostagem">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group d-flex justify-content-start mt-3 ml-3">
+                        <div class="row">
+                          <div class="col-md-2"><i class="fas fa-pencil-alt"></i></div>
+                          <div class="col-md-10">
+                            <input [(ngModel)] = 'postagens.descricaoPostagem' type="email" class="form-control bg-cz inpsize" id="publicacao"
+                            placeholder="O que esta pensando?">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group d-flex justify-content-start mt-3">
+                        <div class="row">
+                          <div class="col-md-2"><a class="fas fa-camera-retro ml-3 mr-5 text-dark"></a></div>
+                          <div class="col-md-10">
+                            <input [(ngModel)] = 'postagens.urlAnexo' type="email" class="form-control bg-cz inpsize" id="publicacao"
+                            placeholder="Coloque aqui uma Imagem">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row mr-4">
+                        <div class="col-md-12 d-flex justify-content-end">
+                          <button class="btn btn-primary input-group-append mb-4" (click)='postar()'><i
+                            class="fas fa-share fa"></i></button>
+                        </div>
+                      </div>
                   </table>
+                  <div class="row mb-4" *ngFor='let i of listaPostagens'>
+                    <div class="col-md-12">
+                      <div class="card bg-light mb-2 w-100">
+                        <div class="card-header bg-pink">
+                          <div class="row">
+                            <div class="col-md-2">
+                              <img src="{{i.usuario.foto}}" alt="foto perfil" width="70px" height="70px"
+                              class="rounded-circle">
+                            </div>
+                            <div class="col-md-10">
+                              <h5>{{i.usuario.nomeCompleto}}</h5>
+                              <br>
+                              <p class="card-text"><small class="text-muted">{{i.date | date: 'dd/MM/yyyy'}} às
+                                {{i.date | date: 'HH:mm'}}</small></p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card-body">
+                          <h5 class="card-title">{{i.tituloPostagem}}</h5>
+                          <p class="card-text">
+                            {{i.descricaoPostagem}}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--
                   <table class="table table-borderless bg-white container text-center">
                     <div class="form-group m-4 input-group mr-3">
                       <h3>Grupos recomendados</h3>
                       <p class="mb-2 mr-1 ml-1">_____________________________________________</p>
                       <div class="d-flex justify-content-between">
                         <p>Mamãe acolhedora</p>
-                        <!-- <span class="badge badge-primary badge-pill">7</span> -->
+                        <span class="badge badge-primary badge-pill">7</span>
                       </div>
                     </div>
-
-                  </table>
-
+                  </table> -->
                 </div>
               </div>
             </div>
@@ -171,7 +221,7 @@
                     </div>
                </div>
                 </div>
-             
+
             <div class="tab-pane fade" id="pills-doacoes" role="tabpanel" aria-labelledby="doacoes">
               <div class="container mt-4 mb-3">
                 <div>
