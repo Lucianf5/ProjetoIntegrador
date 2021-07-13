@@ -1,6 +1,12 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
+<div class="container mb-5 mt-5">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-4">
+        <h4 class="text-center text-secondary">Edite sua postagem:</h4>
+    </div>
+</div>
+    <div class="row d-flex justify-content-center mt-4">
+        <div class="col-md-4 mt-3">
+          <table class="table table-borderless bg-white container">
             <div class="form-group d-flex justify-content-start mt-3 ml-3">
                 <div class="row">
                   <div class="col-md-2"><i class="fas fa-pencil-alt"></i></div>
@@ -29,12 +35,13 @@
                   </div>
                 </div>
               </div>
-              <div class="row mr-4">
+              <div class="row mt-5 mr-1 mb-2">
                 <div class="col-md-12 d-flex justify-content-end">
-                  <button class="btn btn-primary input-group-append mb-4" (click)='atualizar()'><i
-                    class="fas fa-share fa"></i></button>
+                  <button class="btn bg-pink input-group-append mr-2" (click)='atualizar()'>Editar</button>
+                    <button class="btn bg-w-yellow" [routerLink]="['/minhas-postagens', idUser]">Cancelar</button>
                 </div>
               </div>
+            </table>
         </div>
     </div>
 </div>

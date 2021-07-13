@@ -15,12 +15,14 @@ export class PostagemEditComponent implements OnInit {
 
   postagens : Postagens = new Postagens()
   idPostagem : number
+  idUser: number
 
   constructor(
     private gruposService: GruposService,
     private router: Router,
     private route: ActivatedRoute,
     private postagemService: PostagemService
+
   ) { }
 
   ngOnInit() {
@@ -30,9 +32,9 @@ export class PostagemEditComponent implements OnInit {
     }
     this.gruposService.refreshToken()
     this.idPostagem = this.route.snapshot.params['id']
-    console.log(this.idPostagem)
     this.findByIdPostagem(this.idPostagem)
-    console.log(this.postagens)
+    this.idUser = environment.idUserLogin
+
   }
 
   findByIdPostagem(id: number){
@@ -43,7 +45,11 @@ export class PostagemEditComponent implements OnInit {
   }
 
   atualizar(){
-
+    this.postagemService.putPostagem(this.postagens, this.idPostagem).subscribe((resp: Postagens) => {
+      this.postagens = resp
+      alert('Postagem atualizada com sucesso')
+      this.router.navigate(['/minhas-postagens',this.idUser])
+    })
   }
 
 }
