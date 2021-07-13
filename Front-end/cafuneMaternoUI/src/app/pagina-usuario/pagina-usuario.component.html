@@ -1,1 +1,41 @@
-<p>pagina-usuario works!</p>
+<div class="container mt-5">
+
+    <div class="row bg-w-purple">
+        <div class="col-md-12">
+            <!--Card Status-->
+    <div class="row bg-w-purple">
+        <div class="col-md-12 d-flex justify-content-center">
+
+            <div class="card mt-3" style="width: 18rem;">
+                <img src="{{foto}}">
+                <div class="card-body">
+                  <h5 class="card-title"> {{user.nomeCompleto}} <i class="fa fa-pencil-square-o" aria-hidden="true" [routerLink]="['/usuario-edit', user.idUsuario]"></i>
+                  </h5>
+                  <h6 class="card-subtitle mb-2 text-muted"> {{user.status}} </h6>
+                  <p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do card.</p>
+                  <a href="#" class="card-link">Link do card</a>
+                  <a href="#" class="card-link">Outro link</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Card Status-->
+
+    <!--Card Sobre-->
+    <div class="row mt-3">
+        <div class="col-md-12 d-flex justify-content-center">
+            
+            <div class="card mb-3" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title"> {{user.sobre}} </h5>
+                  <h5 class="card-subtitle mb-2 text-muted"> {{user.pronome}} </h5>
+                  <h5> {{user.localizacao}} </h5>
+                </div>
+              </div>
+        </div>
+    </div>
+    <!--Card Sobre-->
+        </div>
+    </div>
+    
+</div>

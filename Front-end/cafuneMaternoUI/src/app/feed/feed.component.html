@@ -145,6 +145,7 @@
                             </div>
                           </div>
                         </div>
+                        <img *ngIf='!(i.urlAnexo == null)' class="card-img-top" src="{{i.urlAnexo}}" alt="Imagem de capa do card">
                         <div class="card-body">
                           <h5 class="card-title">{{i.tituloPostagem}}</h5>
                           <p class="card-text">

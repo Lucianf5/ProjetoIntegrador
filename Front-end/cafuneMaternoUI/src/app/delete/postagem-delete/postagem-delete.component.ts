@@ -14,6 +14,7 @@ export class PostagemDeleteComponent implements OnInit {
 
   idPostagem : number
   postagens : Postagens = new Postagens()
+  idUser : number
 
   constructor(
     private route: ActivatedRoute,
@@ -31,16 +32,21 @@ export class PostagemDeleteComponent implements OnInit {
     this.gruposService.refreshToken()
     this.idPostagem = this.route.snapshot.params['id']
     this.findByIdPostagem(this.idPostagem)
+    console.log(this.idPostagem)
+    this.idUser = environment.idUserLogin
     
-  }
-
-  apagar() {
-
   }
 
   findByIdPostagem(id: number){
     this.postagemService.getById(id).subscribe((resp: Postagens) => {
       this.postagens = resp
+    })
+  }
+
+  apagar() {
+    this.postagemService.deletePostagem(this.idPostagem).subscribe(() => {
+      alert('Postagem deletada com sucesso!')
+      this.router.navigate(['/minhas-postagens',this.idUser])
     })
   }
 

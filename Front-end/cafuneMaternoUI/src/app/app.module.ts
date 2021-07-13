@@ -20,6 +20,7 @@ import { PaginaUsuarioComponent } from './pagina-usuario/pagina-usuario.componen
 import { MinhasPostagensComponent } from './minhas-postagens/minhas-postagens.component';
 import { PostagemEditComponent } from './edit/postagem-edit/postagem-edit.component';
 import { PostagemDeleteComponent } from './delete/postagem-delete/postagem-delete.component';
+import { UsuarioEditComponent } from './edit/usuario-edit/usuario-edit.component';
 
 
 
@@ -40,7 +41,8 @@ import { PostagemDeleteComponent } from './delete/postagem-delete/postagem-delet
     PaginaUsuarioComponent,
     MinhasPostagensComponent,
     PostagemEditComponent,
-    PostagemDeleteComponent
+    PostagemDeleteComponent,
+    UsuarioEditComponent
 
   ],
   imports: [
