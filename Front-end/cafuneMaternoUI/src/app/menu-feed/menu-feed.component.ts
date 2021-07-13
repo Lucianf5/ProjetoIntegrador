@@ -11,6 +11,7 @@ export class MenuFeedComponent implements OnInit {
 
   nome = environment.nome
   foto = environment.foto
+  idUser = environment.idUserLogin
 
   constructor(
     private router: Router

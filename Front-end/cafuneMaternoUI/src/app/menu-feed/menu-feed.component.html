@@ -34,7 +34,7 @@
                 <div class="dropdown-menu dropdown drop-pos">
                     <a class="dropdown-item" href="#">Meu Perfil</a>
                     <a class="dropdown-item" href="#">Meus Grupos</a>
-                    <a class="dropdown-item" href="#">Minhas postagens</a>
+                    <a class="dropdown-item" [routerLink]="['/minhas-postagens', idUser]">Minhas postagens</a>
                     <div class="dropdown-divider"></div>
                     <p class="dropdown-item" (click)='sair()'>Sair <i class="fas fa-sign-out-alt"></i><p>
                 </div>

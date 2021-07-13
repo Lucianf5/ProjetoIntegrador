@@ -17,6 +17,9 @@ import { PaginaGrupoComponent } from './grupos/pagina-grupo/pagina-grupo.compone
 import { GrupoEditComponent } from './edit/grupo-edit/grupo-edit.component';
 import { MenuFeedComponent } from './menu-feed/menu-feed.component';
 import { PaginaUsuarioComponent } from './pagina-usuario/pagina-usuario.component';
+import { MinhasPostagensComponent } from './minhas-postagens/minhas-postagens.component';
+import { PostagemEditComponent } from './edit/postagem-edit/postagem-edit.component';
+import { PostagemDeleteComponent } from './delete/postagem-delete/postagem-delete.component';
 
 
 
@@ -34,7 +37,10 @@ import { PaginaUsuarioComponent } from './pagina-usuario/pagina-usuario.componen
     GrupoEditComponent,
     MenuFeedComponent,
     GrupoEditComponent,
-    PaginaUsuarioComponent
+    PaginaUsuarioComponent,
+    MinhasPostagensComponent,
+    PostagemEditComponent,
+    PostagemDeleteComponent
 
   ],
   imports: [

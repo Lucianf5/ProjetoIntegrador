@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group d-flex justify-content-start mt-3 ml-3">
+                <div class="row">
+                  <div class="col-md-2"><i class="fas fa-pencil-alt"></i></div>
+                  <div class="col-md-10">
+                    <input [(ngModel)] = 'postagens.tituloPostagem' type="email" class="form-control bg-cz inpsize" id="titulo"
+                    placeholder="tituloPostagem">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group d-flex justify-content-start mt-3 ml-3">
+                <div class="row">
+                  <div class="col-md-2"><i class="fas fa-pencil-alt"></i></div>
+                  <div class="col-md-10">
+                    <input [(ngModel)] = 'postagens.descricaoPostagem' type="email" class="form-control bg-cz inpsize" id="publicacao"
+                    placeholder="O que esta pensando?">
+                  </div>
+                </div>
+              </div>
+            <div class="form-group d-flex justify-content-start mt-3">
+                <div class="row">
+                  <div class="col-md-2"><a class="fas fa-camera-retro ml-3 mr-5 text-dark"></a></div>
+                  <div class="col-md-10">
+                    <input [(ngModel)] = 'postagens.urlAnexo' type="email" class="form-control bg-cz inpsize" id="publicacao"
+                    placeholder="Coloque aqui uma Imagem">
+                  </div>
+                </div>
+              </div>
+              <div class="row mr-4">
+                <div class="col-md-12 d-flex justify-content-end">
+                  <button class="btn btn-primary input-group-append mb-4" (click)='atualizar()'><i
+                    class="fas fa-share fa"></i></button>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>

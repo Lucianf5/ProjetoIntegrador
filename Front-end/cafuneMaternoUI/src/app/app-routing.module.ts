@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CadastrarComponent } from './cadastrar/cadastrar.component';
+import { PostagemDeleteComponent } from './delete/postagem-delete/postagem-delete.component';
 import { GrupoEditComponent } from './edit/grupo-edit/grupo-edit.component';
+import { PostagemEditComponent } from './edit/postagem-edit/postagem-edit.component';
 import { EntrarComponent } from './entrar/entrar.component';
 import { FeedComponent } from './feed/feed.component';
 import { GruposComponent } from './grupos/grupos.component';
 import { PaginaGrupoComponent } from './grupos/pagina-grupo/pagina-grupo.component';
 import { HomeComponent } from './home/home.component';
+import { MinhasPostagensComponent } from './minhas-postagens/minhas-postagens.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -17,8 +20,10 @@ const routes: Routes = [
   { path: 'feed', component: FeedComponent },
   { path: 'grupos', component: GruposComponent },
   { path: 'pagina-grupo/:id', component: PaginaGrupoComponent},
-  { path: 'grupo-edit/:id', component: GrupoEditComponent}
-
+  { path: 'grupo-edit/:id', component: GrupoEditComponent},
+  { path: 'minhas-postagens/:id', component: MinhasPostagensComponent},
+  { path: 'postagem-delete/:id', component: PostagemDeleteComponent},
+  { path: 'postagem-edit/:id', component: PostagemEditComponent}
 
 ];
 
