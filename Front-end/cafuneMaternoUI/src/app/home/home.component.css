@@ -48,3 +48,7 @@
     box-shadow: 0 4px 4px 0 white, 0 3px 10px 0 purple;
 }
 
+.size-our-picture {
+    height: 75%;
+    width: 75%;
+}
