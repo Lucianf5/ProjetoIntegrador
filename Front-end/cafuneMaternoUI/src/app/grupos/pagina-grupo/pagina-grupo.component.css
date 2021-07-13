@@ -5,6 +5,42 @@
   background-color: rgb(254, 168, 243);
 }
 
+
+
 .bg-w-pink {
   background-color: #E8D8FF;
+}
+
+li {
+  list-style-type: none;
+}
+
+.scrollpost{
+  overflow: auto;
+  height: 250px;
+  width: 75%;
+}
+
+.bgwh{
+  background-color: #ffffff;
+}
+
+.bg-purple {
+  background-color: rgb(180, 65, 242);
+}
+
+.point{
+  cursor: pointer;
+}
+
+.pdbt-0{
+  padding-bottom: 0;
+}
+
+.w-85 {
+  width: 80%;
+}
+
+.testador {
+  background-color: #0069D9;
 }
