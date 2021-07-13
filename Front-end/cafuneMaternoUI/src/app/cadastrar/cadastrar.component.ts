@@ -14,6 +14,8 @@ export class CadastrarComponent implements OnInit {
   usuarios: Usuarios = new Usuarios()
   confirmarSenha: string
   tipoUsuario: string
+  show: boolean
+  pwdType = 'password'
 
   constructor(
     private authService: AuthService,
@@ -41,13 +43,22 @@ export class CadastrarComponent implements OnInit {
     } else {
       this.authService.cadastrar(this.usuarios).subscribe((resp: Usuarios) => {
         this.usuarios = resp
-        this.router.navigate(['/logar'])
+        this.router.navigate(['/entrar'])
         alert('Usuário cadastrado com sucesso!')
       })
     }
 
 
   }
+
+  showPass() {
+
+    this.show = !this.show
+    this.pwdType = this.show ? 'password' : 'text'
+    
+
+  }
+  
 
 
 }
