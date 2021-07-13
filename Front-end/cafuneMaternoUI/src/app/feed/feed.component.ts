@@ -97,6 +97,13 @@ export class FeedComponent implements OnInit {
     return ok
   }
 
+  verificaNull(postagem: Postagens){
+    let ok: boolean = false
+    if (postagem.grupoPertencente == null) {
+      ok = true
+    }
+    return ok
+  }
 
   deleteGrupo(grupo: Grupos) {
     //console.log(grupo.listaParticipantes.length)
