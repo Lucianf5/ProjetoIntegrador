@@ -111,13 +111,14 @@ export class FeedComponent implements OnInit {
 
 
 
+
   findUsuarioId() {
     return this.gruposService.findByIdUsuario(this.idUsuario).subscribe((resp: Usuarios) => {
       this.usuarios = resp
     })
   }
-
-
-
-
 }
+
+
+
+
