@@ -119,9 +119,6 @@
               </div>
             </div>
 
-
-
-
             <div class="tab-pane fade" id="pills-grupos" role="tabpanel" aria-labelledby="grupos">
 
               <div class="row">
@@ -149,14 +146,10 @@
                     </div>
                   </div>
                 </div>
+                </div>
                 <div class="col-md-6">
                   <div class="col-md-12 bg-white">
                     <h4 class="text-center p-4">Encontre grupos ideais para você!</h4>
-                  </div>
-
-                    <div class="col-md-6">
-                      <div class="col-md-12 bg-white">
-                        <h4 class="text-center p-4">Encontre grupos ideais para você!</h4>
                       </div>
                       <table class="table table-hover">
 
@@ -177,29 +170,8 @@
                       </table>
                     </div>
                </div>
-                  <table class="table table-hover">
-
-                    <tbody>
-                      <tr *ngFor='let i of listaGrupos'>
-                        <td>{{i.nomeGrupo}}</td>
-                        <td class="d-flex justify-content-end" *ngFor='let item of usuarios.listaGrupos'>
-                          <button class="btn btn bg-pink w-100" *ngIf="verificaUsuarioGrupo(i)"
-                            (click)='entrarGrupo(i)'>Participar<i class=" ml-2 fas fa-plus-circle"></i></button>
-                          <button class="btn btn-outline-secondary aria-disabled w-100" *ngIf="!verificaUsuarioGrupo(i)"
-                            [routerLink]="['/pagina-grupo',item.idGrupo]">
-                            Membro</button>
-                        </td>
-                        <td>
-                          <button class="btn btn-outline-danger  w-100" *ngIf="verificarUser()"
-                            (click)='deleteGrupo(i)'>Excluir</button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
                 </div>
-              </div>
-
-            </div>
+             
             <div class="tab-pane fade" id="pills-doacoes" role="tabpanel" aria-labelledby="doacoes">
               <div class="container mt-4 mb-3">
                 <div>
@@ -264,37 +236,6 @@
         </div>
       </div>
     </div>
-
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title text-center" id="exampleModalLabel">Criar Grupo</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <input [(ngModel)]='grupos.nomeGrupo' type="text" class="form-control" id="grupos.nomeGrupo"
-            placeholder="Digite o nome do grupo:">
-        </div>
-        <div class="form-group">
-          <input [(ngModel)]='grupos.tema' type="text" class="form-control" id="grupos.tema"
-            placeholder="Digite a descrição do tema do grupo:">
-        </div>
-        <div class="form-group">
-          <input [(ngModel)]='grupos.foto' type="text" class="form-control" id="grupos.foto"
-            placeholder="Link da foto do grupo:">
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-light mr-2 bg-pink" (click)='cadastrar()'  data-dismiss="modal">Cadastrar</button>
-        <button type="button" class="btn bg-w-yellow" data-dismiss="modal">Fechar</button>
 
 
     <!-- Modal -->
