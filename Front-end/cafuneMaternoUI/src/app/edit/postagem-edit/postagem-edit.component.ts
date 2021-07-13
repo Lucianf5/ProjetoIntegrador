@@ -12,8 +12,9 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class PostagemEditComponent implements OnInit {
 
-  idPostagem : number
+
   postagens : Postagens = new Postagens()
+  idPostagem : number
 
   constructor(
     private gruposService: GruposService,
@@ -29,7 +30,7 @@ export class PostagemEditComponent implements OnInit {
     }
     this.gruposService.refreshToken()
     this.idPostagem = this.route.snapshot.params['id']
-    
+    console.log(this.idPostagem)
     this.findByIdPostagem(this.idPostagem)
     console.log(this.postagens)
   }
