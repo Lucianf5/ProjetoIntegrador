@@ -41,4 +41,5 @@ export class MinhasPostagensComponent implements OnInit {
     })
   }
 
+
 }
