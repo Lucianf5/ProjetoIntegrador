@@ -22,7 +22,7 @@ export class GrupoEditComponent implements OnInit {
 
   ngOnInit() {
     if(environment.token == '') {
-      this.router.navigate(['/entrar'])
+      this.router.navigate(['/home'])
     }
     this.idGrupo = this.route.snapshot.params['id']
     this.findByIdGrupo(this.idGrupo)

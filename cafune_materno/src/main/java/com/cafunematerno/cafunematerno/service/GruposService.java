@@ -76,8 +76,6 @@ public class GruposService {
 			
 			novoGrupo.setNomeGrupo(novoGrupo.getNomeGrupo());
 			novoGrupo.setTema(novoGrupo.getTema());
-			//novoGrupo.setQntUsuarios(novoGrupo.getQntUsuarios()+1);
-			//novoGrupo.getListaParticipantes().add(verificaUsuario.get());
 			Grupos grupoCriado = repositoryGrupos.save(novoGrupo);
 			verificaUsuario.get().getListaGrupos().add(grupoCriado);
 			return ResponseEntity.status(201).body(repositoryUsuarios.save(verificaUsuario.get()));

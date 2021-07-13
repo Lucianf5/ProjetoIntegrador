@@ -36,7 +36,7 @@
 
 .posicaoNav {
     top: 0px;
-    position: sticky;
+    position: static;
     z-index: 1;
 }
 
@@ -59,3 +59,24 @@
 .bb-1 {
     border-bottom: white solid 1px;
 }
+
+.p-size{
+    font-size: 40px;
+}
+.a-size{
+    font-size: 20px;
+}
+
+.bg-cz{
+    background-color: #d4d4d4;
+}
+
+.inpsize{
+    max-width: 250px;
+}
+
+.font-verdana{
+    font-family: Verdana, sans-serif;
+    font-variant: small-caps;
+}
+

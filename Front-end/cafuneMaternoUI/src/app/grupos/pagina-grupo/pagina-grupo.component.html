@@ -1,35 +1,70 @@
-  <div class="container mt-5">
+  <div class="container mt-5 ">
     <div class="row">
-      <div class="col-md-12 mb-3">
+      <div class="col-md-1">
+        <p>  <i class="fa fa-arrow-left" aria-hidden="true" routerLink='/feed'></i>Voltar</p>
+      </div>
+      <div class="col-md-11 mb-3">
         <h2 class="text-center">{{grupo.nomeGrupo}}</h2>
       </div>
     </div>
-    <div class="row">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-8 mb-4">
+            <div class="card w-75">
+              <div class="card-body">
+                <div class="form-group">
 
-        <div class="col-md-8">
-          <div class="jumbotron">
-            <h1 class="display-4">Postagens</h1>
-            <p class="lead">Este é um simples componente jumbotron para chamar mais atenção a um determinado conteúdo ou informação.</p>
-            <hr class="my-4">
-            <p>Ele usa classes utilitárias para tipografia e espaçamento de conteúdo, dentro do maior container.</p>
-            <a class="btn btn-primary btn-lg" href="#" role="button">Leia mais</a>
-          </div>
-          <div class="card" style="width: 36rem;">
-            <div class="card-body">
-              <div class="form-group">
-                <input [(ngModel)]='postagens.tituloPostagem' placeholder="Título da Postagem" class="w-75">
+                  <input [(ngModel)]='postagens.tituloPostagem' placeholder="Título da Postagem" class="w-75">
+                </div>
+                <div class="form-group">
+                  <input [(ngModel)]='postagens.descricaoPostagem' placeholder="Escreva suas ideias, dúvidas e experiências." class="w-75">
+                </div>
+                <div class="form-group">
+                  <input [(ngModel)]='postagens.urlAnexo' placeholder="Coloque seus anexos" class="w-75">
+                </div>
+                <button class="btn btn-info" (click)='cadastrarPostagem()'>Publicar</button>
               </div>
-              <div class="form-group">
-                <input [(ngModel)]='postagens.descricaoPostagem' placeholder="Escreva suas ideias, dúvidas e experiências." class="w-75">
+            </div>
+          <div class="row mb-5" *ngFor='let i of grupo.post'>
+            <div class="col-md-12">
+              <div class="card bg-light mb-2 w-75">
+                <div class="card-header bg-pink">
+                  <div class="row">
+                    <div class="col-md-2">
+                      <img src="{{i.usuario.foto}}" alt="foto perfil" width="70px" height="70px"
+                      class="rounded-circle">
+                    </div>
+                    <div class="col-md-10">
+                      <h5>{{i.usuario.nomeCompleto}}</h5>
+                      <br>
+                      <p class="card-text"><small class="text-muted">{{i.date | date: 'dd/MM/yyyy'}} às
+                        {{i.date | date: 'HH:mm'}}</small></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">{{i.tituloPostagem}}</h5>
+                  <p class="card-text">
+                    {{i.descricaoPostagem}}
+                  </p>
+                </div>
               </div>
-              <a href="#" class="btn btn-primary">Publicar</a>
+
+              <a (click)='publicar()' class="btn btn-primary">Publicar</a>
+
             </div>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 mt-4">
           <div class="jumbotron">
-
-            <h4>Tema: {{grupo.tema}}</h4>
+            <div class="row d-flex">
+              <div class="col-md-3 mr-2">
+                <img src="{{grupo.foto}}" alt="Imagem do grupo" width="100px" height="100px"
+                class="rounded-circle">
+              </div>
+              <div class="col-md-9">
+                <h4> {{grupo.tema}}</h4>
+              </div>
+            </div>
               <hr>
               <p>{{qtdMembros}} membros</p>
             <div class="row">
@@ -67,6 +102,6 @@
     </div>
 
 
-
+</div>
 
 

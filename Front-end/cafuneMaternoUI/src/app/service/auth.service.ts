@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { UserLogin } from '../model/Userlogin';
 import { Usuarios } from '../model/Usuarios';
-import { GruposService } from './grupos.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +14,7 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private grupoService: GruposService
+
   ) { }
 
 

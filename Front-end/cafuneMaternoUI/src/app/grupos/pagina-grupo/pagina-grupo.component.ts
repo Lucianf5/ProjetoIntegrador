@@ -1,4 +1,3 @@
-import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Grupos } from 'src/app/model/Grupos';
@@ -23,22 +22,29 @@ export class PaginaGrupoComponent implements OnInit {
   qtdMembros: number
   postagens: Postagens = new Postagens()
 
+  idUser: number
+
+  listaPostagens: Postagens[]
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private grupoService: GruposService,
     private postagemService: PostagemService
+    
   ) { }
 
   ngOnInit()  {
     if(environment.token == '') {
-      this.router.navigate(['/entrar'])
+      this.router.navigate(['/home'])
     }
     this.idUsuario = environment.idUserLogin
     this.idGrupo = this.route.snapshot.params['id']
     this.findByIdGrupo(this.idGrupo)
     this.findByUsuario(this.idUsuario)
+    this.idUser = environment.idUserLogin
     // this.qtdMembros = this.grupo.listaParticipantes.length
+    this.findAllPostagem()
   }
 
   findByIdGrupo(id: number) {
@@ -54,8 +60,14 @@ export class PaginaGrupoComponent implements OnInit {
     })
   }
 
+  findAllPostagens(){
+    this.grupoService.getAllPostagens().subscribe((resp: Postagens[])=> {
+      this.listaPostagens = resp
+    })
+  }
+
   sairGrupo(grupo: Grupos) {
-    console.log(grupo.listaParticipantes.length)
+    //console.log(grupo.listaParticipantes.length)
     this.grupoService.removerGrupo(environment.idUserLogin, grupo.idGrupo ).subscribe((resp: Usuarios)=>{
       this.usuarios = resp
       alert('Removido com sucesso')
@@ -63,16 +75,41 @@ export class PaginaGrupoComponent implements OnInit {
     })
   }
 
+  publicar() {
+    this.grupoService.postPostagem(this.postagens, environment.idUserLogin).subscribe((resp: Postagens) => {
+      this.postagens = resp
+      alert('Postagem cadastrado com sucesso!')
+      this.postagens = new Postagens()
+    })
+    this.listaPostagens
+  }
+
   verificarUser() {
     let ok : boolean = false
-    console.log(this.usuarios.tipo)
+    //console.log(this.usuarios.tipo)
     if(this.usuarios.tipo == "adm") {
       ok = true
     } else {
       ok = false
     }
-    console.log(ok)
+    //console.log(ok)
     return ok
   }
 
+  cadastrarPostagem() {
+    console.log(this.grupo)
+    this.postagens.grupoPertencente = this.grupo
+    this.postagemService.postPostagem(this.postagens, this.idUser).subscribe((resp: Postagens)=>{
+      this.postagens = resp
+      alert("Postagem realizada com sucesso!")
+      this.postagens = new Postagens()
+      this.findAllPostagem()
+    })
+  }
+
+  findAllPostagem() {
+    return this.postagemService.getAllPostagens().subscribe((resp: Postagens[])=>{
+      this.listaPostagens = resp
+    })
+  }
 }

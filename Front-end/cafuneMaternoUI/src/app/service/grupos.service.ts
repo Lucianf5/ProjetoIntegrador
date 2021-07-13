@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { Grupos } from '../model/Grupos';
+import { Postagens } from '../model/Postagens';
 import { Usuarios } from '../model/Usuarios';
 
 @Injectable({
@@ -56,6 +57,14 @@ export class GruposService {
 
   findByIdUsuario(idUsuario: number): Observable<Usuarios>{
     return this.http.get<Usuarios>(`https://appcafunematerno.herokuapp.com/usuarios/id/${idUsuario}`, this.token )
+  }
+
+  getAllPostagens(): Observable<Postagens[]> {
+    return this.http.get<Postagens[]>('https://appcafunematerno.herokuapp.com/postagens', this.token)
+  }
+  
+  postPostagem(postagens: Postagens, idPostagem: number): Observable<Postagens> {
+    return this.http.post<Postagens>(`https://appcafunematerno.herokuapp.com/postagens/salvar/usuario/${idPostagem}`, postagens, this.token)
   }
 
 
