@@ -54,6 +54,8 @@ public class PostagensService {
 				.orElse(ResponseEntity.status(204).build());
 	}
 	
+	
+	
 	/**
 	 * Método utilizado para cadastrar uma nova postagem no sistema, validando se
 	 * existe um usuário cadastrado no sistema.

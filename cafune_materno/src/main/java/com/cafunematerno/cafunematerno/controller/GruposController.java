@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cafunematerno.cafunematerno.model.Grupos;
 import com.cafunematerno.cafunematerno.model.Usuarios;
+import com.cafunematerno.cafunematerno.repository.GruposRepository;
 import com.cafunematerno.cafunematerno.service.GruposService;
 
 @RestController
@@ -27,6 +28,9 @@ public class GruposController {
 	@Autowired
 	private GruposService serviceGrupos;
 	
+	@Autowired
+	private GruposRepository gruposRepository;
+	
 
 	@GetMapping
 	public ResponseEntity<List<Grupos>> getAll(){
@@ -36,6 +40,11 @@ public class GruposController {
 	@GetMapping("/id/{id_grupo}")
 	public ResponseEntity<Grupos> buscarGrupoPorId(@PathVariable(value = "id_grupo") Long idGrupo) {
 		return serviceGrupos.procurarIdGrupos(idGrupo);
+	}
+	
+	@GetMapping("/nome/{nome}")
+	public ResponseEntity<List<Grupos>> getByName(@PathVariable String nome){
+		return ResponseEntity.ok(gruposRepository.findAllByNomeGrupoContaining(nome));
 	}
 	
 	@PostMapping("/salvar/usuario/{id_usuario}")
