@@ -62,7 +62,7 @@ export class GruposService {
   getAllPostagens(): Observable<Postagens[]> {
     return this.http.get<Postagens[]>('https://appcafunematerno.herokuapp.com/postagens', this.token)
   }
-
+  
   postPostagem(postagens: Postagens, idPostagem: number): Observable<Postagens> {
     return this.http.post<Postagens>(`https://appcafunematerno.herokuapp.com/postagens/salvar/usuario/${idPostagem}`, postagens, this.token)
   }

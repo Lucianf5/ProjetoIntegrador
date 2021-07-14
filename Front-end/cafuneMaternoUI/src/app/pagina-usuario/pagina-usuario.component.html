@@ -1,44 +1,46 @@
-<div class="container mt-5">
+<div class="bg-w-pink">
+    <p routerLink='/feed' class="point ml-2"> <i class="fa fa-arrow-left point" aria-hidden="true" routerLink='/feed'></i> Voltar</p>
 
-    <div class="row bg-w-purple">
-        <div class="col-md-12">
-          <div class="col-md-1 mt-1 point">
-            <p routerLink='/feed'> <i class="fa fa-arrow-left point" aria-hidden="true" routerLink='/feed'></i> Voltar</p>
-          </div>
-            <!--Card Status-->
-    <div class="row bg-w-purple">
-        <div class="col-md-12 d-flex justify-content-center">
+    <div class="container mt-2">
 
-            <div class="card mt-3" style="width: 18rem;">
-                <img src="{{foto}}">
-                <div class="card-body">
-                  <h5 class="card-title"> {{user.nomeCompleto}} <i class="fa fa-pencil-square-o" aria-hidden="true" [routerLink]="['/usuario-edit', user.idUsuario]"></i>
-                  </h5>
-                  <h6 class="card-subtitle mb-2 text-muted"> {{user.status}} </h6>
-                  <p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do card.</p>
-                  <a href="#" class="card-link">Link do card</a>
-                  <a href="#" class="card-link">Outro link</a>
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-4 bg-w-purple">
+
+                <!--Card Status-->
+                <div class="row">
+                    <div class="col-md-12 d-flex justify-content-center">
+
+                        <div class="card mt-3" style="width: 18rem;">
+                            <div class="d-flex justify-content-center mt-2 ">
+                                <img src="{{foto}}" class="rounded-circle w-50">
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title">{{user.nomeCompleto}} <i class="fa fa-pencil-square-o"
+                                        aria-hidden="true" [routerLink]="['/usuario-edit', user.idUsuario]"></i>
+                                </h4>
+                                <h5 class="card-subtitle mb-2">Status: {{user.status}} </h5>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <!--Card Status-->
+
+                <!--Card Sobre-->
+                <div class="row mt-3">
+                    <div class="col-md-12 d-flex justify-content-center">
+
+                        <div class="card mb-3" style="width: 18rem;">
+                            <div class="card-body">
+                                <h4 class="card-title text-center">Sobre: {{user.sobre}} </h4>
+                                <h5 class="mb-2"><i class="fas fa-book-open"></i> Pronome: {{user.pronome}} </h5>
+                                <h5><i class="fas fa-map-marker-alt"></i> De: {{user.localizacao}} </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Card Sobre-->
             </div>
         </div>
-    </div>
-    <!--Card Status-->
 
-    <!--Card Sobre-->
-    <div class="row mt-3">
-        <div class="col-md-12 d-flex justify-content-center">
-
-            <div class="card mb-3" style="width: 18rem;">
-                <div class="card-body">
-                  <h5 class="card-title"> {{user.sobre}} </h5>
-                  <h5 class="card-subtitle mb-2 text-muted"> {{user.pronome}} </h5>
-                  <h5> {{user.localizacao}} </h5>
-                </div>
-              </div>
-        </div>
     </div>
-    <!--Card Sobre-->
-        </div>
-    </div>
-
 </div>
