@@ -3,6 +3,7 @@ package com.cafunematerno.cafunematerno.service;
 import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -31,7 +32,10 @@ public class UsuariosService {
 	 * @author Grupo: Angelo, Ellen, Julio, Luciano e Nathalia.
 	 */
 	public ResponseEntity<List<Usuarios>> findAll() {
-		List<Usuarios> listaDeUsuarios = usuariosRepository.findAll();
+		List<Usuarios> listaDeUsuarios = usuariosRepository.findAll().stream().map(usuario -> {
+			usuario.setSenha("");
+			return usuario;
+		}).collect(Collectors.toList());
 		if (listaDeUsuarios.isEmpty()) {
 			return ResponseEntity.status(204).build();
 		} else {
@@ -49,7 +53,10 @@ public class UsuariosService {
 	 */
 	public ResponseEntity<Usuarios> procurarIdUsuario(Long idUsuario) {
 		return usuariosRepository.findById(idUsuario)
-				.map(existeIdUsuario -> ResponseEntity.status(200).body(existeIdUsuario))
+				.map(existeIdUsuario -> {
+					existeIdUsuario.setSenha("");
+					return ResponseEntity.status(200).body(existeIdUsuario);
+				})
 				.orElse(ResponseEntity.status(204).build());
 	}
 
@@ -108,11 +115,11 @@ public class UsuariosService {
 	 * @author Grupo: Angelo, Ellen, Julio, Luciano e Nathalia.
 	 */
 
-	public ResponseEntity<Usuarios> atualizarUsuario(UserLogin usuarioParaAtualizar) {
-		return usuariosRepository.findByEmailIgnoreCase(usuarioParaAtualizar.getEmail()).map(usuarioExistente -> {
+	public ResponseEntity<Usuarios> atualizarUsuario(Long idUsuario, Usuarios usuarioParaAtualizar) {
+		return usuariosRepository.findById(idUsuario).map(usuarioExistente -> {
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 			String senhaCodificada = encoder.encode(usuarioParaAtualizar.getSenha());
-			usuarioExistente.setNomeCompleto(usuarioParaAtualizar.getNome());
+			usuarioExistente.setNomeCompleto(usuarioParaAtualizar.getNomeCompleto());
 			usuarioExistente.setSenha(senhaCodificada);
 			usuarioExistente.setFoto(usuarioParaAtualizar.getFoto());
 			usuarioExistente.setStatus(usuarioParaAtualizar.getStatus());
@@ -161,11 +168,12 @@ public class UsuariosService {
 			user.setIdUserLogin(usuarioExistente.get().getIdUsuario());
 			user.setFoto(usuarioExistente.get().getFoto());
 			user.setTipo(usuarioExistente.get().getTipo());
+			user.setSenha("");
 
 			return ResponseEntity.status(200).body(user);
 
 		} else {
-			return ResponseEntity.status(204).build();
+			return ResponseEntity.status(401).build();
 		}
 	}
 
