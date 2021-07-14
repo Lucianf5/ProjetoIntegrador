@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
 import { Postagens } from '../model/Postagens';
 import { Usuarios } from '../model/Usuarios';
+import { AlertasService } from '../service/alertas.service';
 import { GruposService } from '../service/grupos.service';
 import { PostagemService } from '../service/postagem.service';
 
@@ -22,12 +23,14 @@ export class MinhasPostagensComponent implements OnInit {
     private gruposService: GruposService,
     private router: Router,
     private postagemService: PostagemService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private alertas: AlertasService
   ) { }
 
   ngOnInit() {
     window.scroll(0, 0)
     if (environment.token == '') {
+      this.alertas.showAertInfo('Sua sessão expirou!')
       this.router.navigate(['/home'])
     }
     this.gruposService.refreshToken()

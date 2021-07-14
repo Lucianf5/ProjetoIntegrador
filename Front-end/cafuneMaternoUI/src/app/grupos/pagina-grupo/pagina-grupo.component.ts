@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Grupos } from 'src/app/model/Grupos';
 import { Postagens } from 'src/app/model/Postagens';
 import { Usuarios } from 'src/app/model/Usuarios';
+import { AlertasService } from 'src/app/service/alertas.service';
 import { GruposService } from 'src/app/service/grupos.service';
 import { PostagemService } from 'src/app/service/postagem.service';
 import { environment } from 'src/environments/environment.prod';
@@ -30,20 +31,21 @@ export class PaginaGrupoComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private grupoService: GruposService,
-    private postagemService: PostagemService
-    
+    private postagemService: PostagemService,
+    private alertas: AlertasService
+
   ) { }
 
   ngOnInit()  {
     if(environment.token == '') {
       this.router.navigate(['/home'])
+      this.alertas.showAertInfo('É necessário logar novamente')
     }
     this.idUsuario = environment.idUserLogin
     this.idGrupo = this.route.snapshot.params['id']
     this.findByIdGrupo(this.idGrupo)
     this.findByUsuario(this.idUsuario)
     this.idUser = environment.idUserLogin
-    // this.qtdMembros = this.grupo.listaParticipantes.length
     this.findAllPostagem()
   }
 
@@ -70,7 +72,7 @@ export class PaginaGrupoComponent implements OnInit {
     //console.log(grupo.listaParticipantes.length)
     this.grupoService.removerGrupo(environment.idUserLogin, grupo.idGrupo ).subscribe((resp: Usuarios)=>{
       this.usuarios = resp
-      alert('Removido com sucesso')
+      this.alertas.showAlertSuccess('Removido com sucesso')
       this.router.navigate(['/feed'])
     })
   }
@@ -78,7 +80,7 @@ export class PaginaGrupoComponent implements OnInit {
   publicar() {
     this.grupoService.postPostagem(this.postagens, environment.idUserLogin).subscribe((resp: Postagens) => {
       this.postagens = resp
-      alert('Postagem cadastrado com sucesso!')
+      this.alertas.showAlertSuccess('Postagem cadastrado com sucesso!')
       this.postagens = new Postagens()
     })
     this.listaPostagens
@@ -86,13 +88,11 @@ export class PaginaGrupoComponent implements OnInit {
 
   verificarUser() {
     let ok : boolean = false
-    //console.log(this.usuarios.tipo)
     if(this.usuarios.tipo == "adm") {
       ok = true
     } else {
       ok = false
     }
-    //console.log(ok)
     return ok
   }
 
@@ -101,7 +101,7 @@ export class PaginaGrupoComponent implements OnInit {
     this.postagens.grupoPertencente = this.grupo
     this.postagemService.postPostagem(this.postagens, this.idUser).subscribe((resp: Postagens)=>{
       this.postagens = resp
-      alert("Postagem realizada com sucesso!")
+      this.alertas.showAlertSuccess("Postagem realizada com sucesso!")
       this.postagens = new Postagens()
       this.findAllPostagem()
     })

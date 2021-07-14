@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
 import { Usuarios } from '../model/Usuarios';
+import { AlertasService } from '../service/alertas.service';
 import { GruposService } from '../service/grupos.service';
 
 @Component({
@@ -16,23 +17,24 @@ export class PaginaUsuarioComponent implements OnInit {
   user: Usuarios = new Usuarios()
   foto: string
   id: number
-  
+
 
   constructor(
     private router: Router,
     private gruposervice: GruposService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private alertas: AlertasService
   ) { }
 
   ngOnInit() {
     if(environment.token == ''){
-      alert('Sua sessão expirou, faça o login novamente')
+        this.alertas.showAertInfo('Sua sessão expirou, faça o login novamente')
       this.router.navigate(['/entrar'])
   }
   this.id = this.route.snapshot.params['id']
   this.foto = environment.foto
   this.findByUsuario()
-  } 
+  }
 
   findByUsuario(){
     this.gruposervice.findByIdUsuario(this.id).subscribe((resp: Usuarios) => {

@@ -25,6 +25,5 @@ export class UsuariosService {
 
   putUsuario(usuarios: Usuarios): Observable<Usuarios>{
     return this.http.put<Usuarios>('https://appcafunematerno.herokuapp.com/usuarios/atualizar', usuarios, this.token)
-
   }
 }
