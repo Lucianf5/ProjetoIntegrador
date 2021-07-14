@@ -63,7 +63,7 @@ export class FeedComponent implements OnInit {
   postar() {
     this.gruposService.postPostagem(this.postagens, environment.idUserLogin).subscribe((resp: Postagens) => {
       this.postagens = resp
-      this.alertas.showAlertSuccess('Postagem cadastrada com sucesso!')
+      this.alertas.showAlertSuccess("Postagem cadastrada com sucesso!")
       this.postagens = new Postagens()
     })
     this.listaPostagens
@@ -114,6 +114,7 @@ export class FeedComponent implements OnInit {
     if (grupo.listaParticipantes.length == 0) {
       this.gruposService.deleteGrupos(grupo.idGrupo).subscribe(()=>{
         this.alertas.showAlertSuccess("Grupo apagado com sucesso")
+        console.log("Grupo apagado com sucesso")
         //this.findAllGrupos()
         this.router.navigate(['/feed'])
       })

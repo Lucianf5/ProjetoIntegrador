@@ -24,16 +24,15 @@
                 <h4 class="m-0 font-wheight-bold text-white fs-16">Olá, {{nome}}</h4>
             </li>
         </ul>
-        
+
         <div>
             <a class="nav-item dropdown container pull-right">
-                
+
                 <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                     aria-expanded="false"><img src="{{foto}}" alt="Foto do usuario" onerror="src='https://i.imgur.com/SrzGe8e.png'" style="background-color: rgb(255, 255, 255);" width="70px" height="70px"
                         class="img-fluid rounded-circle"></a>
                 <div class="dropdown-menu dropdown drop-pos">
                     <a class="dropdown-item" [routerLink]="['/pagina-usuario', idUser]">Meu Perfil</a>
-                    <a class="dropdown-item" href="#">Meus Grupos</a>
                     <a class="dropdown-item" [routerLink]="['/minhas-postagens', idUser]">Minhas postagens</a>
                     <div class="dropdown-divider"></div>
                     <p class="dropdown-item" (click)='sair()'>Sair <i class="fas fa-sign-out-alt"></i><p>
@@ -41,6 +40,6 @@
                 <a class="mt-5 fas fa-chevron-down text-white"></a>
             </a>
         </div>
-        
+
     </div>
 </nav>
