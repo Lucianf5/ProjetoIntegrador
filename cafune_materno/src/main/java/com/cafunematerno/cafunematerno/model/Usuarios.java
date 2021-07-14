@@ -34,7 +34,7 @@ public class Usuarios {
 	private String email;
 
 	@NotBlank
-	@Size(min = 8, max = 100, message = "Entre 8 e 100 caracteres.")
+	@Size(min = 6, max = 100, message = "Entre 8 e 100 caracteres.")
 	private String senha;
 
 	private String foto;

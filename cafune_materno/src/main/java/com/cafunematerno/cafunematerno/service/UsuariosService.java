@@ -115,8 +115,8 @@ public class UsuariosService {
 	 * @author Grupo: Angelo, Ellen, Julio, Luciano e Nathalia.
 	 */
 
-	public ResponseEntity<Usuarios> atualizarUsuario(Long idUsuario, Usuarios usuarioParaAtualizar) {
-		return usuariosRepository.findById(idUsuario).map(usuarioExistente -> {
+	public ResponseEntity<Usuarios> atualizarUsuario(Usuarios usuarioParaAtualizar) {
+		return usuariosRepository.findById(usuarioParaAtualizar.getIdUsuario()).map(usuarioExistente -> {
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 			String senhaCodificada = encoder.encode(usuarioParaAtualizar.getSenha());
 			usuarioExistente.setNomeCompleto(usuarioParaAtualizar.getNomeCompleto());
@@ -126,7 +126,7 @@ public class UsuariosService {
 			usuarioExistente.setPronome(usuarioParaAtualizar.getPronome());
 			usuarioExistente.setLocalizacao(usuarioParaAtualizar.getLocalizacao());
 			usuarioExistente.setSobre(usuarioParaAtualizar.getSobre());
-
+			
 			return ResponseEntity.status(202).body(usuariosRepository.save(usuarioExistente));
 		}).orElse(ResponseEntity.status(401).build());
 
@@ -155,7 +155,8 @@ public class UsuariosService {
 	public ResponseEntity<Object> logarUsuario(UserLogin user) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		Optional<Usuarios> usuarioExistente = usuariosRepository.findByEmailIgnoreCase(user.getEmail());
-
+		
+		
 		if (usuarioExistente.isPresent() && encoder.matches(user.getSenha(), usuarioExistente.get().getSenha())) {
 			String auth = user.getEmail() + ":" + user.getSenha();
 
