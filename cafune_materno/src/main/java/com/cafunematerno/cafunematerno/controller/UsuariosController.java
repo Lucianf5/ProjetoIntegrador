@@ -50,9 +50,9 @@ public class UsuariosController {
 			return serviceUsuarios.cadastrarNovoUsuario(novoUsuario);
 	}
 	
-	@PutMapping("/atualizar/{id_usuario}")
-	public ResponseEntity<Usuarios> alterarUsuario(@PathVariable(value="id_usuario") Long idUsuario, @Valid @RequestBody Usuarios usuarioParaAtualiza) {
-			return serviceUsuarios.atualizarUsuario(idUsuario, usuarioParaAtualiza);
+	@PutMapping("/atualizar")
+	public ResponseEntity<Usuarios> alterarUsuario(@Valid @RequestBody Usuarios usuarioParaAtualiza) {
+			return serviceUsuarios.atualizarUsuario(usuarioParaAtualiza);
 	}
 	
 	@DeleteMapping("/deletar")
