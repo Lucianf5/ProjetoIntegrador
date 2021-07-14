@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment.prod';
 import { Grupos } from '../model/Grupos';
 import { Postagens } from '../model/Postagens';
 import { Usuarios } from '../model/Usuarios';
+import { AlertasService } from '../service/alertas.service';
 import { GruposService } from '../service/grupos.service';
 @Component({
   selector: 'app-feed',
@@ -17,15 +18,18 @@ export class FeedComponent implements OnInit {
   listaGrupos: Grupos[]
   listaPostagens: Postagens[]
   idUsuario = environment.idUserLogin
+
   constructor(
     private router: Router,
-    private gruposService: GruposService
+    private gruposService: GruposService,
+    private alertas: AlertasService
   ) { }
 
   ngOnInit() {
     window.scroll(0, 0)
     if (environment.token == '') {
       this.router.navigate(['/home'])
+      this.alertas.showAertInfo('É necessário logar novamente')
     }
     this.gruposService.refreshToken()
     this.findAllGrupos()
@@ -47,9 +51,10 @@ export class FeedComponent implements OnInit {
 
 
   cadastrar() {
+    console.log(environment.idUserLogin)
     this.gruposService.postGrupos(this.grupos, environment.idUserLogin).subscribe((resp: Grupos) => {
       this.grupos = resp
-      alert('Grupo cadastrado com sucesso!')
+      this.alertas.showAlertSuccess('Grupo cadastrado com sucesso!')
       this.grupos = new Grupos()
     })
     this.findAllGrupos()
@@ -58,7 +63,7 @@ export class FeedComponent implements OnInit {
   postar() {
     this.gruposService.postPostagem(this.postagens, environment.idUserLogin).subscribe((resp: Postagens) => {
       this.postagens = resp
-      alert('Postagem cadastrada com sucesso!')
+      this.alertas.showAlertSuccess('Postagem cadastrada com sucesso!')
       this.postagens = new Postagens()
     })
     this.listaPostagens
@@ -68,10 +73,9 @@ export class FeedComponent implements OnInit {
     console.log(grupo.idGrupo)
     this.gruposService.addGrupo(environment.idUserLogin, grupo.idGrupo).subscribe((resp: Usuarios) => {
       this.usuarios = resp
-      alert('Adicionado com sucesso')
+      this.alertas.showAlertSuccess('Adicionado com sucesso')
     })
   }
-
 
   verificarUser() {
 
@@ -106,19 +110,17 @@ export class FeedComponent implements OnInit {
   }
 
   deleteGrupo(grupo: Grupos) {
-    //console.log(grupo.listaParticipantes.length)
-    if (grupo.listaParticipantes.length == 0) {
-      alert("Grupo apagado com sucesso")
-      this.gruposService.deleteGrupos(grupo.idGrupo)
-      this.findAllGrupos()
-    } else {
-      alert("Não é possível exclir um grupo com membros ativos")
 
+    if (grupo.listaParticipantes.length == 0) {
+      this.gruposService.deleteGrupos(grupo.idGrupo).subscribe(()=>{
+        this.alertas.showAlertSuccess("Grupo apagado com sucesso")
+        //this.findAllGrupos()
+        this.router.navigate(['/feed'])
+      })
+    } else {
+      this.alertas.showAlertDanger("Não é possível excluir um grupo com membros ativos")
     }
   }
-
-
-
 
   findUsuarioId() {
     return this.gruposService.findByIdUsuario(this.idUsuario).subscribe((resp: Usuarios) => {

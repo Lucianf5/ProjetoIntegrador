@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserLogin } from 'src/app/model/Userlogin';
 import { Usuarios } from 'src/app/model/Usuarios';
+import { AlertasService } from 'src/app/service/alertas.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { GruposService } from 'src/app/service/grupos.service';
 import { UsuariosService } from 'src/app/service/usuarios.service';
@@ -23,12 +24,12 @@ export class UsuarioEditComponent implements OnInit {
     private route: ActivatedRoute,
     private grupos: GruposService,
     private usuarios: UsuariosService,
-    private auth: AuthService
+    private alertas: AlertasService
   ) { }
 
   ngOnInit() {
     if(environment.token == ''){
-      alert('Sua sessão expirou, faça o login novamente')
+      this.alertas.showAertInfo('Sua sessão expirou, faça o login novamente')
       this.router.navigate(['/entrar'])
   }
   this.idUser = this.route.snapshot.params['id']
@@ -46,10 +47,10 @@ export class UsuarioEditComponent implements OnInit {
 
   atualizar() {
     console.log(this.user)
-    this.usuarios.putUsuario(this.idUser, this.user).subscribe((resp: Usuarios) => {
+    this.usuarios.putUsuario(this.user).subscribe((resp: Usuarios) => {
         this.user = resp
         this.router.navigate(['/inicio'])
-        alert('Usuário atualizado com sucesso, faça o login novamente.')
+        this.alertas.showAlertSuccess('Usuário atualizado com sucesso, faça o login novamente.')
         environment.token = ''
         environment.nome = ''
         environment.foto = ''

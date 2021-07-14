@@ -23,7 +23,7 @@ export class UsuariosService {
     }
   }
 
-  putUsuario(idUser: number, usuarios: Usuarios): Observable<Usuarios>{
-    return this.http.put<Usuarios>(`https://appcafunematerno.herokuapp.com/usuarios/atualizar/${idUser}`, usuarios, this.token)
+  putUsuario(usuarios: Usuarios): Observable<Usuarios>{
+    return this.http.put<Usuarios>('https://appcafunematerno.herokuapp.com/usuarios/atualizar', usuarios, this.token)
   }
 }

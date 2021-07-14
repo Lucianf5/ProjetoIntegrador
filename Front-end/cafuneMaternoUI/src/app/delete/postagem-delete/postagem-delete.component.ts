@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Postagens } from 'src/app/model/Postagens';
+import { AlertasService } from 'src/app/service/alertas.service';
 import { GruposService } from 'src/app/service/grupos.service';
 import { PostagemService } from 'src/app/service/postagem.service';
 import { environment } from 'src/environments/environment.prod';
@@ -20,7 +21,8 @@ export class PostagemDeleteComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private postagemService: PostagemService,
-    private gruposService: GruposService
+    private gruposService: GruposService,
+    private alertas: AlertasService
 
   ) { }
 
@@ -32,9 +34,8 @@ export class PostagemDeleteComponent implements OnInit {
     this.gruposService.refreshToken()
     this.idPostagem = this.route.snapshot.params['id']
     this.findByIdPostagem(this.idPostagem)
-    console.log(this.idPostagem)
     this.idUser = environment.idUserLogin
-    
+
   }
 
   findByIdPostagem(id: number){
@@ -45,7 +46,7 @@ export class PostagemDeleteComponent implements OnInit {
 
   apagar() {
     this.postagemService.deletePostagem(this.idPostagem).subscribe(() => {
-      alert('Postagem deletada com sucesso!')
+      this.alertas.showAlertSuccess('Postagem deletada com sucesso!')
       this.router.navigate(['/minhas-postagens',this.idUser])
     })
   }

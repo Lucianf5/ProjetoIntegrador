@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Grupos } from 'src/app/model/Grupos';
+import { AlertasService } from 'src/app/service/alertas.service';
 import { GruposService } from 'src/app/service/grupos.service';
 import { environment } from 'src/environments/environment.prod';
 
@@ -17,7 +18,8 @@ export class GrupoEditComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private grupoService: GruposService
+    private grupoService: GruposService,
+    private alertas: AlertasService
   ) { }
 
   ngOnInit() {
@@ -36,7 +38,7 @@ export class GrupoEditComponent implements OnInit {
   updateGrupo() {
     this.grupoService.putGrupos(this.grupo, this.idGrupo).subscribe((resp: Grupos)=>{
       this.grupo = resp
-      alert("Grupo Atualizado")
+      this.alertas.showAlertSuccess("Grupo Atualizado")
       this.findByIdGrupo(this.idGrupo)
       this.router.navigate(['/pagina-grupo',this.idGrupo])
     })

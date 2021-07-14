@@ -398,6 +398,10 @@
             <input [(ngModel)]='grupos.tema' type="text" class="form-control" id="grupos.tema"
               placeholder="Digite a descrição do tema do grupo:">
           </div>
+          <div class="form-group">
+            <input [(ngModel)]='grupos.foto' type="text" class="form-control" id="grupos.foto"
+              placeholder="Coloque uma Imagem">
+          </div>
         </div>
         <div class="modal-footer">
           <button class="btn btn-light mr-2 bg-pink" (click)='cadastrar()' data-dismiss="modal">Cadastrar</button>
@@ -424,16 +428,14 @@
           <table class="table table-hover">
             <thead>
               <tr>
-                <th scope="col">#</th>
                 <th scope="col">Nome do Grupo</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor='let item of usuarios.listaGrupos'>
-                <th>{{item.idGrupo}}</th>
                 <td>{{item.nomeGrupo}}</td>
                 <td class="d-flex justify-content-end">
-                  <button class="btn btn-outline-warning mr-3" data-dismiss="modal"
+                  <button class="btn bg-purple mr-3 text-light w-100" data-dismiss="modal"
                     [routerLink]="['/pagina-grupo',item.idGrupo]"> Ver </button>
                 </td>
               </tr>
@@ -441,7 +443,7 @@
           </table>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          <button type="button" class="btn bg-w-yellow text-light" data-dismiss="modal">Fechar</button>
 
         </div>
       </div>
