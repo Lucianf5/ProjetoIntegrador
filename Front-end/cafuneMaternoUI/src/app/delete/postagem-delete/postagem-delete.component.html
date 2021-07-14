@@ -1,18 +1,12 @@
 <div class="container mb-5 mt-5">
     <div class="row">
         <div class="col-md-12">
-            <h1 class="text-center text-secondary">Apagar postagem</h1>
+            <h4 class="text-center text-secondary">Deseja apagar esta postagem?</h4>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-12">
-            <h4>Você tem certeza que deseja apagar esta postagem?</h4>
-        </div>
-    </div>
-
-    <div class="row d-flex justify-content mt-4">
-        <div class="col-md-4">
+    <div class="row d-flex justify-content-center mt-4">
+        <div class="col-md-12 d-flex justify-content-center">
             <div class="card bg-light mb-2 w-50">
                 <div class="card-header bg-pink">
                   <div class="row">
@@ -32,6 +26,7 @@
                     </div>
                   </div>
                 </div>
+                <img *ngIf='!(postagens.urlAnexo == null)' class="card-img-top" src="{{postagens.urlAnexo}}" alt="Imagem de capa do card">
                 <div class="card-body">
                   <h5 class="card-title">{{postagens.tituloPostagem}}</h5>
                   <p class="card-text">
@@ -41,10 +36,10 @@
               </div>
         </div>
     </div>
-    <div class="row mt-5">
-        <div class="col-md-12 d-flex justify-content-center">
-            <button class="btn btn-danger mr-4" routerLink='/inicio'>Não</button>
-            <button class="btn btn-success" (click)='apagar()'>Sim</button>
+    <div class="row mt-2 ">
+        <div class="col-md-9 d-flex justify-content-end">
+          <button class="btn bg-pink mr-2" (click)='apagar()'>Apagar</button>
+          <button class="btn bg-w-yellow" [routerLink]="['/minhas-postagens', idUser]">Cancelar</button>
         </div>
     </div>
 </div>

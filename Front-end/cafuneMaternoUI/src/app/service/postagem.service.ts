@@ -39,9 +39,9 @@ export class PostagemService {
     return this.http.put<Postagens>(`https://appcafunematerno.herokuapp.com/postagens/atualizar/${idPostagem}`, postagens, this.token)
   }
 
-  deletePostagem(idPostagem: number){
+  deletePostagem(idPostagem: number) {
     let params = new HttpParams().set('idPostagem', idPostagem)
-    return this.http.delete<Postagens>(`https://appcafunematerno.herokuapp.com/postagens/deletar?${params}`, this.token)
+    return this.http.delete(`https://appcafunematerno.herokuapp.com/postagens/deletar?${params}`, this.token)
   }
 
 }
