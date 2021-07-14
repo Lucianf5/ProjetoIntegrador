@@ -27,6 +27,8 @@ public class PostagensController {
 	@Autowired
 	private PostagensService servicePostagens;
 	
+	@Autowired
+	private  PostagensRepository repositoryPostagens;
 	
 	@GetMapping
 	public ResponseEntity<List<Postagens>> getAll(){
@@ -36,6 +38,11 @@ public class PostagensController {
 	@GetMapping("/id/{id_postagem}")
 	public ResponseEntity<Postagens> buscarPostagemPorId(@PathVariable(value = "id_postagem") Long idPostagem) {
 		return servicePostagens.procurarIdPostagens(idPostagem);
+	}
+	
+	@GetMapping("/titulo/{titulo}")
+	public ResponseEntity<List<Postagens>> GetByTitulo(@PathVariable String titulo){
+		return ResponseEntity.ok(repositoryPostagens.findAllByTituloPostagemContaining(titulo));
 	}
 	
 	@PostMapping("/salvar/usuario/{id_usuario}")
