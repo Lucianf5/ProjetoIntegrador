@@ -42,7 +42,7 @@ export class EntrarComponent implements OnInit {
 
       this.router.navigate(['/feed'])
     }, erro => {
-      if (erro.status == 204) {
+      if (erro.status == 401) {
         alert('E-mail ou senha estão incorretos!')
       }
     })
